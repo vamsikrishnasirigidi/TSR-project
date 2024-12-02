@@ -8,6 +8,7 @@ import { UserManagementFormComponent } from './user-management/user-management-f
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UploadLogoComponent } from './settings/upload-logo/upload-logo.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -17,6 +18,7 @@ import { UploadLogoComponent } from './settings/upload-logo/upload-logo.componen
     SettingsComponent,
     UserManagementFormComponent,
     UploadLogoComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
