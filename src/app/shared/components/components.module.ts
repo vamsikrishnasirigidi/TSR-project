@@ -24,6 +24,10 @@ import { SortComponent } from './sort/sort.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { InputTextAreaComponent } from './inputs/input-text-area/input-text-area.component';
 import { PageLoaderComponent } from './page-loader/page-loader.component';
+import { FooterComponent } from './footer/footer.component';
+import { GalleryComponent } from './gallery/gallery.component';
+import { FormComponent } from './form/form.component';
+import { CardComponent } from './card/card.component';
 @NgModule({
   declarations: [
     LoadingSpinnerComponent,
@@ -45,6 +49,10 @@ import { PageLoaderComponent } from './page-loader/page-loader.component';
     ChangePasswordComponent,
     InputTextAreaComponent,
     PageLoaderComponent,
+    FooterComponent,
+    GalleryComponent,
+    FormComponent,
+    CardComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, PrimeUIModule],
   exports: [
