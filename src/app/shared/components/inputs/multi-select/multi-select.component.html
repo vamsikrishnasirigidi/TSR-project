@@ -1,0 +1,38 @@
+<div class="input_text_component">
+  <div
+    class="p-input-filled"
+    [formGroup]="formGroup"
+    autocomplete="off"
+    [class]="class"
+    autocomplete="off"
+  >
+    <div class="textBoxMargin">
+      <div *ngIf="label" class="col-12 p-0 mb-1 labelNames formFields">
+        <label class="label"
+          >{{ label }} <span *ngIf="requiredStar" class="requiredStar">*</span>
+        </label>
+      </div>
+      <span class="col-12 p-0 m-0 p-input-icon-left inputField formFields">
+        <p-multiSelect
+          [options]="options"
+          [placeholder]="placeholder"
+          [readonly]="disabled"
+          display="chip"
+          [formControlName]="name"
+          [filter]="filter"
+          [defaultLabel]="defaultLabel"
+          [optionLabel]="optionLabel"
+          [optionDisabled]="optionDisabled"
+          (onChange)="onChangeEvent($event)"
+          [showHeader]="showHeader"
+        ></p-multiSelect>
+      </span>
+
+      <div [ngClass]="className" class="flex">
+        <small class="p-error-invalid">{{
+          error !== undefined ? error : "&nbsp;"
+        }}</small>
+      </div>
+    </div>
+  </div>
+</div>

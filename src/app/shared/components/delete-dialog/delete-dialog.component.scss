@@ -1,0 +1,23 @@
+@import "../../../../colors.scss";
+.dialog {
+  .message {
+    color: $fontBoldColor;
+    min-height: 3rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .deleteDialogIcon{
+    color: $primaryColor;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+  }
+}
+::ng-deep {
+  .p-dialog {
+    min-width: 400px !important;
+  }
+}

@@ -1,0 +1,32 @@
+<div class="uploadLogo-Component">
+  <div
+    *ngIf="imageSrcUrl"
+    class="uploadImagePreview flex justify-content-center mt-5 relative"
+  >
+    <img class="uploadImage" [src]="imageSrcUrl" alt="Upload Image" />
+    <span class="removeLogo absolute">
+      <i (click)="removeLogoImage()" class="pi pi-times cursor-pointer"></i>
+    </span>
+  </div>
+  <div class="uploadButton flex justify-content-center mt-4">
+    <app-upload-button
+      [labelName]="'Upload Logo'"
+      (imageUploaded)="uploadLogoImage($event)"
+    ></app-upload-button>
+  </div>
+  <div class="flex justify-content-end mt-5">
+    <app-button
+      [mainClass]="'button-cancel'"
+      [label]="'Cancel'"
+      [showIcon]="false"
+      (submitForm)="cancelForm()"
+    ></app-button>
+    &nbsp;&nbsp;
+    <app-button
+      [mainClass]="'button-primary'"
+      [label]="'Save'"
+      [showIcon]="false"
+      (submitForm)="submitForm()"
+    ></app-button>
+  </div>
+</div>

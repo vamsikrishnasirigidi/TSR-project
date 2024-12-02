@@ -1,0 +1,30 @@
+steps:
+  # Step 1: Build the Angular app Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-west1-docker.pkg.dev/$PROJECT_ID/wms-ui/wms-ui:latest', '.']
+
+  # Step 2: Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-west1-docker.pkg.dev/$PROJECT_ID/wms-ui/wms-ui:latest']
+
+  # Step 3: Deploy the Angular app to Google Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'  
+    args:
+      - 'run'
+      - 'deploy'
+      - 'wms-ui'
+      - '--image'
+      - 'us-west1-docker.pkg.dev/$PROJECT_ID/wms-ui/wms-ui:latest'
+      - '--region'
+      - 'us-west1'
+      - '--platform'
+      - 'managed'
+      - '--port'
+      - '80'
+      - --min-instances
+      - '1'
+      - '--allow-unauthenticated'
+
+images:
+  - 'us-west1-docker.pkg.dev/$PROJECT_ID/wms-ui/wms-ui:latest'

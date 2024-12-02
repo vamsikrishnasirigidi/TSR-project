@@ -1,0 +1,19 @@
+@import "../../../../colors.scss";
+::ng-deep {
+  .pi-spin {
+    color: $primaryColor !important;
+  }
+}
+.loader-component {
+  height: 100%;
+  .loader-division {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .loadingText{
+    font-size: 16px;
+    color: $primaryColor;
+  }
+}

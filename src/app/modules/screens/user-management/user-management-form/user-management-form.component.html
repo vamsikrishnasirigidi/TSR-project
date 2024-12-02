@@ -1,0 +1,149 @@
+<!-- <div class="userManagementForm">
+  <div class="flex">
+    <div class="col-6 pb-0">
+      <app-input-text
+        [formGroup]="userManagementForm"
+        [name]="'firstName'"
+        [label]="'First Name'"
+        [maxlength]="50"
+        [placeholder]="'enter first name'"
+        [requiredStar]="true"
+        [error]="
+          inputRequiredValidation(userManagementForm, 'firstName')
+            ? 'first name is required'
+            : ''
+        "
+      >
+      </app-input-text>
+    </div>
+    <div class="col-6 pb-0">
+      <app-input-text
+        [formGroup]="userManagementForm"
+        [name]="'lastName'"
+        [maxlength]="50"
+        [label]="'Last Name'"
+        [requiredStar]="true"
+        [placeholder]="'enter last name'"
+        [error]="
+          inputRequiredValidation(userManagementForm, 'lastName')
+            ? 'last name is required'
+            : ''
+        "
+      >
+      </app-input-text>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="col-6 pb-0">
+      <app-input-text
+        [formGroup]="userManagementForm"
+        [name]="'email'"
+        [maxlength]="50"
+        [requiredStar]="true"
+        [label]="'Email'"
+        [hideSpecialChar]="false"
+        [emailTemplate]="true"
+        [placeholder]="'enter email'"
+        [error]="
+          inputRequiredValidation(userManagementForm, 'email')
+            ? 'email is required'
+            : inputPatternValidationsErrors(userManagementForm, 'email')
+            ? 'enter valid email'
+            : ''
+        "
+      >
+      </app-input-text>
+    </div>
+    <div class="col-6 pb-0">
+      <app-input-text
+        [formGroup]="userManagementForm"
+        [name]="'contactNumber'"
+        [label]="'Contact Number'"
+        [requiredStar]="true"
+        [numbersOnly]="true"
+        [maxlength]="10"
+        [placeholder]="'enter contact number'"
+        [showCountryCodes]="true"
+        [countryFormControlName]="'countryCodes'"
+        [error]="
+          inputRequiredValidation(userManagementForm, 'contactNumber')
+            ? 'contact number is required'
+            : inputLengthValidationsErrors(userManagementForm, 'contactNumber')
+            ? 'enter valid contact number'
+            : ''
+        "
+      ></app-input-text>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="col-6 pb-0">
+      <app-dropdown
+        [formGroup]="userManagementForm"
+        [name]="'role'"
+        [label]="'Role'"
+        [placeholder]="'select role'"
+        [requiredStar]="true"
+        [options]="roles"
+        [labelName]="'role'"
+        (onChangeHappened)="onSelectRole($event)"
+        [error]="
+          inputRequiredValidation(userManagementForm, 'role')
+            ? 'role is required'
+            : ''
+        "
+      >
+      </app-dropdown>
+    </div>
+    <div class="col-6 pb-0" *ngIf="showCarrierAndShipper">
+      <app-dropdown
+        [formGroup]="userManagementForm"
+        [name]="'carrierAdmin'"
+        [label]="'Carrier'"
+        [placeholder]="'select carrier'"
+        [options]="carrierOrgList"
+        [labelName]="'name'"
+        [error]="
+          inputRequiredValidation(userManagementForm, 'carrierAdmin')
+            ? 'carrier should be selected'
+            : ''
+        "
+      >
+      </app-dropdown>
+    </div>
+  </div>
+  <div>
+    <div class="col-6 pb-0" *ngIf="showCarrierAndShipper">
+      <app-dropdown
+        [formGroup]="userManagementForm"
+        [name]="'shipperAdmin'"
+        [label]="'Shipper'"
+        [placeholder]="'select shipper'"
+        [options]="shipperOrgList"
+        [labelName]="'name'"
+        [error]="
+          inputRequiredValidation(userManagementForm, 'shipperAdmin')
+            ? 'shipper should be selected'
+            : ''
+        "
+      >
+      </app-dropdown>
+    </div>
+  </div>
+  <div class="col-12 flex justify-content-end" style="margin-top: 80px">
+    <app-button
+      [mainClass]="'button-cancel'"
+      [label]="'Cancel'"
+      [showIcon]="false"
+      (submitForm)="cancelForm()"
+    ></app-button>
+    &nbsp;&nbsp;
+    <app-button
+      [mainClass]="'button-primary'"
+      [label]="submitButtonLabel"
+      [showIcon]="false"
+      (submitForm)="submitForm()"
+      [loading]="buttonLoading"
+      [disabled]="!userManagementForm.valid"
+    ></app-button>
+  </div>
+</div> -->

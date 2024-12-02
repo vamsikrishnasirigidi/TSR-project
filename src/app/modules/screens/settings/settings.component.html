@@ -1,0 +1,412 @@
+<div class="settings-component" *ngIf="!loadingPage">
+  <div>
+    <p class="component-heading">Settings</p>
+  </div>
+  <div class="profile-settings-card">
+    <div class="profile-settings-heading">
+      <p class="m-0">Profile</p>
+    </div>
+
+    <div class="profile-settings-account">
+      <div
+        class="account-information"
+        *ngIf="userRole === 'warehouseManager' && organizationDetails"
+      >
+        <div class="profile-settings-logo">
+          <div class="flex align-items-center m-3">
+            <div class="logoImage relative">
+              <img
+                class="logo"
+                width="90px"
+                height="90px"
+                [src]="
+                  organizationDetails.logo
+                    ? organizationDetails.logo
+                    : '../../../../assets/images/User-avatar.png'
+                "
+              />
+              <span class="editLogoImage absolute">
+                <i
+                  (click)="uploadLogo.click()"
+                  class="fa-solid fa-pencil cursor-pointer"
+                ></i>
+                <input
+                  id="uploadLogo"
+                  type="file"
+                  accept="image/png , image/jpeg"
+                  #uploadLogo
+                  (change)="onUploadOrgLogo($event)"
+                  style="display: none"
+                />
+              </span>
+            </div>
+            <div class="logoDetails ml-3">
+              <p
+                *ngIf="userRole === 'warehouseManager'"
+                class="profile-userName m-0"
+              >
+                {{ organizationDetails.name | titlecase }}
+              </p>
+              <p class="profile-role m-0">{{ personalDetails?.userRole }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="account-information-heading flex justify-content-between">
+          <p class="m-0">Organization Information</p>
+          <span>
+            <i
+              (click)="editAccountInformation()"
+              class="pi pi-pencil cursor-pointer editIcon"
+              pTooltip="Edit"
+              tooltipPosition="left"
+            ></i>
+          </span>
+        </div>
+        <div class="organization-information-form">
+          <div class="flex responsiveFlex">
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'Organization Name'"
+                name="name"
+                [placeholder]="'enter organization name'"
+                [formGroup]="organizationForm"
+                [maxlength]="50"
+                [requiredStar]="true"
+                [error]="
+                  inputRequiredValidationsErrors(organizationForm, 'name')
+                    ? 'organization name is required'
+                    : ''
+                "
+              ></app-input-text>
+            </div>
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="' Organization Email'"
+                name="email"
+                [placeholder]="'enter organization email'"
+                [formGroup]="organizationForm"
+                [hideSpecialChar]="false"
+                [emailTemplate]="true"
+                [requiredStar]="true"
+                [maxlength]="50"
+                [error]="
+                  inputRequiredValidationsErrors(organizationForm, 'email')
+                    ? 'email is required'
+                    : inputpatternValidationsErrors(organizationForm, 'email')
+                    ? 'enter valid email'
+                    : errorList['']
+                "
+              ></app-input-text>
+            </div>
+          </div>
+
+          <div class="flex responsiveFlex">
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'Organization Contact'"
+                name="contactNumber"
+                [numbersOnly]="true"
+                [requiredStar]="true"
+                [maxlength]="10"
+                [placeholder]="'enter organization contact'"
+                [formGroup]="organizationForm"
+                [showCountryCodes]="true"
+                [countryFormControlName]="'countryCodes'"
+                [error]="
+                  inputRequiredValidationsErrors(
+                    organizationForm,
+                    'contactNumber'
+                  )
+                    ? 'organization contact is required'
+                    : inputLengthValidationsErrors(
+                        organizationForm,
+                        'contactNumber'
+                      )
+                    ? 'enter valid contact number'
+                    : ''
+                "
+              ></app-input-text>
+            </div>
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'Website'"
+                name="website"
+                [maxlength]="50"
+                [placeholder]="'enter website'"
+                [formGroup]="organizationForm"
+              ></app-input-text>
+            </div>
+          </div>
+          <div class="flex responsiveFlex">
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'Address Line 1'"
+                name="addressLineOne"
+                [maxlength]="100"
+                [requiredStar]="true"
+                [placeholder]="'enter address line 1'"
+                [formGroup]="organizationForm"
+                [error]="
+                  inputRequiredValidationsErrors(
+                    organizationForm,
+                    'addressLineOne'
+                  )
+                    ? 'address line 1 is required'
+                    : ''
+                "
+              ></app-input-text>
+            </div>
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'Address Line 2'"
+                name="addressLineTwo"
+                [maxlength]="100"
+                [placeholder]="'enter address line 2'"
+                [formGroup]="organizationForm"
+              ></app-input-text>
+            </div>
+          </div>
+          <div class="flex responsiveFlex">
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'City'"
+                name="city"
+                [maxlength]="50"
+                [requiredStar]="true"
+                [placeholder]="'enter city'"
+                [formGroup]="organizationForm"
+                [error]="
+                  inputRequiredValidationsErrors(organizationForm, 'city')
+                    ? 'city is required'
+                    : ''
+                "
+              ></app-input-text>
+            </div>
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'State'"
+                name="state"
+                [maxlength]="50"
+                [placeholder]="'enter state'"
+                [requiredStar]="true"
+                [formGroup]="organizationForm"
+                [error]="
+                  inputRequiredValidationsErrors(organizationForm, 'state')
+                    ? 'state is required'
+                    : ''
+                "
+              ></app-input-text>
+            </div>
+          </div>
+          <div class="flex responsiveFlex">
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'Country'"
+                [requiredStar]="true"
+                name="country"
+                [maxlength]="50"
+                [placeholder]="'enter country'"
+                [formGroup]="organizationForm"
+                [error]="
+                  inputRequiredValidationsErrors(organizationForm, 'country')
+                    ? 'country is required'
+                    : ''
+                "
+              ></app-input-text>
+            </div>
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'Zipcode'"
+                name="zipcode"
+                [placeholder]="'enter zipcode'"
+                [maxlength]="5"
+                [formGroup]="organizationForm"
+                [requiredStar]="true"
+                [numbersOnly]="true"
+                [error]="
+                  inputRequiredValidationsErrors(organizationForm, 'zipcode')
+                    ? 'zipcode is required'
+                    : inputLengthValidationsErrors(organizationForm, 'zipcode')
+                    ? 'enter valid zipcode'
+                    : ''
+                "
+              ></app-input-text>
+            </div>
+          </div>
+          <div class="col-12 flex justify-content-end" *ngIf="editOrgDetails">
+            <app-button
+              [mainClass]="'button-cancel'"
+              [label]="'Cancel'"
+              [showIcon]="false"
+              (submitForm)="cancelAccountForm()"
+            ></app-button>
+            &nbsp;&nbsp;
+            <app-button
+              [mainClass]="'button-primary'"
+              [label]="submitButtonLabel"
+              [showIcon]="false"
+              [loading]="buttonLoading"
+              (submitForm)="submitAccountForm()"
+              [disabled]="
+                !organizationForm.valid ||
+                inputpatternValidationsErrors(organizationForm, 'email')
+              "
+            ></app-button>
+          </div>
+        </div>
+      </div>
+
+      <div class="personal-information" *ngIf="personalDetails">
+        <div class="profile-settings-logo">
+          <div class="flex align-items-center m-3">
+            <div class="logoImage relative">
+              <img
+                class="logo"
+                width="90px"
+                height="90px"
+                [src]="
+                  personalDetails?.logo
+                    ? personalDetails?.logo
+                    : '../../../../assets/images/User-avatar.png'
+                "
+              />
+              <span class="editLogoImage absolute">
+                <i
+                  (click)="uploadUserLogo.click()"
+                  class="fa-solid fa-pencil cursor-pointer"
+                ></i>
+                <input
+                  id="uploadUserLogo"
+                  type="file"
+                  #uploadUserLogo
+                  accept="image/png , image/jpeg"
+                  (change)="onUploadPersonalLogo($event)"
+                  style="display: none"
+                />
+              </span>
+            </div>
+            <div class="logoDetails ml-3">
+              <p class="profile-userName m-0">
+                {{ personalDetails.firstName | titlecase }}
+                {{ personalDetails.lastName | titlecase }}
+              </p>
+              <p class="profile-role m-0">{{ personalDetails.userRole }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="account-information-heading flex justify-content-between">
+          <p class="m-0">Personal Information</p>
+          <span>
+            <i
+              (click)="editPersonalInformation()"
+              class="pi pi-pencil cursor-pointer editIcon"
+              pTooltip="Edit"
+              tooltipPosition="left"
+            ></i>
+          </span>
+        </div>
+        <div class="user-information-form">
+          <div class="flex responsiveFlex">
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'First Name'"
+                name="firstName"
+                [requiredStar]="true"
+                [placeholder]="'enter first name'"
+                [formGroup]="userForm"
+                [maxlength]="50"
+                [error]="
+                  inputRequiredValidationsErrors(userForm, 'firstName')
+                    ? 'first name is required'
+                    : ''
+                "
+              ></app-input-text>
+            </div>
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'Last Name'"
+                name="lastName"
+                [requiredStar]="true"
+                [placeholder]="'enter last name'"
+                [formGroup]="userForm"
+                [maxlength]="50"
+                [error]="
+                  inputRequiredValidationsErrors(userForm, 'lastName')
+                    ? 'last name is required'
+                    : ''
+                "
+              ></app-input-text>
+            </div>
+          </div>
+
+          <div class="flex responsiveFlex">
+            <div class="col-6 md:col-6 sm:col-12 pb-0">
+              <app-input-text
+                [label]="'Contact Number'"
+                name="contactNumber"
+                [numbersOnly]="true"
+                [requiredStar]="true"
+                [maxlength]="10"
+                [placeholder]="'enter contact number'"
+                [formGroup]="userForm"
+                [showCountryCodes]="true"
+                [countryFormControlName]="'countryCodes'"
+                [error]="
+                  inputRequiredValidationsErrors(userForm, 'contactNumber')
+                    ? 'contact number is required'
+                    : inputLengthValidationsErrors(userForm, 'contactNumber')
+                    ? 'enter valid contact number'
+                    : ''
+                "
+              ></app-input-text>
+            </div>
+            <div class="col-12 md:col-6 lg:col-6 pb-0">
+              <app-input-text
+                [label]="'Email Address'"
+                name="email"
+                [maxlength]="50"
+                [hideSpecialChar]="false"
+                [emailTemplate]="true"
+                [placeholder]="'enter email address'"
+                [formGroup]="userForm"
+                [error]="
+                  inputRequiredValidationsErrors(userForm, 'email')
+                    ? 'email is required'
+                    : inputpatternValidationsErrors(userForm, 'email')
+                    ? 'enter valid email'
+                    : errorList['']
+                "
+              ></app-input-text>
+            </div>
+          </div>
+          <div
+            class="col-12 flex justify-content-end"
+            *ngIf="editPersonalDetails"
+          >
+            <app-button
+              [mainClass]="'button-cancel'"
+              [label]="'Cancel'"
+              [showIcon]="false"
+              (submitForm)="cancelPersonalForm()"
+            ></app-button>
+            &nbsp;&nbsp;
+            <app-button
+              [mainClass]="'button-primary'"
+              [label]="submitButtonLabel"
+              [showIcon]="false"
+              (submitForm)="submitPersonalForm()"
+              [loading]="buttonLoading"
+              [disabled]="
+                !userForm.valid ||
+                inputpatternValidationsErrors(userForm, 'email')
+              "
+            ></app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="loadingPage">
+  <app-page-loader></app-page-loader>
+</div>

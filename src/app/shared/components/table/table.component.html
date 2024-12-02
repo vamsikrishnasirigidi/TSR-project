@@ -1,0 +1,112 @@
+<div class="box-shadow">
+  <div class="screen-header"></div>
+  <div>
+    <p-table
+      [scrollable]="true"
+      *ngIf="hasRecords && !loading; else noRecords"
+      [columns]="columns"
+      [value]="records"
+      styleClass="p-datatable-responsive p-datatable-striped app-table"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="spacing"></th>
+          <th
+            *ngFor="let col of columns"
+            [style]="col.width ? 'width: ' + col.width : ''"
+          >
+            {{ col.header }}
+          </th>
+          <th class="spacing"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td class="spacing"></td>
+          <td
+            [style]="
+              col.minwidth
+                ? 'min-width: ' + col.minwidth
+                : col.maxwidth
+                ? 'max-width: ' + col.maxwidth
+                : ''
+            "
+            *ngFor="let col of columns"
+          >
+            <span *ngIf="col.type === 'actions'">
+              <div style="min-width: 85px">
+                <span
+                  *ngFor="let action of col.actions"
+                  class="listing-action-button"
+                >
+                  <span *ngIf="actionData(rowData, action) as actionInfo">
+                    <i
+                      pTooltip="{{ actionInfo.toolTip }}"
+                      tooltipPosition="top"
+                      *ngIf="actionInfo"
+                      class="{{ actionInfo.icon }} cursor-pointer"
+                      (click)="
+                        actionClick(actionInfo.type, rowData['id'], rowData)
+                      "
+                    ></i>
+                    &nbsp;
+                  </span>
+                </span>
+              </div>
+            </span>
+            <span
+              [ngClass]="col.statusClass === true ? rowData[col.field] : ''"
+              *ngIf="col.type !== 'actions'"
+            >
+              {{ dataFormatting(rowData[col.field], col.options) }}
+            </span>
+          </td>
+          <td class="spacing"></td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div [ngStyle]="{ display: showPagination ? '' : 'none' }">
+      <p-paginator
+        class="pg-paginate"
+        [rows]="meta.pageSize"
+        #page
+        [totalRecords]="meta.recordCount"
+        (onPageChange)="actionClick('pagination', $event)"
+      >
+      </p-paginator>
+    </div>
+  </div>
+  <ng-template #noRecords>
+    <p-table
+      [columns]="columns"
+      [value]="records"
+      styleClass="p-datatable-responsive p-datatable-striped app-table"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="spacing"></th>
+          <th
+            *ngFor="let col of columns"
+            [style]="col.width ? 'width: ' + col.width : ''"
+          >
+            {{ col.header }}
+          </th>
+          <th class="spacing"></th>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div
+      *ngIf="!loading; else fetchingRecords"
+      class="h-8rem flex justify-content-center align-items-center"
+    >
+      <p class="text-center text-xl">No Records Found</p>
+      <br />
+    </div>
+    <ng-template #fetchingRecords>
+      <div class="spinner-division text-center pt-5 h-8rem">
+        <i class="pi pi-spin pi-spinner" style="font-size: 2.5rem"></i>
+        <p style="font-size: 14px">Loading... Please Wait</p>
+      </div>
+    </ng-template>
+  </ng-template>
+</div>

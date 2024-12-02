@@ -1,0 +1,76 @@
+@import "../../../../colors.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+}
+.logo {
+  width: 90%;
+  height: 50px;
+}
+
+.logoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 0px;
+  border-bottom: 1px solid rgba(216, 216, 216, 1);
+}
+.routesContainer {
+  width: 90%;
+  padding-top: 10px;
+  margin: 10px;
+}
+.routesContainer ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+.routesContainer ul li {
+  list-style: none;
+  width: 100%;
+}
+.routingDivision {
+  margin: 10px;
+  cursor: pointer;
+  padding-left: 13px;
+  font: 400 16px/19px $font-family;
+  font-weight: 400;
+}
+.routingDivision a {
+  position: relative;
+  top: 2px;
+}
+.iconStyle {
+  width: 25px;
+  height: 20px;
+  object-fit: contain;
+}
+.active {
+  color: $primaryColor !important;
+  background-color: $activeBackground;
+  border-radius: 5px;
+}
+@media screen and (max-width: 1200px) {
+  .routingDivision {
+    padding-left: 0px !important;
+  }
+  .sidenav-text {
+    font-size: 14px !important;
+  }
+}
+@media screen and (max-width: 775px) {
+  .sidenav-text {
+    display: none !important;
+  }
+  .routesContainer ul li {
+    text-align: center;
+    width: fit-content;
+  }
+  .routesContainer {
+    margin-left: 0px;
+  }
+}

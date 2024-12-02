@@ -1,0 +1,82 @@
+@import ".././../../../colors.scss";
+.settings-component {
+  max-width: 1200px;
+  .profile-settings-card {
+    border: 2px solid $borderColor;
+    border-radius: 1px;
+    .profile-settings-heading {
+      padding: 10px 25px;
+      color: $fontBoldColor;
+      font-weight: 600;
+      background-color: $borderColor;
+    }
+    .edit-logo-text {
+      color: $fontBoldColor;
+      font-weight: 600;
+      padding: 10px 0px 0px 25px;
+    }
+    .logo {
+      padding: 0px;
+      border: 2px solid $primaryColor;
+      border-radius: 50%;
+    }
+    .profile-userName {
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .profile-role {
+      font-size: 16px;
+    }
+    .account-information {
+      border: 1px solid $borderColor;
+      border-radius: 2px;
+      margin: 15px 15px;
+    }
+    .personal-information {
+      border: 1px solid $borderColor;
+      border-radius: 2px;
+      margin: 20px 15px;
+    }
+    .account-information-heading {
+      font-weight: 600;
+      color: $fontBoldColor;
+      padding: 10px 20px;
+      margin: 10px;
+      border-bottom: 1px solid $borderColor;
+      .editIcon {
+        font-weight: 600;
+        padding-right: 10px;
+      }
+    }
+
+    .organization-information-form {
+      padding: 5px 25px 15px 25px;
+    }
+    .user-information-form {
+      padding: 5px 25px 15px 25px;
+    }
+    .editLogoImage {
+      right: 5px;
+      background: $primaryColor;
+      bottom: 8px;
+      color: $secondaryColor;
+      font-size: 10px !important;
+      border-radius: 50%;
+      padding: 5px 6px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .responsiveFlex {
+    display: block !important;
+  }
+}
+::ng-deep {
+  .p-disabled,
+  .p-component:disabled {
+    opacity: 1;
+  }
+  .p-button:disabled {
+    opacity: 0.6 !important;
+  }
+}

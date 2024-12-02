@@ -1,0 +1,117 @@
+@import '/src/colors.scss';
+
+.input_button_component {
+    .button-download {
+      .p-button {
+        padding: 0.5rem 1rem !important;
+      }
+    }
+    .button-primary {
+        margin: 0px ;
+      .p-button {
+        padding: 0.5rem 1.5rem;
+        color: $primaryButtonFontColor;
+        background: $primaryColor;
+        border: 1px solid $primaryColor;
+      }
+  
+      .p-button:enabled:hover,
+      .p-button:enabled:active {
+        color: $primaryButtonFontColor;
+        background: $primaryColor;
+        border: 1px solid $primaryColor;
+      }
+  
+      .p-button:focus {
+        box-shadow: none;
+      }
+      @media (max-width: 1350px) {
+        .p-button {
+          padding: 0.5rem 1rem;
+          color: $primaryButtonFontColor;
+          background: $primaryColor;
+          border: 1px solid $primaryColor;
+        }
+      }
+    }
+  
+    .button-secondary {
+      margin: 0px 5px;
+      .p-button {
+        padding: 0.5rem 1.5rem;
+        color: $secondaryButtonFontColor;
+        background: $secondaryColor;
+        // border: 1px solid $secondaryBorderColor;
+      }
+  
+      .p-button:enabled:hover,
+      .p-button:enabled:active {
+        color: $secondaryButtonFontColor;
+        background: $secondaryColor;
+        // border: 1px solid $secondaryBorderColor;
+      }
+  
+      .p-button:focus {
+        box-shadow: none;
+      }
+      @media (max-width: 1350px) {
+        .p-button {
+          padding: 0.5rem 1rem;
+          color: $secondaryButtonFontColor;
+          background: $secondaryColor;
+          // border: 1px solid $secondaryBorderColor;
+        }
+      }
+    }
+    .button-delete {
+      margin: 0px 5px;
+      .p-button {
+        padding: 0.5rem 1.5rem;
+        color: $activeDeleteColor;
+        background: $secondaryColor;
+        border: 1px solid $activeDeleteColor;
+      }
+  
+  
+      .p-button:focus {
+        box-shadow: none;
+      }
+      @media (max-width: 1350px) {
+        .p-button {
+          padding: 0.5rem 1rem;
+          
+        }
+      }
+    }
+    .button-cancel {
+      margin: 0px 5px;
+      .p-button {
+        padding: 0.5rem 1.5rem;
+        color: $activeColor;
+        background: $secondaryColor;
+        border: 1px solid $activeColor;
+      }
+      .p-button-label {
+        font-weight: 500;
+      }
+  
+      .p-button:enabled:hover,
+      .p-button:enabled:active {
+        color: $activeColor;
+        background: $secondaryColor;
+        border: 1px solid $activeColor;
+      }
+  
+      .p-button:focus {
+        box-shadow: none;
+      }
+      @media (max-width: 1350px) {
+        .p-button {
+          padding: 0.5rem 1rem;
+          color: $activeColor;
+          background: $secondaryColor;
+          border: 1px solid $activeColor;
+        }
+      }
+    }
+  }

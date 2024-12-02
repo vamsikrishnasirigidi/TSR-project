@@ -1,0 +1,48 @@
+@import "/src/colors.scss";
+.p-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.p-checkbox .p-checkbox-box.p-highlight {
+  border-color: $primaryColor;
+  background: $primaryColor;
+  box-shadow: none !important;
+  color: $secondaryColor;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border: 2px solid $primaryBorderColor;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight {
+  border: 2px solid $primaryBorderColor;
+  background: $primaryColor;
+  box-shadow: none !important;
+  color: $primaryColor;
+}
+
+.p-checkbox .p-checkbox-box .p-checkbox-icon {
+  color: $secondaryColor;
+  font-size: 0.875rem;
+}
+
+.p-checkbox .p-checkbox-box {
+  border: 2px solid $primaryBorderColor;
+  background: $secondaryColor;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: rgba(255, 255, 255, 0.87);
+  border-radius: 0.188rem;
+  box-shadow: none !important;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  box-shadow: none !important;
+  border: 2px solid $primaryBorderColor;
+}
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+  border: 2px solid $primaryBorderColor;
+  background: $primaryColor;
+  color: #ffffff;
+}

@@ -1,0 +1,32 @@
+<div class="dialog">
+  <div class="deleteLogo mt-2">
+    <i class="pi pi-exclamation-circle deleteDialogIcon"></i>
+  </div>
+  <div class="message text-center">
+    {{ message }}
+  </div>
+  <div>
+    <p class="m-0 p-0 text-center">
+      Once deleted. you’ll not be able to recover it
+    </p>
+  </div>
+  <div>
+    <label *ngIf="errorMessage" class="p-invalid">{{ errorMessage }}</label>
+  </div>
+  <br />
+  <div class="flex justify-content-center">
+    <app-button
+      [mainClass]="'button-cancel'"
+      [label]="'Cancel'"
+      [showIcon]="false"
+      (submitForm)="onCancel()"
+    ></app-button>
+    &nbsp;&nbsp;
+    <app-button
+      [mainClass]="'button-primary'"
+      [label]="'Yes, delete'"
+      [showIcon]="false"
+      (submitForm)="onConfirm()"
+    ></app-button>
+  </div>
+</div>

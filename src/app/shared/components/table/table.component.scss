@@ -1,0 +1,134 @@
+@import "../../../../colors.scss";
+
+.p-datatable .p-datatable-header {
+  background: $cardBackgroundColor;
+  color: $primaryColor !important;
+  border: 1px solid $primaryBorderColor;
+  border-width: 0 0 1px 0;
+  padding: 1rem 1rem;
+  font-weight: 600;
+}
+
+.table-padding {
+  padding: 15px 25px 0 25px;
+}
+
+.table-outer-margin {
+  margin: 0px 20px 0 20px;
+  background-color: $cardBackgroundColor;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  text-align: center;
+  border: 1px solid $primaryBorderColor;
+  border-width: 0 0 1px 0;
+  padding: 1rem 1rem;
+}
+
+.p-datatable.p-datatable-gridlines .p-datatable-tbody > tr > td {
+  border-width: 0.063rem;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  text-align: center;
+  // border: 1px solid $primary$secondaryColorColor;
+  padding: 1rem 1rem;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  background: $cardBackgroundColor;
+  color: $fontColor;
+  transition: box-shadow 0.2s;
+  outline-color: #a7d8a9;
+}
+
+.table-body-text {
+  color: $fontColor !important;
+  font-size: 16px;
+  line-height: 22.4px;
+  text-align: left !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid $primaryBorderColor;
+}
+
+.text-color {
+  color: $fontColor !important;
+  font-size: 18px;
+  text-align: center;
+}
+
+.table-more-details {
+  color: $fontBoldColor;
+  text-align: center;
+  padding-top: 1rem;
+  cursor: pointer;
+}
+
+td {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: $fontColor;
+  padding: 12px;
+}
+
+// PAGINATOR
+::ng-deep {
+  .p-datatable > .p-datatable-wrapper {
+    max-height: calc(100vh - 315px);
+  }
+  .pi-spin {
+    color: $primaryColor !important;
+  }
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: $cardBackgroundColor;
+    border-color: $primaryBorderColor;
+    color: $primaryColor;
+  }
+
+  .p-link:focus {
+    box-shadow: none;
+  }
+
+  .p-paginator .p-paginator-first,
+  .p-paginator .p-paginator-prev,
+  .p-paginator .p-paginator-next,
+  .p-paginator .p-paginator-last {
+    background-color: transparent;
+    border: 0 none;
+    color: $fontBoldColor;
+    min-width: 2.357rem;
+    height: 2.357rem;
+    margin: 0.143rem;
+    transition: box-shadow 0.2s;
+    border-radius: 3px;
+  }
+
+  .p-paginator .p-paginator-pages .p-paginator-page {
+    background-color: transparent;
+    border: 0 none;
+    color: $fontBoldColor;
+    min-width: 2.357rem;
+    height: 2.357rem;
+    margin: 0.143rem;
+    transition: box-shadow 0.2s;
+    border-radius: 3px;
+  }
+  .p-datatable .p-datatable-thead > tr > th {
+    text-align: left;
+    padding: 1rem 1rem;
+    border-width: 0 0 1px 0;
+    font-weight: 600;
+    color: $primaryColor !important;
+    transition: box-shadow 0.2s;
+  }
+  .p-datatable .p-datatable-tbody > tr > td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

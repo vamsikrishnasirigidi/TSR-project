@@ -1,0 +1,46 @@
+<div class="forgotComponent">
+  <div class="flex">
+    <div
+      class="col-6 p-0 flex justify-content-center align-items-center h-screen"
+    >
+      <img
+        src="/assets/images/forgot-password.png"
+        class="forgotimage"
+        alt="forgot Screen Imaage"
+      />
+    </div>
+    <div class="col-6 p-0 flex justify-content-center align-items-center">
+      <div style="width: 421px">
+        <div class="text-center mb-5">
+          <p class="forgot-subheading">Forgot Password</p>
+        </div>
+        <app-input-text
+          [label]="'Enter the email address associated with your account'"
+          name="email"
+          [placeholder]="'enter email'"
+          [formGroup]="forgotForm"
+          [hideSpecialChar]="false"
+          [emailTemplate]="true"
+          (enter)="submitForm()"
+          [error]="
+            inputRequiredValidationsErrors(forgotForm, 'email')
+              ? 'email is required'
+              : inputPatternValidationsErrors(forgotForm, 'email')
+              ? 'enter valid email'
+              : ''
+          "
+        ></app-input-text>
+        <span class="flex justify-content-center mt-2">
+          <app-button
+            [mainClass]="'button-primary'"
+            [label]="'Send Reset Link'"
+            [showIcon]="false"
+            [loading]="buttonLoading"
+            (submitForm)="submitForm()"
+            [disabled]="!forgotForm.valid"
+          ></app-button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

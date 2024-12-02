@@ -1,0 +1,21 @@
+@import "../../../../colors.scss";
+
+.input {
+  width: 366px;
+  height: 39px;
+}
+
+::ng-deep {
+  .input_text_component .p-inputtext {
+    height: 39px !important;
+  }
+  .input_button_component .button-primary .p-button {
+    height: 39px !important;
+  }
+  .p-datatable .p-datatable-thead > tr > th {
+    color: $primaryColor;
+  }
+}
+.table {
+  box-shadow: 2px 2px 20px 0px #00000026;
+}

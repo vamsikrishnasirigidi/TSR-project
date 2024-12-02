@@ -1,0 +1,73 @@
+<div class="input_text_component">
+  <div
+    class="p-input-filled"
+    [formGroup]="formGroup"
+    autocomplete="off"
+    [class]="class"
+    autocomplete="off"
+  >
+    <div class="textBoxMargin">
+      <div *ngIf="label" class="col-12 p-0 mb-1 labelNames formFields">
+        <label class="label"
+          >{{ label }} <span *ngIf="requiredStar" class="requiredStar">*</span>
+        </label>
+      </div>
+      <div class="flex">
+        <span *ngIf="showCountryCodes" class="col-3 p-0 m-0 mr-1">
+          <app-dropdown
+            [formGroup]="formGroup"
+            [name]="countryFormControlName"
+            [options]="countryCodes"
+            [filter]="true"
+            [labelName]="'code'"
+            [errorBlock]="false"
+          >
+          </app-dropdown>
+        </span>
+        <span
+          class="p-0 m-0 inputField formFields"
+          [class]="icon ? 'p-input-icon-left' : ''"
+          [style]="showCountryCodes ? 'width: ' + '86%' : 'width: ' + '100%'"
+        >
+          <input
+            [type]="type"
+            pInputText
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            [formControlName]="name"
+            [class]="class"
+            [style]="style"
+            (keypress)="
+              numbersOnly
+                ? numberOnly($event)
+                : spaces === 0
+                ? onKeydown($event)
+                : spaces === 1
+                ? isAlfa($event)
+                : null;
+              initialSpace($event)
+            "
+            (input)="eventFromInputText($event)"
+            (keydown.enter)="enterClicked()"
+            [maxlength]="maxlength"
+            [minlength]="minlength"
+            [readonly]="readonly"
+            [min]="min"
+            [max]="max"
+            [autocomplete]="name"
+          />
+          <i *ngIf="icon" [class]="icon" class="input-icon"></i>
+          <i
+            *ngIf="searchBoolean && clearInputField"
+            (click)="inputFieldClear()"
+            class="pi pi-times clearIcon"
+          ></i>
+        </span>
+      </div>
+      <div [ngClass]="className" class="flex">
+        <small class="p-error-invalid">{{ error }}</small>
+        <small *ngIf="!error" class="p-error-invalid"><br /></small>
+      </div>
+    </div>
+  </div>
+</div>

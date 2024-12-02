@@ -1,0 +1,31 @@
+<div class="upload-btn-outer" [formGroup]="formGroup">
+  <input 
+  *ngIf="multiple"
+    class="upload-img hidden"
+    accept="image/png , image/jpeg"
+    id="file-upload-img"
+    type="file"
+    (change)="uploadImage($event)"
+    multiple
+  />
+  <input
+    *ngIf="!multiple"
+    class="upload-img hidden"
+    accept="image/png , image/jpeg"
+    id="file-upload-img"
+    type="file"
+    [formControlName]="name"
+    (change)="uploadImage($event)"
+  />
+  <label
+    [for]="'file-upload-img'"
+    type="button"
+    class="Upload-btn cursor-pointer"
+  >
+    <i
+      class="cloud-Icon fa-solid fa-cloud-arrow-up pr-2 cursor-pointer"
+      style="color: #2926ac"
+    ></i>
+    {{ labelName }}
+  </label>
+</div>

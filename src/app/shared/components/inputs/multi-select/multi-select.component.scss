@@ -1,0 +1,83 @@
+@import '/src/colors.scss';
+.p-multiselect {
+    min-width: 100%;
+    border-radius: 0px;
+    max-width: 100%;
+    height: 38px;
+    border: 0.6px solid $inputBorderColor;
+  }
+  .p-multiselect:not(.p-disabled):hover {
+    border-color: $inputBorderColor !important;
+  }
+  p-multiselect.ng-dirty.ng-invalid > .p-multiselect {
+    border: 0.6px solid $inputBorderColor;
+  }
+  .p-multiselect.p-multiselect-chip .p-multiselect-label {
+    height: 35px;
+    gap: 0.2rem !important;
+    margin-top: 1px;
+    padding: 0.25rem 0.3rem !important;
+  }
+  
+  .p-multiselect:not(.p-disabled).p-focus {
+    border-color: $inputBorderColor !important;
+    box-shadow: none !important;
+  }
+  .p-multiselect-panel {
+    color: $primaryColor;
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: none;
+  }
+  .p-multiselect .p-multiselect-trigger {
+    width: 2rem !important;
+  }
+  .p-multiselect-panel .p-multiselect-header {
+    display: none;
+  }
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item {
+    color: $secondaryColor;
+    box-shadow: none;
+    font-size: 13px;
+  }
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none !important;
+  }
+  .p-multiselect-panel
+    .p-multiselect-items
+    .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
+    color: $primaryColor !important;
+    background: $cardBackgroundColor;
+  }
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
+    color: $primaryColor !important;
+    background: #e5e4f1 !important;
+  }
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+  }
+  
+  .p-multiselect.p-multiselect-chip .p-multiselect-token {
+    padding: 0.25rem 0.3rem !important;
+    font-size: 13px;
+    background: $primaryColor !important;
+    color: $secondaryColor !important;
+    border-radius: 3px;
+    border: 1px solid $secondaryColor;
+  }
+  .p-multiselect.p-multiselect-chip
+    .p-multiselect-token
+    .p-multiselect-token-icon {
+    margin-left: 0.3rem !important;
+    margin-top: 2px;
+    font-size: 13px;
+  }
+  .p-multiselect .p-multiselect-label.p-placeholder {
+    color: $fontColor !important;
+    margin-top: 5px;
+    font-size: 14px;
+  }

@@ -1,0 +1,100 @@
+@import "../../../../colors.scss";
+.loginScreenComponent {
+  background-color: rgba(249, 249, 249, 1);
+  .loginScreenImage {
+    max-width: 100%;
+    background-color: rgb(241, 235, 235);
+    max-height: 100vh;
+    .loginImage {
+      width: 100%;
+      max-width: 100%;
+      max-height: 100vh;
+      min-height: 100vh;
+      object-fit: cover;
+    }
+  }
+}
+.loginFormFields {
+  width: 500px;
+  height: 560px;
+  padding: 40px 20px 0px 20px;
+  box-shadow: 2px 2px 20px 0px #00000026;
+}
+.warehouseLogoSpan {
+  background-color: $primaryColor;
+  width: fit-content;
+  align-items: center;
+  display: flex;
+  padding: 20px;
+  border-radius: 50%;
+}
+.warehouseLogo {
+  width: 55px;
+}
+.login-heading {
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+  color: $primaryColor;
+  margin: 0px 0px 5px 7px;
+}
+.loginFormFieldsWidths {
+  width: 420px;
+}
+.login-subheading {
+  font-size: 40px;
+  color: $fontBoldColor;
+  margin: 0px;
+  font-family: $font-family;
+  font-weight: 900;
+}
+.warehouseManagementText {
+  height: 40px;
+}
+.forgotPassword {
+  color: $primaryColor;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+@media (max-width: 1008px) {
+  .imageColumn {
+    display: none;
+  }
+}
+@media (max-width: 550px) {
+  .loginFormFields {
+    width: 450px;
+    height: 540px;
+    padding: 20px 0px 0px 0px;
+    box-shadow: 2px 2px 20px 0px #00000026;
+  }
+}
+@media only screen and (min-width: 550px) and (max-width: 775px) {
+  .loginFormFields {
+    width: 460px;
+    height: 550px;
+    padding: 30px 20px 0px 20px;
+    box-shadow: 2px 2px 20px 0px #00000026;
+  }
+}
+@media (max-width: 475px) {
+  .loginFormFields {
+    width: 350px;
+    height: 500px;
+    padding: 20px 0px 0px 0px;
+    box-shadow: 2px 2px 20px 0px #00000026;
+  }
+  .loginFormFieldsWidths {
+    width: 300px;
+  }
+  .warehouseLogo {
+    width: 35px;
+  }
+  .warehouseManagementText {
+    height: 30px;
+  }
+  .login-subheading {
+    font-size: 30px;
+  }
+}

@@ -1,0 +1,72 @@
+@import "/src/colors.scss";
+.p-error-invalid {
+  color: red !important;
+}
+
+.input_dropdown_component {
+  .p-dropdown .p-dropdown-trigger {
+    background: transparent;
+    color: $fontColor;
+    width: 2.357rem;
+    border-top-right-radius: 0.188rem;
+    border-bottom-right-radius: 0.188rem;
+  }
+
+  .p-dropdown .p-dropdown-trigger {
+    background-color: $secondaryColor !important;
+  }
+
+  .p-dropdown:not(.p-disabled):hover {
+    border-color: $inputBorderColor;
+  }
+
+  .p-dropdown .p-dropdown-label {
+    background: transparent;
+    border: none !important;
+  }
+
+  .p-dropdown {
+    background: $secondaryColor !important;
+    border: 1px solid $inputBorderColor !important;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+      box-shadow 0.2s;
+    border-radius: 0.188rem;
+    width: 100%;
+    height: 40px !important;
+  }
+
+  .p-dropdown:not(.p-disabled).p-focus {
+    box-shadow: none !important;
+  }
+
+  .p-dropdown .p-dropdown-label.p-placeholder {
+    color: $fontColor !important;
+    font-size: 14px !important;
+  }
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    color: $fontBoldColor !important;
+    // background: $secondaryBorderColor;
+  }
+
+  .p-dropdown-panel
+    .p-dropdown-items
+    .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+    color: $fontBoldColor;
+
+    background: $cardBackgroundColor;
+  }
+
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    color: $fontBoldColor;
+  }
+
+  .dropdown-width {
+    width: 99% !important;
+  }
+  .p-inputtext {
+    height: 38px !important;
+  }
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-empty-message {
+    display: none;
+  }
+}

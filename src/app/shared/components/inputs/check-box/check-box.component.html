@@ -1,0 +1,23 @@
+
+<div class="input_dropdown_component">
+  <div  [class]="class">
+  
+    <div class="">
+      <p-checkbox
+      [value]="value"
+      [label]="label"
+      [disabled]="disabled"
+      [binary]="true" 
+   
+      (onChange)="onChangeEvent($event)"
+    ></p-checkbox>
+    </div>
+    <div class="flex">
+      <small
+        class="p-error-invalid"
+        [innerHTML]="error !== undefined ? error : '&nbsp;'"
+      ></small>
+
+    </div>
+  </div>
+</div>

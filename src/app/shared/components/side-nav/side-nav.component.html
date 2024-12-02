@@ -1,0 +1,24 @@
+<div *ngIf="!minimizeSidebarStatus">
+  <div class="logoContainer">
+    <img
+      src="/assets/logo/Logo (1).svg"
+      class="logo"
+      alt="Warehouse Management"
+    />
+  </div>
+  <div class="routesContainer">
+    <ul>
+      <li routerLinkActive="active" *ngFor="let url of urls">
+        <div class="routingDivision" routerLink="{{ url.url }}">
+          <a
+            ><i
+              class="{{ url.icon }} iconStyle sidenav-icon"
+              aria-hidden="true"
+            ></i>
+            <span class="sidenav-text"> {{ url.value }}</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

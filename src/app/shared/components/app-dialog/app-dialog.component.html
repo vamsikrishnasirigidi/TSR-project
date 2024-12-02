@@ -1,0 +1,14 @@
+<p-dialog
+  [position]="data.position || position"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [(visible)]="display"
+  (onHide)="onHide()"
+  [class]="'pg-dialog ' + data.styleClass"
+>
+  <p-header class="pg-header">
+    {{data.title}}
+  </p-header>
+  <ng-template appAppDialog></ng-template>
+</p-dialog>

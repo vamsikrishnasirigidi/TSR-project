@@ -1,0 +1,49 @@
+
+<div class="p-input-filled alignWidth" [formGroup]="formGroup" autocomplete="off">
+  <div class="grid mt-0">
+    <div *ngIf="label" class="col-12 mb-1 labelNames formFields pl-0 py-0">
+      <label class="label"
+        >{{ label }} <span *ngIf="requiredStar" class="requiredStar">*</span>
+      </label>
+    </div>
+    <div class="col-12 p-0 inputField formFields relative">
+      <p-autoComplete
+        class="auto-complete"
+        [placeholder]="placeholder"
+        [(ngModel)]="selectedOrigin"
+        [showEmptyMessage]="true"
+        [suggestions]="zipCodes"
+        [formControlName]="name"
+        [delay]="500"
+        (keypress)="spaceTrim($event)"
+        (keyup)="onChangeInput($event)"
+        (completeMethod)="zipCodesList($event)"
+        field="name"
+        [dropdown]="false"
+        [maxlength]="maxlength"
+        [disabled]="isDisabled"
+      >
+        <ng-template let-item pTemplate="item">
+          <div class="country-item">
+            <div *ngIf="!item.showZipCode">
+              {{ item.city }} , {{ item.stateCode }}
+            </div>
+            <div *ngIf="item.showZipCode">
+              {{ item.city }} - {{ item.zipCode[0] }}
+            </div>
+          </div>
+        </ng-template>
+      </p-autoComplete>
+      <i
+        *ngIf="formGroup.value[name]"
+        (click)="clear(name)"
+        class="pi pi-times showIcon cursor-pointer"
+      ></i>
+      <div [ngClass]="className" style="display: flex">
+        <small class="p-error-invalid">{{
+          error !== undefined ? error : "&nbsp;"
+        }}</small>
+      </div>
+    </div>
+  </div>
+</div>

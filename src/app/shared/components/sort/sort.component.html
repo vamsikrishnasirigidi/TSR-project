@@ -1,0 +1,21 @@
+<div class="sort-component">
+  <div class="flex mb-3 justify-content-between">
+    <div class="inputSearch">
+      <app-input-text
+        [icon]="icon"
+        [placeholder]="placeholder"
+        [name]="name"
+        [formGroup]="formGroup"
+        [clearInputField]="clearInputField"
+        (eventHappend)="eventFromInputText($event)"
+      ></app-input-text>
+    </div>
+    <div class="button">
+      <app-button
+        (click)="button()"
+        [mainClass]="'button-primary'"
+        [label]="buttonLabel"
+      ></app-button>
+    </div>
+  </div>
+</div>

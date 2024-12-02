@@ -1,0 +1,39 @@
+<div class="input_calender_component">
+  <div class="p-input-filled" [formGroup]="formGroup" autocomplete="off">
+    <div class="grid mt-0">
+      <div *ngIf="label" class="col-12 mb-1 labelNames formFields pl-0 pr-0 py-0">
+        <label class="label"
+          >{{ label }} <span *ngIf="requiredStar" class="requiredStar">*</span>
+        </label>
+      </div>
+      <div class="col-12 p-0 inputField formFields">
+        <p-calendar
+          (onSelect)="onSelect()"
+          (onClear)="onClear()"
+          [showIcon]="true"
+          [showTime]="showTime"
+          [placeholder]="placeholder"
+          inputId="icon"
+          [hourFormat]="hourFormat"
+          [hideOnDateTimeSelect]="hideOnDateTimeSelect"
+          [timeOnly]="timeOnly"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          [selectionMode]="selectionMode"
+          styleClass="calender_class"
+          [placeholder]="placeholder"
+          [formControlName]="name"
+          [readonlyInput]="true"
+          [showClear]="showClear"
+          [class]="error ? 'p-invalid' : ''"
+        ></p-calendar>
+        <div [ngClass]="className" class="flex">
+          <small
+            class="p-error-invalid"
+            [innerHTML]="error !== undefined ? error : '&nbsp;'"
+          ></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<!-- <div>
+  <div *ngIf="userRole === 'superAdmin'; else notSuperAdmin">
+    <br />
+  </div>
+  <ng-template #notSuperAdmin>
+    <p class="component-heading">User Management</p>
+  </ng-template>
+  <app-sort
+    [placeholder]="'Search User'"
+    [name]="'filter'"
+    [formGroup]="tableFilter"
+    (searchInput)="searchUsers($event)"
+    (buttonClick)="addUser()"
+    [buttonLabel]="'Add User'"
+    [clearInputField]="true"
+  >
+  </app-sort>
+  <div class="table">
+    <app-table
+      #table
+      [config]="warehouseConfig"
+      [responseData]="warehousesData"
+      (actionHappens)="actionFromTable($event)"
+    ></app-table>
+  </div>
+</div> -->

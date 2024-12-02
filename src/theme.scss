@@ -1,0 +1,736 @@
+@import "/src/colors.scss";
+
+// INPUT CALENDER
+.input_calender_component {
+  .p-calendar {
+    width: 100%;
+  }
+  .p-calendar-clear-icon {
+    position: absolute;
+    top: 50%;
+    margin-top: -0.5rem;
+    cursor: pointer;
+    left: 83%;
+  }
+  .p-calendar-w-btn .p-datepicker-trigger {
+    background: $secondaryColor;
+    border: 1px solid $inputBorderColor;
+    border-width: 1px 1px 1px 0px;
+  }
+
+  .p-calendar-w-btn .p-inputtext {
+    border-right: none;
+    background-color: $secondaryColor;
+  }
+  .p-calendar-w-btn .p-inputtext:enabled:hover {
+    border-right: none;
+    background-color: $secondaryColor;
+  }
+
+  .p-datepicker table td {
+    padding: 0rem !important;
+  }
+
+  .p-inputtext:enabled:focus {
+    box-shadow: none;
+    border-color: $inputBorderColor;
+  }
+
+  .p-button:focus {
+    box-shadow: none;
+    color: $fontColor;
+  }
+
+  .p-button {
+    color: $fontColor;
+    height: 36.4px !important;
+  }
+
+  .p-button:enabled:hover,
+  .p-button:enabled:active {
+    color: $fontColor;
+    background: $secondaryColor;
+    border-color: $inputBorderColor;
+  }
+  .p-datepicker table td > span.p-highlight {
+    background-color: $primaryColor !important;
+  }
+  .p-datepicker table td.p-datepicker-today > span {
+    background: transparent;
+    color: $fontColor;
+  }
+  .p-inputtext:enabled:hover {
+    border-color: $inputBorderColor;
+  }
+  .p-datepicker table td > span:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none !important;
+  }
+
+  .pi {
+    font-size: 18px;
+  }
+}
+// INPUT TEXT
+
+.p-inputtext {
+  background-color: $secondaryColor !important;
+  font-family: $font-family;
+  font-size: 14px !important;
+  color: $fontColor;
+  width: inherit;
+  height: 36.4px;
+  padding: 0.65rem;
+  border: 1px solid $inputBorderColor;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border-radius: 3px !important;
+}
+.labelNames {
+  font-weight: 600;
+  font-size: 14px;
+}
+.p-component-disabled {
+  opacity: 0.6;
+}
+.p-inputtext:enabled:hover {
+  border-color: $inputBorderColor !important;
+}
+
+.p-inputtext:enabled:focus {
+  box-shadow: none !important;
+  border-color: $inputBorderColor !important;
+}
+
+.p-button:focus {
+  box-shadow: none;
+  color: $fontColor;
+}
+
+.p-button {
+  color: $fontColor;
+}
+
+.p-button:enabled:hover,
+.p-button:enabled:active {
+  color: $fontColor;
+  background: $secondaryColor;
+  border-color: $inputBorderColor;
+}
+.p-datepicker table td > span.p-highlight {
+  background-color: $primaryColor !important;
+}
+.p-datepicker table td.p-datepicker-today > span {
+  background: transparent;
+  color: $fontColor;
+}
+.p-inputtext:enabled:hover {
+  border-color: $inputBorderColor;
+}
+.p-datepicker table td > span:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: none !important;
+}
+
+.pi {
+  font-size: 18px;
+}
+
+// INPUT TEXT
+
+.p-inputtext {
+  background-color: $secondaryColor !important;
+  font-size: 1rem;
+  color: $fontColor;
+  width: inherit;
+  padding: 0.5rem;
+  border: 1px solid $inputBorderColor;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border-radius: 3px !important;
+}
+
+.p-inputtext:enabled:hover {
+  border-color: $inputBorderColor;
+}
+
+.p-inputtext:enabled:focus {
+  box-shadow: none;
+  border-color: $inputBorderColor;
+}
+.p-input-icon-left > .p-inputtext {
+  padding-left: 28px !important;
+}
+.p-input-icon-left {
+  left: 0px !important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+// DROPDOWN
+
+.p-inputswitch.p-focus .p-inputswitch-slider {
+  box-shadow: none;
+}
+
+// OVERLAY
+
+.p-overlaypanel {
+  margin-top: 15px !important;
+  color: $fontBoldColor !important;
+  border-radius: 0.188rem !important;
+  box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 20%),
+    0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%) !important;
+}
+.p-overlaypanel:after {
+  margin-left: -14px !important;
+}
+
+// ERROR
+.p-error-invalid {
+  position: relative;
+  top: 2px;
+  font-size: 11px !important;
+  color: $fontColor !important;
+  text-align: left;
+  width: fit-content;
+}
+// dialog box
+.p-dialog .p-dialog-header {
+  border-bottom: 1px solid $borderColor !important;
+  color: $fontColor;
+  padding: 0.6rem 1.5rem !important;
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+
+.p-dialog .p-dialog-content {
+  background: $cardBackgroundColor;
+  color: $fontColor;
+  padding: 1rem 1.5rem;
+}
+.p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
+  background: #e9ecef;
+  color: #6c757d;
+  border: 0 none;
+  background: transparent;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.p-dialog .p-dialog-content:last-of-type {
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+.p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
+  background: transparent !important;
+}
+.p-autocomplete {
+  display: inline-flex;
+  position: relative;
+  width: 100%;
+  background: $cardBackgroundColor;
+}
+
+.p-accordion
+  .p-accordion-header:not(.p-disabled)
+  .p-accordion-header-link:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: none !important;
+}
+
+.p-highlight {
+  color: #fff !important;
+}
+
+.p-accordion
+  .p-accordion-header:not(.p-highlight):not(.p-disabled):hover
+  .p-accordion-header-link {
+  background: $cardBackgroundColor;
+  border-color: $primaryBorderColor;
+  color: $fontColor;
+}
+
+.p-accordion
+  .p-accordion-header:not(.p-disabled).p-highlight:hover
+  .p-accordion-header-link {
+  border-color: #fff;
+  background: #e9ecef;
+  color: $fontColor;
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link {
+  padding: 1rem;
+  border: 1px solid #fff;
+  color: $fontColor;
+  background: $cardBackgroundColor;
+  font-weight: 600;
+  border-radius: 0.188rem;
+  transition: box-shadow 0.2s;
+}
+
+.p-accordion
+  .p-accordion-header:not(.p-disabled).p-highlight
+  .p-accordion-header-link {
+  background: $cardBackgroundColor;
+  border-color: $primaryBorderColor;
+  color: black !important;
+  font-weight: 600;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  height: 58px !important;
+  // margin-bottom: 30px !important;
+}
+
+.p-accordion .p-accordion-content {
+  padding: 0rem !important;
+  border: 1px solid $primaryBorderColor;
+  background: $cardBackgroundColor;
+  color: black !important;
+  // font-weight: 600;
+  border-top: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.p-accordion
+  p-accordiontab:last-child
+  .p-accordion-header:not(.p-highlight)
+  .p-accordion-header-link {
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  height: 58px !important;
+  // margin-bottom: 30px !important;
+}
+
+// PRIME ICONS
+.p-input-icon-left > i:first-of-type {
+  padding-left: 7px;
+  left: 0rem !important;
+  color: $fontBoldColor;
+}
+
+.p-input-icon-left,
+.p-input-icon-right {
+  position: relative;
+  display: inline-block;
+  left: -7px;
+  width: 13.7vw;
+}
+
+.afs-dark-theme .pi {
+  font-size: 1rem;
+}
+
+.p-input-icon-left > .p-inputtext {
+  padding-left: 2rem;
+}
+
+// Toggle Options
+
+.p-avatar.p-avatar-lg {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+}
+
+.p-avatar {
+  background-color: $cardBackgroundColor;
+  border-radius: 0.188rem;
+  color: $fontColor;
+}
+
+.p-avatar-circle .p-avatar-text {
+  font-size: 14px;
+}
+
+.p-tabview .p-tabview-nav {
+  background: transparent;
+  border: 1px solid #383838;
+  border-width: 0 0 2px 0;
+}
+
+.p-tabview .p-tabview-nav li {
+  margin-right: 0;
+  flex-grow: 1;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  // border: solid #383838;
+  border-width: 0 0 2px 0;
+  border-color: $primaryBorderColor;
+  background: transparent;
+  color: #495057;
+  padding: 1rem;
+  font-weight: 600;
+  border-top-right-radius: 0.188rem;
+  border-top-left-radius: 0.188rem;
+  transition: box-shadow 0.2s;
+  margin: 0 0 -2px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: none;
+}
+
+.p-tabview
+  .p-tabview-nav
+  li:not(.p-highlight):not(.p-disabled):hover
+  .p-tabview-nav-link {
+  background: $cardBackgroundColor;
+  border-color: $primaryBorderColor;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  background: $primaryBorderColor;
+  border-color: $primaryBorderColor;
+  color: $fontColor;
+}
+
+.p-tabview .p-tabview-panels {
+  background: $cardBackgroundColor;
+  padding: 1rem;
+  border: 0 none;
+  color: rgba(255, 255, 255, 0.87);
+  border-bottom-right-radius: 0.188rem;
+  border-bottom-left-radius: 0.188rem;
+}
+
+// .p-tooltip .p-tooltip-text {
+//   background: $cardBackgroundColor !important;
+//   color: $fontBlackColor !important;
+//   padding: 0.5rem 0.5rem;
+//   border-radius: 0.188rem;
+//   width: 300px;
+//   font-weight: 600;
+//   font-size: 12px;
+//   line-height: 18px;
+//   text-align: center;
+// }
+
+// .p-tooltip.p-tooltip-right .p-tooltip-arrow {
+//   border-right-color: $primaryBorderColor;
+// }
+
+// .p-tooltip.p-tooltip-left .p-tooltip-arrow {
+//   border-left-color: $primaryBorderColor;
+// }
+
+// .p-tooltip.p-tooltip-top .p-tooltip-arrow {
+//   border-top-color: $primaryBorderColor;
+// }
+
+// .p-tooltip.p-tooltip-bottom .p-tooltip-arrow {
+//   border-bottom-color: $primaryBorderColor;
+// }
+
+.nav-items {
+  @media (min-width: 320px) and (max-width: 760px) {
+    .p-tabmenu .p-tabmenu-nav {
+      background: transparent;
+      border-width: 0 0 2px 0;
+      padding: 0;
+    }
+
+    .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
+      border: none;
+      border-color: transparent transparent transparent transparent;
+      background: $cardBackgroundColor;
+      color: $fontColor;
+      margin: 0 0 0 0;
+      padding: 0;
+      font-weight: 500;
+      border-top-right-radius: 0.188rem;
+      border-top-left-radius: 0.188rem;
+      transition: box-shadow 0.2s;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  @media (min-width: 760px) {
+    .p-tabmenu .p-tabmenu-nav {
+      background: transparent;
+      border-width: 0 0 2px 0;
+      padding: 0 1.375rem;
+    }
+
+    .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
+      border: none;
+      border-color: transparent transparent transparent transparent;
+      background: $cardBackgroundColor;
+      color: $fontColor;
+      margin: 0.5rem;
+      padding: 0;
+      font-weight: 500;
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+      transition: box-shadow 0.2s;
+    }
+
+    .nav-items .p-tabmenu .p-tabmenu-nav .p-tabmenuitem :hover {
+      background-color: $cardBackgroundColor;
+    }
+  }
+
+  @media (min-width: 760px) {
+    #submenu > span:nth-child(1) {
+      padding: 0.375rem 0 1.125rem 0;
+      top: 0.188rem;
+      position: relative;
+    }
+  }
+
+  .p-highlight {
+    color: $fontColor !important;
+    background-color: $cardBackgroundColor;
+  }
+
+  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+    background: $cardBackgroundColor;
+    border-color: $cardBackgroundColor;
+    color: $fontColor;
+  }
+
+  @media (min-width: 320px) and (max-width: 760px) {
+    .p-tabmenu .p-tabmenu-nav .p-tabmenuitem {
+      border: solid $primaryBorderColor;
+      border-width: 2px 0 0 0;
+      border-color: $primaryBorderColor transparent transparent transparent;
+      margin-right: 0;
+      width: 33.33vw;
+      text-align: center;
+    }
+
+    .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight {
+      border: solid $primaryBorderColor;
+      border-width: 2px 0 0 0;
+      border-color: $primaryBorderColor transparent transparent transparent;
+      margin-right: 0;
+      border-radius: 0;
+      width: 33.33vw;
+      text-align: center;
+    }
+  }
+
+  @media (min-width: 760px) {
+    .p-tabmenu .p-tabmenu-nav .p-tabmenuitem {
+      border: solid $primaryBorderColor;
+      border-width: 0 0 2px 0;
+      border-color: transparent transparent $primaryBorderColor transparent;
+      margin-right: 0;
+    }
+
+    .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight {
+      border: solid $primaryBorderColor;
+      border-width: 0 0 2px 0;
+      border-color: transparent transparent $primaryBorderColor transparent;
+      margin-right: 0;
+      border-radius: 0;
+    }
+  }
+}
+.p-input-filled .p-multiselect {
+  background: $secondaryColor !important;
+}
+.p-tabmenu
+  .p-tabmenu-nav
+  .p-tabmenuitem
+  .p-menuitem-link:not(.p-disabled):focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: none;
+  background-color: $cardBackgroundColor;
+}
+
+.p-tabmenu-nav a:focus {
+  z-index: 1;
+  background-color: $cardBackgroundColor;
+}
+
+.p-menuitem-link {
+  .menu-item {
+    color: $fontBoldColor !important;
+    background-color: $cardBackgroundColor;
+  }
+}
+
+.p-highlight {
+  .menu-item {
+    color: $fontBoldColor !important;
+  }
+}
+
+.p-component {
+  font-family: $font-family;
+  font-size: 1rem;
+  font-weight: normal;
+  color: $fontColor;
+}
+.grid {
+  margin-right: 0rem !important;
+  margin-left: 0rem !important;
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+body {
+  margin: 0px !important;
+}
+
+.trash-icon {
+  display: flex;
+  align-items: center;
+  font-size: 22px !important;
+  margin: 0px 10px 0px 5px;
+  color: $activeColor;
+}
+.input_boxes_body {
+  border: 1px solid $inputBorderColor;
+  border-radius: 3px;
+  padding: 15px 0px;
+}
+.disableAddAdjustment {
+  opacity: 0.5;
+  cursor: context-menu !important;
+}
+.lg\:col-2 {
+  padding: 0.5rem 0.3rem !important;
+}
+:focus-visible {
+  outline: none !important;
+}
+.addAdjustmentContainer {
+  color: $primaryColor;
+  .plus-icon {
+    border-radius: 50%;
+    font-size: 9px !important;
+    padding: 6px;
+    margin-right: 5px;
+    color: $secondaryColor;
+    background-color: $primaryColor;
+  }
+}
+
+.pageHeaderText {
+  color: $fontBoldColor;
+  font-size: 24px;
+  font-weight: 700;
+  .question-icon {
+    border-radius: 50%;
+    background-color: $primaryColor;
+    color: $secondaryColor;
+    padding: 5px;
+  }
+}
+.totalPageContainer {
+  background-color: $cardBackgroundColor;
+  padding: 40px 20px;
+  border-radius: 4px;
+  margin-right: 20px;
+  border: 1px solid $primaryBorderColor;
+  .pi {
+    font-size: 13px;
+  }
+}
+.contentCard {
+  border: 2px solid $inputBorderColor;
+  border-radius: 3px;
+  padding: 15px 20px;
+}
+.requiredStar {
+  color: $activeDeleteColor;
+  font-weight: bolder;
+}
+.p-autocomplete .p-autocomplete-loader {
+  display: none !important;
+}
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item.p-highlight {
+  color: #495057 !important;
+  background: #e9ecef !important;
+}
+.component-heading {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 58px;
+  font-family: "roboto";
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+.cross-remove-icon {
+  color: $secondaryColor;
+  font-size: 8px !important;
+  padding: 5px !important;
+  background-color: $primaryColor; 
+  border-radius: 50%;
+  border-color:  $primaryColor;
+}
+.toast-close-button {
+  top: 0px !important;
+  font-size: 30px !important;
+  left: 215px !important;
+  font-weight: 100 !important;
+  height: fit-content !important;
+}
+
+.toast-close-button :hover {
+  color: $secondaryColor;
+}
+
+.toast-container .ngx-toastr {
+  display: flex;
+  align-items: center;
+}
+.toast-message {
+  right: 20px !important;
+  position: relative !important;
+}
+div::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+div::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+.NEW{
+  color: $orderStatusNewColor;
+}
+
+.RECEIVED{
+  color: $orderStatusReceivedColor;
+}
+.EXCEPTION{
+  color: $orderStatusExceptionColor;
+}
+
+.DISPATCH_READY{
+  color: $orderStatusDspatchReadyColor;
+}
+
+.DISPATCHED{
+  color: $orderStatusDispatchedColor;
+} 
+.p-dialog .p-dialog-header .p-dialog-header-icon:focus {
+  box-shadow: none !important;
+}

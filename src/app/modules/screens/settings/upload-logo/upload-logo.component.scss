@@ -1,0 +1,19 @@
+@import "../../../../../colors.scss";
+.uploadLogo-Component {
+  min-width: 500px;
+  .uploadImage {
+    max-width: 150px;
+  }
+  .removeLogo {
+    font-weight: 600;
+    right: 35%;
+    background: $primaryColor;
+    color: $secondaryColor;
+    font-size: 12px !important;
+    border-radius: 50%;
+    padding: 3px 4px;
+    .pi {
+      font-size: 12px;
+    }
+  }
+}
