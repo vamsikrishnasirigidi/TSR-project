@@ -8,6 +8,7 @@ import { ScreensModule } from './modules/screens/screens.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './api/interceptor/http.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { FirebaseService } from './api/services/firebase/firebase.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
     }),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },FirebaseService
   ],
   bootstrap: [AppComponent],
 })
