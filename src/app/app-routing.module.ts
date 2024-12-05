@@ -5,12 +5,15 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import * as _ from 'lodash';
 import { RouteGuard } from './modules/Auth/services/auth-guard/route.guard';
 import { Roles } from './common/roles';
+import { DashboardComponent } from './modules/screens/dashboard/dashboard.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full',
+    component: DashboardComponent,
+    // redirectTo: 'auth',
+    // pathMatch: 'full',
   },
+
   {
     path: 'auth',
     loadChildren: () =>
@@ -22,10 +25,10 @@ const routes: Routes = [
       import('./modules/super-admin/super-admin.module').then(
         (m) => m.SuperAdminModule
       ),
-    canActivate: [RouteGuard],
-    data: {
-      permittedRoles: _.concat(Roles.Admin),
-    },
+    // canActivate: [RouteGuard],
+    // data: {
+    //   permittedRoles: _.concat(Roles.Admin),
+    // },
   },
   { path: '**', component: PageNotFoundComponent },
 ];

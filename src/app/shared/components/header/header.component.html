@@ -1,40 +1,7 @@
 <div class="header-component">
   <div class="flex align-items-center mr-6">
-    <div class="avatarLogo">
-      <p-avatar
-        *ngIf="!userDetails?.logo"
-        label="{{ userDetails?.firstName.charAt(0) | titlecase }}"
-        shape="circle"
-        size="large"
-      ></p-avatar>
-      <p-avatar
-        *ngIf="userDetails?.logo"
-        image="{{ userDetails?.logo }}"
-        shape="circle"
-        size="large"
-      ></p-avatar>
-    </div>
-    <div class="flex align-items-center">
-      <div class="ml-1">
-        <i (click)="op.toggle($event)" class="pi pi-angle-down logoutIcon"></i>
-        <p-overlayPanel
-          #op
-          styleClass="pOverlay"
-          [style]="{ width: 'fit-content' }"
-        >
-          <ng-template pTemplate="content">
-            <div>
-              <span class="cursor-pointer" (click)="changePassword()"
-                ><i class="fa-solid fa-lock pr-2"></i>Change Password</span
-              >
-              <hr />
-              <span class="cursor-pointer" (click)="logOut()"
-                ><i class="fa-solid fa-right-from-bracket pr-2"></i>Logout</span
-              >
-            </div>
-          </ng-template>
-        </p-overlayPanel>
-      </div>
-    </div>
+ <div>
+  
+ </div>
   </div>
 </div>

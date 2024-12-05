@@ -27,19 +27,9 @@ export class HeaderComponent implements OnInit {
     private toastr: ToastrService,
     public dialog: AppDialogService
   ) {
-    this.settingsService.logoChanges.subscribe((res) => {
-      this.getUserData();
-    });
+ 
   }
   ngOnInit(): void {
-    this.getUserData();
-  }
-  getUserData() {
-    this.settingsService
-      .getUserDetails()
-      .subscribe((res: settingsUserResponse) => {
-        this.userDetails = res.data;
-      });
   }
   changePassword() {
     this.modalRef = this.dialog.open(ChangePasswordComponent, {
