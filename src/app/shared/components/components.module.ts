@@ -77,6 +77,7 @@ import { CardComponent } from './card/card.component';
     SortComponent,
     InputTextAreaComponent,
     PageLoaderComponent,
+    GalleryComponent
   ],
 })
 export class ComponentsModule {}
