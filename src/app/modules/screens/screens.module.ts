@@ -9,6 +9,8 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UploadLogoComponent } from './settings/upload-logo/upload-logo.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GuideDetailsComponent } from './sub-screens/guide-details/guide-details.component';
+import { EnquiryFormComponent } from './sub-screens/enquiry-form/enquiry-form.component';
 
 
 
@@ -19,6 +21,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     UserManagementFormComponent,
     UploadLogoComponent,
     DashboardComponent,
+    GuideDetailsComponent,
+    EnquiryFormComponent,
   ],
   imports: [
     CommonModule,

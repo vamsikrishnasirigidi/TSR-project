@@ -1,11 +1,15 @@
-.dashboard-header{
-    position: absolute;
-    width: 100%;
-    top: 20px;
-    z-index: 9;
-    display: flex;
-    justify-content: center;
+.dashboard-header {
+  position: absolute;
+  width: 100%;
+  top: 20px;
+  z-index: 9;
+  display: flex;
+  justify-content: center;
 }
-.dashboard-gallery{
-    margin-top: 120px;
+.dashboard-gallery {
+  margin-top: 50px;
+}
+
+.dashboard-plots-text {
+  margin-top: 150px;
 }
