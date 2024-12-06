@@ -1,0 +1,86 @@
+.property-container {
+  background: linear-gradient(180deg, #1a365d 0%, #2d3748 100%);
+  color: white;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main-title {
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  max-width: 800px;
+  text-align: center;
+}
+
+.sub-title {
+  font-size: 23px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  gap: 30px;
+  width: 100%;
+}
+
+.step {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+  text-align: left;
+  padding: 20px;
+}
+
+.step-icon {
+  margin-bottom: 20px;
+}
+
+.step-icon img {
+  width: 50px;
+  height: 50px;
+  filter: brightness(0) invert(1); /* Makes the icon white */
+}
+
+.step-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.step-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .sub-title {
+    font-size: 1.2rem;
+  }
+
+  .steps-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    text-align: center;
+  }
+}
