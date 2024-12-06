@@ -1,0 +1,74 @@
+@import "../../../../colors.scss";
+
+.gallery-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.gallery-header {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  // border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-container {
+  position: relative;
+  width: 375px;
+  height: 350px;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.gallery-item:hover .developer-text {
+  visibility: visible;
+  opacity: 1;
+}
+.gallery-item:hover .gallery-image {
+    transform: scale(1.1);
+  }
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.image-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.developer-text {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s ease-in-out;
+  font-size: 1.2rem;
+  margin-top: 5px;
+  color: $primaryColor;
+}

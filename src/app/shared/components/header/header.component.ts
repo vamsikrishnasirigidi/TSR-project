@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   name = localStorage.getItem('name');
   userDetails: settingsUserObject;
   modalRef: any;
+  activeTab:string=''
   constructor(
     private router: Router,
     private localService: LocalServiceService,
@@ -31,14 +32,23 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  changePassword() {
-    this.modalRef = this.dialog.open(ChangePasswordComponent, {
-      data: { title: 'Change Password' },
+  // changePassword() {
+  //   this.modalRef = this.dialog.open(ChangePasswordComponent, {
+  //     data: { title: 'Change Password' },
+  //   });
+  // }
+  // logOut() {
+  //   this.router.navigateByUrl('/auth/signIn');
+  //   this.localService.clear();
+  //   this.toastr.success('Logged out successfully');
+  // }
+  goToInPageSection(element: string) {
+    this.router.navigate([], { fragment: element });
+    document.getElementById(element).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
     });
-  }
-  logOut() {
-    this.router.navigateByUrl('/auth/signIn');
-    this.localService.clear();
-    this.toastr.success('Logged out successfully');
+    this.activeTab = element;
   }
 }
