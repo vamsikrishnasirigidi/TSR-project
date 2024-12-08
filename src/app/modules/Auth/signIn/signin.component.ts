@@ -10,6 +10,8 @@ import {
   minLengthValidations,
 } from 'src/app/common/utils';
 import { AuthService } from '../services/auth-service/auth.service';
+import { lastValueFrom } from 'rxjs';
+import { SettingsService } from 'src/app/api/services/settings/settings.service';
 
 @Component({
   selector: 'app-signin',
@@ -18,15 +20,18 @@ import { AuthService } from '../services/auth-service/auth.service';
 })
 export class SigninComponent {
   loginForm: FormGroup;
+  googleTranslateForm: FormGroup;
   errorList: string[] = [''];
   emailValidator = regularExpressions.emailExp;
   loadingButton: boolean = false;
+  selectedLanguage;
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private localService: LocalServiceService,
-    private auth: AuthService
+    private auth: AuthService,
+    private settingsService: SettingsService
   ) {
     this.loginForm = this.fb.group({
       email: [
@@ -42,26 +47,24 @@ export class SigninComponent {
         ],
       ],
     });
+    this.googleTranslateForm = this.fb.group({
+      language: [''],
+    });
   }
   ngOnInit(): void {
     this.localService.errorLoader.subscribe((res) => {
       this.loadingButton = res;
     });
-    const role = localStorage.getItem('role');
-    switch (role) {
-      case 'superAdmin':
-        this.router.navigateByUrl('/admin');
-        return;
-      case 'warehouseManager':
-        this.router.navigateByUrl('/manager');
-        return;
-      case 'warehouseSupervisor':
-        this.router.navigateByUrl('/supervisor');
-        return;
-      default:
-        localStorage.clear();
-        this.router.navigateByUrl('/auth');
-        return;
+    // this.selectedLanguage = this.languages[0];
+    // setTimeout(() => {
+    //   this.updateGoogleTranslateDropdown(this.selectedLanguage.code);
+    // }, 500)
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      this.router.navigateByUrl('/home');
+    } else {
+      localStorage.clear();
+      this.router.navigateByUrl('/auth/signIn');
     }
   }
   inputRequiredValidationsErrors(form: FormGroup, type: string) {
@@ -82,41 +85,37 @@ export class SigninComponent {
       };
       this.auth.login(loginDetails).subscribe((res: any) => {
         if (res.success) {
-          this.loadingButton = false;
-          if (
-            res.data.role === 'superAdmin' ||
-            res.data.role === 'warehouseManager' ||
-            res.data.role === 'warehouseSupervisor'
-          ) {
-            this.localService.setItem('role', res.data.role);
-            this.localService.setItem('userId', res.data.userId);
-            this.localService.setItem('accessToken', res.data.token);
-            this.localService.setItem('refreshToken', res.data.refreshToken);
-            this.localService.userId.emit(res.data.userId);
-            this.localService.userRole.emit(res.data.role);
-            this.loginForm.reset();
-          }
-          switch (res.data.role) {
-            case 'superAdmin':
-              this.toastr.success(res.message);
-              this.router.navigateByUrl('/admin');
-              return;
-            case 'warehouseManager':
-              this.toastr.success(res.message);
-              this.router.navigateByUrl('/manager');
-              return;
-            case 'warehouseSupervisor':
-              this.toastr.success(res.message);
-              this.router.navigateByUrl('/supervisor');
-              return;
-            default:
-              this.toastr.error("User doesn't have access");
-              localStorage.clear();
-              this.router.navigateByUrl('/auth');
-              return;
-          }
+          this.localService.setItem('accessToken', res?.data?.token);
+          this.localService.setItem('refreshToken', res?.data?.refreshToken);
+          this.localService.setItem('newVersion', 'true');
+                if(res.success){
+                  this.localService.encriptAndStoreData('user_details', res?.data);
+                  this.loadingButton = false;
+                  this.router.navigateByUrl('/home');
+                  this.toastr.success('Logged in successfully');
+                }
         }
       });
     }
+  }
+  updateGoogleTranslateDropdown(languageCode: string) {
+    console.log('Updating Google Translate dropdown to:', languageCode);
+    const select = document.querySelector(
+      '.goog-te-combo'
+    ) as HTMLSelectElement;
+    if (select) {
+      const event = document.createEvent('HTMLEvents');
+      event.initEvent('change', true, true);
+      select.value = languageCode;
+      select.dispatchEvent(event);
+    } else {
+      console.error('Google Translate dropdown not found');
+    }
+  }
+  onSelectLanguage() {
+    console.log(this.selectedLanguage);
+    this.updateGoogleTranslateDropdown(
+      this.selectedLanguage ? this.selectedLanguage.code : 'en'
+    );
   }
 }
