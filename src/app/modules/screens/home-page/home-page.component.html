@@ -1,0 +1,123 @@
+<div class="dashboard-component">
+  <div>
+    <h1 class="text-center main-heading mb-0">
+      Welcome {{ firstName  }}
+    </h1>
+    <div class="flex justify-content-center">
+      <p class="sub-heading" >
+        <!-- *ngIf="privileges?.length" -->
+        Select a starting point, and we'll streamline the process by guiding you
+        through the most effective steps to take.
+      </p>
+      <!-- <p class="sub-heading" *ngIf="!privileges?.length">
+        You don't have any privilege, <br> Please contact superAdmin for your privileges.
+      </p> -->
+    </div>
+  </div>
+  <div *ngIf="privileges?.length">
+  <div class="dashboard-divisions mt-1">
+    <div class="info-Division" *ngIf="PersonalInfoView">
+      <div class="flex justify-content-center">
+        <img
+          class="defaultImage"
+          src="../../../../assets/images/home-page/Profile data.png"
+          alt="personal information"
+        />
+      </div>
+      <div>
+        <h1 class="text-center division-heading">Personal Information</h1>
+        <p class="mt-0 text-center division-subHeading">
+          Start using Stackenable application by adding your personal information.
+        </p>
+        <div class="flex justify-content-center">
+          <a class="startNowLink" routerLink="/settings" >
+            Start Now <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="info-Division" *ngIf="OrdersView" >
+      <div class="flex justify-content-center">
+        <img
+          class="defaultImage"
+          src="../../../../assets/images/home-page/orders.png"
+          alt="Organizations"
+        />
+      </div>
+      <div>
+        <h1 class="text-center division-heading-order">Orders</h1>
+        <p class="mt-0 text-center division-subHeading">
+          Start managing orders by updating the status.
+        </p>
+        <div class="flex justify-content-center">
+          <a class="startNowLink" routerLink="/orders">
+            Start Now <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="info-Division"  *ngIf="showParentOrganizations">
+      <div class="flex justify-content-center">
+        <img
+          class="defaultImage"
+          src="../../../../assets/images/home-page/organization.png"
+          alt="personal information"
+        />
+      </div>
+      <div>
+        <h1 class="text-center division-heading">Organizations</h1>
+        <p class="mt-0 text-center division-subHeading">
+          Start navigates you to the list of organizations associated with Stackenable.
+        </p>
+        <div class="flex justify-content-center">
+          <a class="startNowLink"  routerLink="/organization">
+            Start Now <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dashboard-divisions mt-5">
+    <div class="info-Division" *ngIf="WareHouseView">
+      <div class="flex justify-content-center">
+        <img
+          class="defaultImage"
+          src="../../../../assets/images/home-page/organization.png"
+          alt="personal information"
+        />
+      </div>
+      <div>
+        <h1 class="text-center division-heading">Warehouses</h1>
+        <p class="mt-0 text-center division-subHeading">
+          Start navigates you to the list of organizations associated with Stackenable.
+        </p>
+        <div class="flex justify-content-center">
+          <a class="startNowLink"  routerLink="/warehouse">
+            Start Now <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="info-Division" *ngIf="ProductsView">
+      <div class="flex justify-content-center">
+        <img
+          class="defaultImage"
+          src="../../../../assets/images/home-page/inventory.png"
+          alt="Organizations"
+        />
+      </div>
+      <div>
+        <h1 class="text-center division-heading">Products</h1>
+        <p class="mt-0 text-center division-subHeading">
+          Products details in one go!!!
+        </p>
+        <div class="flex justify-content-center">
+          <a class="startNowLink"  routerLink="/products">
+            Start Now <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

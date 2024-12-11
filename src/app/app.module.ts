@@ -9,6 +9,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './api/interceptor/http.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { FirebaseService } from './api/services/firebase/firebase.service';
+import {environment} from '../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +22,9 @@ import { FirebaseService } from './api/services/firebase/firebase.service';
     ScreensModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',

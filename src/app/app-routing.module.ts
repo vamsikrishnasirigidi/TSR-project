@@ -10,8 +10,6 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    // redirectTo: 'auth',
-    // pathMatch: 'full',
   },
 
   {
@@ -25,10 +23,7 @@ const routes: Routes = [
       import('./modules/super-admin/super-admin.module').then(
         (m) => m.SuperAdminModule
       ),
-    // canActivate: [RouteGuard],
-    // data: {
-    //   permittedRoles: _.concat(Roles.Admin),
-    // },
+    canActivate: [RouteGuard],
   },
   { path: '**', component: PageNotFoundComponent },
 ];

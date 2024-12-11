@@ -1,6 +1,20 @@
 @import "../../../../colors.scss";
+
+.totalContainer {
+  background-image: url("../../../../assets/images/login-bg.png");
+  background-size: cover;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  position: absolute;
+}
 .loginScreenComponent {
   background-color: rgba(249, 249, 249, 1);
+  border-radius: 5px;
   .loginScreenImage {
     max-width: 100%;
     background-color: rgb(241, 235, 235);
@@ -15,10 +29,9 @@
   }
 }
 .loginFormFields {
-  width: 500px;
-  height: 560px;
+  width: 420px;
+  height: 450px;
   padding: 40px 20px 0px 20px;
-  box-shadow: 2px 2px 20px 0px #00000026;
 }
 .warehouseLogoSpan {
   background-color: $primaryColor;
@@ -39,7 +52,7 @@
   margin: 0px 0px 5px 7px;
 }
 .loginFormFieldsWidths {
-  width: 420px;
+  width: 300px;
 }
 .login-subheading {
   font-size: 40px;
@@ -48,13 +61,41 @@
   font-family: $font-family;
   font-weight: 900;
 }
-.warehouseManagementText {
-  height: 40px;
+.loginInputs {
+  margin-top: 80px;
 }
+.warehouseManagementText {
+  margin-top: 20px;
+  height: 38px;
+  position: absolute;
+}
+.warehouseManagementTextLogo {
+  position: relative;
+  z-index: 10;
+  top: 75px;
+  left: 18px;
+  height: 11px;
+}
+
 .forgotPassword {
   color: $primaryColor;
   text-decoration: none;
   font-size: 14px;
+}
+
+.signInButton {
+  padding-top: 25px;
+}
+::ng-deep {
+  .h-2rem {
+    height: 0.9rem !important;
+  }
+
+  .signInButton {
+    .p-button {
+      width: 300px;
+    }
+  }
 }
 
 @media (max-width: 1008px) {
@@ -64,16 +105,16 @@
 }
 @media (max-width: 550px) {
   .loginFormFields {
-    width: 450px;
-    height: 540px;
+    width: 420px;
+    max-height: 480px;
     padding: 20px 0px 0px 0px;
     box-shadow: 2px 2px 20px 0px #00000026;
   }
 }
 @media only screen and (min-width: 550px) and (max-width: 775px) {
   .loginFormFields {
-    width: 460px;
-    height: 550px;
+    width: 420px;
+    max-height: 480px;
     padding: 30px 20px 0px 20px;
     box-shadow: 2px 2px 20px 0px #00000026;
   }
@@ -81,20 +122,38 @@
 @media (max-width: 475px) {
   .loginFormFields {
     width: 350px;
-    height: 500px;
+    max-height: 480px;
     padding: 20px 0px 0px 0px;
     box-shadow: 2px 2px 20px 0px #00000026;
   }
+
   .loginFormFieldsWidths {
     width: 300px;
   }
   .warehouseLogo {
     width: 35px;
   }
-  .warehouseManagementText {
-    height: 30px;
-  }
   .login-subheading {
     font-size: 30px;
+  }
+  .warehouseManagementText {
+    height: 33px;
+  }
+}
+.googleTranslate-dropdown {
+  display: flex;
+  justify-content: end;
+  margin-right: 30px;
+  padding-top: 20px;
+  ::ng-deep {
+    .p-dropdown {
+      min-width: 210px;
+    }
+    .p-dropdown:not(.p-disabled).p-focus {
+      box-shadow: none !important;
+    }
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+      background: $primaryColor;
+    }
   }
 }

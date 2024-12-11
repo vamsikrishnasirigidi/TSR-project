@@ -1,20 +1,19 @@
 <div class="gallery-container">
-    <h1 class="gallery-title">Gallery</h1>
-    <p class="gallery-header">{{ headerText }}</p>
-    
-    <div class="gallery-grid">
-      <div class="gallery-item" *ngFor="let image of galleryImages">
-        <div class="image-container">
-          <img [src]="image.imageUrl" [alt]="image.title" class="gallery-image">
-          <div class="image-overlay">
-            <div class="image-text">
-              {{ image.title }} @ {{ image.location }}
-            </div>
-            <div class="developer-text" *ngIf="image.developer">
-              {{ image.developer }}
-            </div>
+  <h1 class="gallery-title">Gallery</h1>
+  <p class="gallery-header">{{ headerText }}</p>
+
+  <div class="gallery-grid">
+    <div class="gallery-item" *ngFor="let doc of galleryData">
+      <div class="image-container">
+        <img [src]="doc.images[0]" [alt]="doc.title" class="gallery-image" />
+        <div class="image-overlay">
+          <div class="image-text">{{ doc.title }} @ {{ doc.location }}</div>
+          <div class="developer-text">
+            <!-- {{ image.developer }} -->
+            TSR Infra Developers
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
