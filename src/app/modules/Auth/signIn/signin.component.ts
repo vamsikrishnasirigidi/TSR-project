@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LocalServiceService } from 'src/app/api/services/localStorage/local-service.service';
 import { regularExpressions } from 'src/app/common/regularExpressions';
@@ -9,9 +9,8 @@ import {
   inputRequiredValidations,
   minLengthValidations,
 } from 'src/app/common/utils';
-import { AuthService } from '../services/auth-service/auth.service';
-import { lastValueFrom } from 'rxjs';
-import { SettingsService } from 'src/app/api/services/settings/settings.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { FirebaseService } from 'src/app/api/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-signin',
@@ -30,8 +29,8 @@ export class SigninComponent {
     private fb: FormBuilder,
     private toastr: ToastrService,
     private localService: LocalServiceService,
-    private auth: AuthService,
-    private settingsService: SettingsService
+    private fireAuth: AngularFireAuth,
+    private firebaseService:FirebaseService
   ) {
     this.loginForm = this.fb.group({
       email: [
@@ -55,13 +54,9 @@ export class SigninComponent {
     this.localService.errorLoader.subscribe((res) => {
       this.loadingButton = res;
     });
-    // this.selectedLanguage = this.languages[0];
-    // setTimeout(() => {
-    //   this.updateGoogleTranslateDropdown(this.selectedLanguage.code);
-    // }, 500)
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/admin');
     } else {
       localStorage.clear();
       this.router.navigateByUrl('/auth/signIn');
@@ -83,39 +78,26 @@ export class SigninComponent {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password,
       };
-      this.auth.login(loginDetails).subscribe((res: any) => {
-        if (res.success) {
-          this.localService.setItem('accessToken', res?.data?.token);
-          this.localService.setItem('refreshToken', res?.data?.refreshToken);
-          this.localService.setItem('newVersion', 'true');
-                if(res.success){
-                  this.localService.encriptAndStoreData('user_details', res?.data);
-                  this.loadingButton = false;
-                  this.router.navigateByUrl('/home');
-                  this.toastr.success('Logged in successfully');
-                }
-        }
+      this.fireAuth.signInWithEmailAndPassword(loginDetails.email, loginDetails.password)
+      .then((userCredential) => { 
+        console.log(userCredential);
+        const accessToken = userCredential.user.multiFactor['user'].accessToken;
+        this.loadingButton = false;
+        const userDetails= this.getLoginDetails(loginDetails.email);
+        this.localService.setItem('user_details',JSON.stringify(userDetails));
+        this.localService.setItem('accessToken', accessToken);
+        this.router.navigateByUrl('/admin');
+        this.toastr.success('Logged in successfully');
+      })
+      .catch((error) => {
+        this.toastr.error(error.message);
+        this.loadingButton = false;
       });
     }
   }
-  updateGoogleTranslateDropdown(languageCode: string) {
-    console.log('Updating Google Translate dropdown to:', languageCode);
-    const select = document.querySelector(
-      '.goog-te-combo'
-    ) as HTMLSelectElement;
-    if (select) {
-      const event = document.createEvent('HTMLEvents');
-      event.initEvent('change', true, true);
-      select.value = languageCode;
-      select.dispatchEvent(event);
-    } else {
-      console.error('Google Translate dropdown not found');
-    }
-  }
-  onSelectLanguage() {
-    console.log(this.selectedLanguage);
-    this.updateGoogleTranslateDropdown(
-      this.selectedLanguage ? this.selectedLanguage.code : 'en'
-    );
+  getLoginDetails(email) {
+    this.firebaseService.getDocument('users',email).subscribe((res) => {
+    return res.data
+    })
   }
 }

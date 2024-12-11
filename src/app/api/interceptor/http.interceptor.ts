@@ -27,8 +27,11 @@ export class Interceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const token = this.local.getToken();
     if (token) {
+      // request = request.clone({
+        // headers: request.headers.set('Authorization', 'Bearer ' + token),
+      // });
       request = request.clone({
-        headers: request.headers.set('Authorization', 'Bearer ' + token),
+        headers: request.headers,
       });
     } else {
       request = request.clone({
