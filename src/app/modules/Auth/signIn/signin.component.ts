@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LocalServiceService } from 'src/app/api/services/localStorage/local-service.service';
 import { regularExpressions } from 'src/app/common/regularExpressions';
@@ -9,7 +9,8 @@ import {
   inputRequiredValidations,
   minLengthValidations,
 } from 'src/app/common/utils';
-import { AuthService } from '../services/auth-service/auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { FirebaseService } from 'src/app/api/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-signin',
@@ -18,15 +19,18 @@ import { AuthService } from '../services/auth-service/auth.service';
 })
 export class SigninComponent {
   loginForm: FormGroup;
+  googleTranslateForm: FormGroup;
   errorList: string[] = [''];
   emailValidator = regularExpressions.emailExp;
   loadingButton: boolean = false;
+  selectedLanguage;
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private localService: LocalServiceService,
-    private auth: AuthService
+    private fireAuth: AngularFireAuth,
+    private firebaseService:FirebaseService
   ) {
     this.loginForm = this.fb.group({
       email: [
@@ -42,26 +46,20 @@ export class SigninComponent {
         ],
       ],
     });
+    this.googleTranslateForm = this.fb.group({
+      language: [''],
+    });
   }
   ngOnInit(): void {
     this.localService.errorLoader.subscribe((res) => {
       this.loadingButton = res;
     });
-    const role = localStorage.getItem('role');
-    switch (role) {
-      case 'superAdmin':
-        this.router.navigateByUrl('/admin');
-        return;
-      case 'warehouseManager':
-        this.router.navigateByUrl('/manager');
-        return;
-      case 'warehouseSupervisor':
-        this.router.navigateByUrl('/supervisor');
-        return;
-      default:
-        localStorage.clear();
-        this.router.navigateByUrl('/auth');
-        return;
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      this.router.navigateByUrl('/admin');
+    } else {
+      localStorage.clear();
+      this.router.navigateByUrl('/auth/signIn');
     }
   }
   inputRequiredValidationsErrors(form: FormGroup, type: string) {
@@ -80,43 +78,26 @@ export class SigninComponent {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password,
       };
-      this.auth.login(loginDetails).subscribe((res: any) => {
-        if (res.success) {
-          this.loadingButton = false;
-          if (
-            res.data.role === 'superAdmin' ||
-            res.data.role === 'warehouseManager' ||
-            res.data.role === 'warehouseSupervisor'
-          ) {
-            this.localService.setItem('role', res.data.role);
-            this.localService.setItem('userId', res.data.userId);
-            this.localService.setItem('accessToken', res.data.token);
-            this.localService.setItem('refreshToken', res.data.refreshToken);
-            this.localService.userId.emit(res.data.userId);
-            this.localService.userRole.emit(res.data.role);
-            this.loginForm.reset();
-          }
-          switch (res.data.role) {
-            case 'superAdmin':
-              this.toastr.success(res.message);
-              this.router.navigateByUrl('/admin');
-              return;
-            case 'warehouseManager':
-              this.toastr.success(res.message);
-              this.router.navigateByUrl('/manager');
-              return;
-            case 'warehouseSupervisor':
-              this.toastr.success(res.message);
-              this.router.navigateByUrl('/supervisor');
-              return;
-            default:
-              this.toastr.error("User doesn't have access");
-              localStorage.clear();
-              this.router.navigateByUrl('/auth');
-              return;
-          }
-        }
+      this.fireAuth.signInWithEmailAndPassword(loginDetails.email, loginDetails.password)
+      .then((userCredential) => { 
+        console.log(userCredential);
+        const accessToken = userCredential.user.multiFactor['user'].accessToken;
+        this.loadingButton = false;
+        const userDetails= this.getLoginDetails(loginDetails.email);
+        this.localService.setItem('user_details',JSON.stringify(userDetails));
+        this.localService.setItem('accessToken', accessToken);
+        this.router.navigateByUrl('/admin');
+        this.toastr.success('Logged in successfully');
+      })
+      .catch((error) => {
+        this.toastr.error(error.message);
+        this.loadingButton = false;
       });
     }
+  }
+  getLoginDetails(email) {
+    this.firebaseService.getDocument('users',email).subscribe((res) => {
+    return res.data
+    })
   }
 }

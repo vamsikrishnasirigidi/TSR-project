@@ -28,6 +28,8 @@ import { FooterComponent } from './footer/footer.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { FormComponent } from './form/form.component';
 import { CardComponent } from './card/card.component';
+import { DetailsFormComponent } from './details-form/details-form.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 @NgModule({
   declarations: [
     LoadingSpinnerComponent,
@@ -53,6 +55,8 @@ import { CardComponent } from './card/card.component';
     GalleryComponent,
     FormComponent,
     CardComponent,
+    DetailsFormComponent,
+    AdminDashboardComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, PrimeUIModule],
   exports: [
@@ -77,7 +81,9 @@ import { CardComponent } from './card/card.component';
     SortComponent,
     InputTextAreaComponent,
     PageLoaderComponent,
-    GalleryComponent
+    GalleryComponent,
+    DetailsFormComponent,
+    AdminDashboardComponent
   ],
 })
 export class ComponentsModule {}

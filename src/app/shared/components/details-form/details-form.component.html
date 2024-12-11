@@ -1,0 +1,115 @@
+<div class="details-form-container">
+  <div class="flex justify-content-center">
+    <div class="col-6">
+      <div class="pb-0">
+        <app-input-text
+          [label]="'Title'"
+          name="title"
+          [placeholder]="'Enter Title'"
+          [formGroup]="detailsForm"
+          [requiredStar]="true"
+          [maxlength]="50"
+          [error]="
+            inputRequiredValidationsErrors(detailsForm, 'title')
+              ? 'title is required'
+              : ''
+          "
+        ></app-input-text>
+      </div>
+      <div class="pb-0">
+        <app-input-text
+          [label]="'Description'"
+          name="description"
+          [placeholder]="'Enter Description'"
+          [maxlength]="50"
+          [requiredStar]="true"
+          [formGroup]="detailsForm"
+          [error]="
+            inputRequiredValidationsErrors(detailsForm, 'description')
+              ? 'description is required'
+              : ''
+          "
+        ></app-input-text>
+      </div>
+      <div class="pb-0">
+        <app-input-text
+          [label]="'Location'"
+          name="location"
+          [requiredStar]="true"
+          [maxlength]="100"
+          [placeholder]="'Enter Location'"
+          [formGroup]="detailsForm"
+          [error]="
+            inputRequiredValidationsErrors(detailsForm, 'location')
+              ? 'location is required'
+              : ''
+          "
+        ></app-input-text>
+      </div>
+      <div class="pb-0">
+        <app-input-text
+          [label]="'Address'"
+          name="address"
+          [requiredStar]="true"
+          [placeholder]="'Enter Address'"
+          [formGroup]="detailsForm"
+          [error]="
+            inputRequiredValidationsErrors(detailsForm, 'address')
+              ? 'address is required'
+              : ''
+          "
+        ></app-input-text>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 flex justify-content-center">
+    <span>
+      <app-upload-button
+        (imageUploaded)="uploadImage($event)"
+        [labelName]="'Upload Images'"
+        name="images"
+        [multiple]="true"
+        [formGroup]="detailsForm"
+      ></app-upload-button>
+    </span>
+  </div>
+
+  <div class="grid previewImages" *ngIf="previewImages.length > 0">
+    <div class="relative" *ngFor="let image of previewImages; let i = index">
+      <img
+        height="100"
+        style="object-fit: cover"
+        width="100"
+        class="uploadpicture"
+        [src]="image"
+      />
+      <p
+        (click)="removeLogo(i)"
+        class="imagedeleteicon p-0 m-0"
+        style="cursor: pointer"
+      >
+        <i class="pi pi-times cross-remove-icon"></i>
+      </p>
+    </div>
+  </div>
+  <div class="col-12 flex mt-4 justify-content-center">
+    <app-button
+      [mainClass]="'button-cancel'"
+      [label]="'Clear'"
+      [showIcon]="false"
+      (submitForm)="cancelForm()"
+    ></app-button>
+    &nbsp;&nbsp;
+    <app-button
+      [mainClass]="'button-primary'"
+      [label]="'Submit'"
+      [showIcon]="false"
+      [loading]="buttonLoading"
+      (submitForm)="submitForm()"
+      [disabled]="
+        !detailsForm.valid || detailsForm.pristine || previewImages.length == 0
+      "
+    ></app-button>
+  </div>
+</div>

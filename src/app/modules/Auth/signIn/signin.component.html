@@ -1,88 +1,69 @@
-<div class="loginScreenComponent flex justify-content-center">
-  <div class="col-0 md:col-0 lg:col-6 p-0 imageColumn" style="overflow: hidden">
-    <div class="loginScreenImage">
-      <img
-        src="/assets/images/login page image.png"
-        class="loginImage"
-        alt="login Screen Imaage"
-      />
-    </div>
-  </div>
-  <div
-    class="col-12 md:col-6 lg:col-6 p-0 flex justify-content-center align-items-center h-screen"
-  >
-    <div class="loginFormFields">
-      <div class="wmsLogo flex justify-content-center">
-        <div class="warehouseLogoSpan">
+<div class="totalContainer">
+  <div class="loginScreenComponent flex justify-content-center">
+    <div
+      class="col-12 lg:col-6 p-0 flex justify-content-center align-items-center"
+    >
+      <div class="loginFormFields">
+        <div class="flex justify-content-center">
           <img
-            src="/assets/images/wms logo.png"
-            class="warehouseLogo"
-            alt="warehouse Logo"
+            src="\assets\images\logo (1).png"
+            class="warehouseManagementText"
+            alt="warehouse Management"
           />
         </div>
-      </div>
-      <br />
-      <div class="flex justify-content-center">
-        <img
-          src="../../../../assets/images/Warehouse Management text.png"
-          class="warehouseManagementText"
-          alt="warehouse Management"
-        />
-      </div>
-      <br />
-      <div class="text-center mb-3">
-        <p class="login-subheading">Login</p>
-      </div>
-      <br />
-      <div class="flex justify-content-center">
-        <div class="loginFormFieldsWidths">
-          <app-input-text
-            [label]="'Email Address'"
-            name="email"
-            [placeholder]="'enter email'"
-            [formGroup]="loginForm"
-            [hideSpecialChar]="false"
-            [emailTemplate]="true"
-            [maxlength]="50"
-            [error]="
-              inputRequiredValidationsErrors(loginForm, 'email')
-                ? 'email is required'
-                : inputPatternValidationsErrors(loginForm, 'email')
-                ? 'enter valid email'
-                : ''
-            "
-          ></app-input-text>
-          <app-input-password
-            [toggleMask]="true"
-            [formGroup]="loginForm"
-            [name]="'password'"
-            [placeholder]="'enter password'"
-            [label]="'Password'"
-            (enter)="submitForm()"
-            [error]="
-              inputRequiredValidationsErrors(loginForm, 'password')
-                ? 'password is required'
-                : inputLengthValidationsErrors(loginForm, 'password')
-                ? 'invalid password'
-                : ''
-            "
-          ></app-input-password>
+        <br />
+      
+        <div class="loginInputs flex justify-content-center">
+          <div class="loginFormFieldsWidths">
+            <app-input-text
+              [label]="'Email'"
+              name="email"
+              [placeholder]="'Enter Email'"
+              [formGroup]="loginForm"
+              [hideSpecialChar]="false"
+              [emailTemplate]="true"
+              [maxlength]="50"
+              [error]="
+                inputRequiredValidationsErrors(loginForm, 'email')
+                  ? 'email is required'
+                  : inputPatternValidationsErrors(loginForm, 'email')
+                  ? 'enter valid email'
+                  : ''
+              "
+            ></app-input-text>
+       
+            <app-input-password
+              [toggleMask]="true"
+              [formGroup]="loginForm"
+              [name]="'password'"
+              [placeholder]="'Enter Password'"
+              [label]="'Password'"
+              (enter)="submitForm()"
+              [error]="
+                inputRequiredValidationsErrors(loginForm, 'password')
+                  ? 'password is required'
+                  : inputLengthValidationsErrors(loginForm, 'password')
+                  ? 'invalid password'
+                  : ''
+              "
+            ></app-input-password>
 
-          <span class="flex justify-content-center">
-            <app-button
-              [mainClass]="'button-primary'"
-              [label]="'Sign in'"
-              [showIcon]="false"
-              (submitForm)="submitForm()"
-              [loading]="loadingButton"
-              [disabled]="!loginForm.valid"
-            ></app-button>
-          </span>
-          <span class="flex justify-content-center mt-3">
-            <a routerLink="/auth/forgot-password" class="forgotPassword"
-              >Forgot Password?</a
-            >
-          </span>
+            <span class="signInButton flex justify-content-center w-full">
+              <app-button
+                [mainClass]="'button-primary'"
+                [label]="'Sign in'"
+                [showIcon]="false"
+                (submitForm)="submitForm()"
+                [loading]="loadingButton"
+                [disabled]="!loginForm.valid"
+              ></app-button>
+            </span>
+            <!-- <span class="flex justify-content-center mt-5">
+              <a routerLink="/auth/forgot-password" class="forgotPassword"
+                >Forgot Password?</a
+              >
+            </span> -->
+          </div>
         </div>
       </div>
     </div>
