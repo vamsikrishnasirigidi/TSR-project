@@ -47,8 +47,8 @@
   opacity: 1;
 }
 .gallery-item:hover .gallery-image {
-    transform: scale(1.1);
-  }
+  transform: scale(1.1);
+}
 .image-overlay {
   position: absolute;
   top: 0;
@@ -71,4 +71,47 @@
   font-size: 1.2rem;
   margin-top: 5px;
   color: $primaryColor;
+}
+.galleryContainer {
+  position: relative;
+  .galleria-image {
+    width: 850px;
+    height: 640px;
+    display: block;
+    border-radius: 3px 3px 0px 0px;
+  }
+  .fullScreenIcon{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+  }
+  .autoPlayIcon{
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+  }
+  ::ng-deep {
+    .p-galleria-mask {
+      --maskbg: #555252de;
+  
+    }
+    .p-galleria .p-galleria-thumbnail-container {
+      background: #ffffff91;
+      border-radius: 0px 0px 3px 3px;
+      padding: 0.8rem 0.25rem
+    }
+    .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev,
+    .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {
+      color: black;
+    }
+    .p-link:focus {
+      box-shadow: none !important;
+    }
+  }
 }

@@ -30,6 +30,7 @@ import { FormComponent } from './form/form.component';
 import { CardComponent } from './card/card.component';
 import { DetailsFormComponent } from './details-form/details-form.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { WhatsappLinkComponent } from './whatsapp-link/whatsapp-link.component';
 @NgModule({
   declarations: [
     LoadingSpinnerComponent,
@@ -57,6 +58,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     CardComponent,
     DetailsFormComponent,
     AdminDashboardComponent,
+    WhatsappLinkComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, PrimeUIModule],
   exports: [
@@ -83,7 +85,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     PageLoaderComponent,
     GalleryComponent,
     DetailsFormComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    WhatsappLinkComponent
   ],
 })
 export class ComponentsModule {}

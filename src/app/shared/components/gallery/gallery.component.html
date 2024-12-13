@@ -5,7 +5,12 @@
   <div class="gallery-grid">
     <div class="gallery-item" *ngFor="let doc of galleryData">
       <div class="image-container">
-        <img [src]="doc.images[0]" [alt]="doc.title" class="gallery-image" />
+        <img
+          [src]="doc.images[0]"
+          [alt]="doc.title"
+          class="gallery-image"
+          (click)="imageClicked(doc)"
+        />
         <div class="image-overlay">
           <div class="image-text">{{ doc.title }} @ {{ doc.location }}</div>
           <div class="developer-text">
@@ -16,4 +21,44 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="galleryContainer">
+  <p-galleria
+    id="galleria"
+    [value]="images"
+    [(visible)]="showGalleria"
+    [(activeIndex)]="activeIndex"
+    [responsiveOptions]="responsiveOptions"
+    [containerStyle]="{ 'max-width': '850px' }"
+    [numVisible]="5"
+    [circular]="true"
+    [fullScreen]="true"
+    [showItemNavigators]="true"
+    [showThumbnails]="true"
+    [baseZIndex]="100000"
+    [autoPlay]="autoPlayImages"
+    [circular]="true"
+  >
+    <ng-template pTemplate="item" let-item>
+      <img [src]="item" class="galleria-image" />
+      <i
+        pTooltip="Full Screen"
+        tooltipPosition="bottom"
+        (click)="fullScreen()"
+        class="fa fa-arrows-alt fullScreenIcon"
+      ></i>
+      <i
+        pTooltip="Auto Play"
+        tooltipPosition="bottom"
+        (click)="playImages()"
+        class="fa fa-play autoPlayIcon"
+      ></i>
+    </ng-template>
+    <ng-template pTemplate="thumbnail" let-item>
+      <div class="grid grid-nogutter justify-content-center">
+        <img [src]="item" style="display: block; width: 100px" />
+      </div>
+    </ng-template>
+  </p-galleria>
 </div>
