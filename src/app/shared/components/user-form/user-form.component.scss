@@ -1,0 +1,47 @@
+.userForm {
+    max-width: 400px;
+    min-width: 400px;
+    background: #f6f8fa;
+    ::ng-deep {
+      .p-disabled {
+        position: relative;
+      }
+  
+      .p-disabled::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        pointer-events: none;
+      }
+  
+      .p-disabled-content {
+        position: relative;
+      }
+      .p-disabled-icon {
+        position: relative;
+      }
+  
+      .p-disabled-icon::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+      }
+      .p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
+        padding-right: 0px !important;
+      }
+  
+      .p-dropdown-panel .p-dropdown-header .p-dropdown-filter-icon {
+        display: none !important;
+      }
+    }
+  
+}

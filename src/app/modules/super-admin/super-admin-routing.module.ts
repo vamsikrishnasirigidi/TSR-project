@@ -7,17 +7,16 @@ import { DashboardComponent } from '../screens/dashboard/dashboard.component';
 import { HomePageComponent } from '../screens/home-page/home-page.component';
 import { DetailsFormComponent } from 'src/app/shared/components/details-form/details-form.component';
 import { AdminDashboardComponent } from 'src/app/shared/components/admin-dashboard/admin-dashboard.component';
+import { GalleryComponent } from 'src/app/shared/components/gallery/gallery.component';
 
 const routes: Routes = [
   {
     path: '',
-    // component: HomePageComponent,
-    // redirectTo: 'details-form',
-    // pathMatch: 'full',
+    component: AdminDashboardComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: AdminDashboardComponent },
-      { path: 'settings', component: SettingsComponent },
+      { path: '', redirectTo: 'upload-details', pathMatch: 'full' },
+      { path: 'upload-details', component: DetailsFormComponent },
+      { path: 'gallery', component: GalleryComponent },
     ],
   },
 ];

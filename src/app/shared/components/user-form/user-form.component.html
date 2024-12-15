@@ -1,0 +1,87 @@
+<div class="userForm">
+      <div class="col-12 pb-0">
+        <app-input-text
+          [formGroup]="userForm"
+          [name]="'name'"
+          [label]="'Name'"
+          [requiredStar]="true"
+          [maxlength]="50"
+          [placeholder]="'Enter Name'"
+          [error]="
+            inputRequiredValidation(userForm, 'name')
+              ? 'name is required'
+              : ''
+          "
+        >
+        </app-input-text>
+      </div>
+      <div class="col-12 pb-0 pt-0">
+        <app-input-text
+          [formGroup]="userForm"
+          [name]="'contactNumber'"
+          [label]="'Contact Number'"
+          [requiredStar]="true"
+          [numbersOnly]="true"
+          [maxlength]="12"
+          [placeholder]="'Enter Contact Number'"
+          [error]="
+            inputRequiredValidation(userForm, 'contactNumber')
+              ? 'contact number is required'
+              : inputLengthValidationsErrors(userForm, 'contactNumber')
+              ? 'enter valid contact number'
+              : ''
+          "
+        ></app-input-text>
+      </div>
+      <div class="col-12 pb-0 pt-0">
+        <app-input-text
+          [formGroup]="userForm"
+          [name]="'email'"
+          [maxlength]="50"
+          [requiredStar]="true"
+          [label]="'Email'"
+          [hideSpecialChar]="false"
+          [emailTemplate]="true"
+          [placeholder]="'Enter Email'"
+          [error]="
+            inputRequiredValidation(userForm, 'email')
+              ? 'email is required'
+              : inputPatternValidationsErrors(userForm, 'email')
+              ? 'enter valid email'
+              : ''
+          "
+        >
+        </app-input-text>
+      </div>
+      <div class="col-12 pb-0 pt-0">
+        <app-input-text
+          [formGroup]="userForm"
+          [name]="'address'"
+          [label]="'Address'"
+          [maxlength]="200"
+          [placeholder]="'Enter Address'"
+        >
+        </app-input-text>
+      </div>
+      <div class="col-12 pt-0 pb-0">
+        <app-input-text-area
+        [autoResize]="true"
+        [formGroup]="userForm"
+        [label]="'Message'"
+        [name]="'message'"
+        [placeholder]="'How can we help you...'"
+        [cols]="200"
+        [rows]="2"
+      ></app-input-text-area>
+      </div>
+    <div class="col-12 pt-4 pb-0 flex justify-content-center">
+      <app-button
+        [mainClass]="'button-primary'"
+        [label]="'Send Message'"
+        [showIcon]="false"
+        (submitForm)="submitForm()"
+        [loading]="buttonLoading"
+        [disabled]="!userForm.valid || userForm.pristine"
+      ></app-button>
+    </div>
+  </div>

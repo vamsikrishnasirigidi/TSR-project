@@ -1,9 +1,12 @@
-<div class="gallery-container">
-  <h1 class="gallery-title">Gallery</h1>
-  <p class="gallery-header">{{ headerText }}</p>
+<div class="gallery-container" [ngClass]="isAdminLogin ? 'p-0' : ''">
+  <h1 *ngIf="!isAdminLogin" class="gallery-title">Gallery</h1>
+  <div *ngIf="isAdminLogin">
+    <p class="component-heading mb-5">Gallery</p>
+  </div>
+  <p class="gallery-header" *ngIf="!isAdminLogin">{{ headerText }}</p>
 
-  <div class="gallery-grid">
-    <div class="gallery-item" *ngFor="let doc of galleryData">
+  <div class="gallery-grid" *ngIf="galleryData.length > 0">
+    <div class="gallery-item cursor-pointer" *ngFor="let doc of galleryData">
       <div class="image-container">
         <img
           [src]="doc.images[0]"
@@ -14,12 +17,16 @@
         <div class="image-overlay">
           <div class="image-text">{{ doc.title }} @ {{ doc.location }}</div>
           <div class="developer-text">
-            <!-- {{ image.developer }} -->
             TSR Infra Developers
           </div>
         </div>
+       
       </div>
+      <div class="delete-icon"  pTooltip="Delete" tooltipPosition="left" *ngIf="isAdminLogin"> <i class="fa fa-trash" aria-hidden="true" (click)="deleteDocument(doc)"></i></div>
     </div>
+  </div>
+  <div *ngIf="galleryData.length === 0">
+    <h1 class="text-center mt-4">No Content Found</h1>
   </div>
 </div>
 

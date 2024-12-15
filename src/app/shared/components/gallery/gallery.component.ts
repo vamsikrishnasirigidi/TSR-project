@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/api/services/firebase/firebase.service';
 import { serverTimestamp } from 'firebase/firestore';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -18,6 +20,7 @@ export class GalleryComponent {
   showGalleria: boolean = false;
   autoPlayImages: boolean = false;
   activeIndex: number = 0;
+  isAdminLogin:boolean=false;
   responsiveOptions: { breakpoint: string; numVisible: number }[] = [
     {
       breakpoint: '1024px',
@@ -32,8 +35,10 @@ export class GalleryComponent {
       numVisible: 2,
     },
   ];
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(private firebaseService: FirebaseService,private route:ActivatedRoute,private toastr: ToastrService) {}
   ngOnInit() {
+    const currentRoute = this.route.snapshot['_routerState'].url.split('/')[1];
+    this.isAdminLogin=currentRoute==='admin'
     this.getGallery();
   }
   imageClicked(data) {
@@ -52,5 +57,18 @@ export class GalleryComponent {
     this.firebaseService.getAllDocuments('gallery').subscribe((data) => {
       this.galleryData = data;
     });
+  }
+  deleteDocument(doc){
+    console.log(doc);
+    this.firebaseService.deleteDocument('gallery','doc.id').then((res:any) => {
+      console.log(res);
+      if(res.success){
+        this.toastr.success(res.message);
+        this.getGallery();
+      }
+      else{
+        this.toastr.error(res.message);
+      }
+    })
   }
 }

@@ -26,7 +26,7 @@
 
 .gallery-item {
   position: relative;
-  // border-radius: 8px;
+  max-width: 375px;
   overflow: hidden;
 }
 
@@ -43,6 +43,10 @@
   object-fit: cover;
 }
 .gallery-item:hover .developer-text {
+  visibility: visible;
+  opacity: 1;
+}
+.gallery-item:hover .delete-icon {
   visibility: visible;
   opacity: 1;
 }
@@ -72,6 +76,17 @@
   margin-top: 5px;
   color: $primaryColor;
 }
+.delete-icon {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 18px;
+  cursor: pointer;
+  color: $inputRequiredColor;
+}
 .galleryContainer {
   position: relative;
   .galleria-image {
@@ -80,7 +95,7 @@
     display: block;
     border-radius: 3px 3px 0px 0px;
   }
-  .fullScreenIcon{
+  .fullScreenIcon {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -88,7 +103,7 @@
     cursor: pointer;
     color: white;
   }
-  .autoPlayIcon{
+  .autoPlayIcon {
     position: absolute;
     top: 10px;
     left: 40px;
@@ -99,12 +114,11 @@
   ::ng-deep {
     .p-galleria-mask {
       --maskbg: #555252de;
-  
     }
     .p-galleria .p-galleria-thumbnail-container {
       background: #ffffff91;
       border-radius: 0px 0px 3px 3px;
-      padding: 0.8rem 0.25rem
+      padding: 0.8rem 0.25rem;
     }
     .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev,
     .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {
