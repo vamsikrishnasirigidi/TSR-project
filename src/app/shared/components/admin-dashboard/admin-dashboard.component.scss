@@ -1,6 +1,14 @@
-.admin-dashboard-container{
+.admin-dashboard-container {
+  background-color: #f6f8fa;
+  display: flex;
+  height: 100vh;
+  .side-nav-container {
+    width: 15%;
+    float: left;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.15);
+  }
+  .content-dashboard {
+    width: 85%;
     padding: 20px;
-    .details-form{
-        margin: 50px;
-    }
+  }
 }

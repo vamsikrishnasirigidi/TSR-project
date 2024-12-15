@@ -1,9 +1,18 @@
 <div class="dashboard-header">
-    <app-header></app-header>
+  <app-header
+    (pageScrollAction)="pageScrollActionHappens($event)"
+    [activeTab]="activeTab"
+  ></app-header>
 </div>
-<div class="dashboard-plots-text">
-    <app-guide-details></app-guide-details>
+<div class="dashboard-plots-text" id="walk-through">
+  <app-guide-details></app-guide-details>
 </div>
-<div class="dashboard-gallery">
-    <app-gallery></app-gallery>
+<div class="dashboard-gallery" id="gallery">
+  <app-gallery></app-gallery>
 </div>
+<div class="whatsapp-link">
+  <app-whatsapp-link></app-whatsapp-link>
+</div>
+<!-- <div>
+    <app-user-form></app-user-form>
+</div> -->

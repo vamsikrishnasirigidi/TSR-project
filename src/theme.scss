@@ -206,7 +206,7 @@ input[type="number"] {
   position: relative;
   top: 2px;
   font-size: 11px !important;
-  color: $fontColor !important;
+  color: $inputRequiredColor !important;
   text-align: left;
   width: fit-content;
 }
@@ -669,11 +669,14 @@ body {
   background: #e9ecef !important;
 }
 .component-heading {
-  font-size: 40px;
+  font-size: 33px;
   font-weight: 600;
-  line-height: 58px;
+  color: #2926ac;
+  text-decoration: underline;
+  line-height: 50px;
   font-family: "roboto";
   margin-top: 0px;
+  text-align: center;
   margin-bottom: 20px;
 }
 .cross-remove-icon {
@@ -733,4 +736,13 @@ div::-webkit-scrollbar-thumb {
 } 
 .p-dialog .p-dialog-header .p-dialog-header-icon:focus {
   box-shadow: none !important;
+}
+.p-dialog .p-dialog-header {
+  background: #f6f8fa !important;
+}
+.p-dialog .p-dialog-content:last-of-type{
+  background: #f6f8fa !important;
+}
+.p-inputtextarea-resizable {
+  border-radius: 8px !important;
 }

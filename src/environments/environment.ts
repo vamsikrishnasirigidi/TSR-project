@@ -8,5 +8,6 @@ export const environment = {
     storageBucket: "tsr-project-d8d1c.firebasestorage.app",
     messagingSenderId: "63962912478",
     appId: "1:63962912478:web:9a5051201340837cfa144f"
-  }
+  },
+  CONTACT_NUMBER: '8886361431', // ContactNumber
 };

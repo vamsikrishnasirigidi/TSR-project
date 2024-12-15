@@ -1,24 +1,43 @@
-<div *ngIf="!minimizeSidebarStatus">
+<div class="sidenav-component">
   <div class="logoContainer">
     <img
-      src="/assets/logo/Logo (1).svg"
+      src="../../../../assets/tsr-logo/tsrlogo (2).png"
       class="logo"
       alt="Warehouse Management"
     />
   </div>
-  <div class="routesContainer">
-    <ul>
-      <li routerLinkActive="active" *ngFor="let url of urls">
-        <div class="routingDivision" routerLink="{{ url.url }}">
-          <a
-            ><i
-              class="{{ url.icon }} iconStyle sidenav-icon"
-              aria-hidden="true"
-            ></i>
-            <span class="sidenav-text"> {{ url.value }}</span>
-          </a>
-        </div>
-      </li>
-    </ul>
+  <div class="routings">
+    <div class="routesContainer">
+      <ul>
+        <li routerLinkActive="active" *ngFor="let url of urls">
+          <div class="routingDivision" routerLink="{{ url.url }}">
+            <a
+              ><i
+                class="{{ url.icon }} iconStyle sidenav-icon"
+                aria-hidden="true"
+                [pTooltip]="(onResize() ? url.value : null)"
+                tooltipPosition="top"
+              ></i>
+              <span class="sidenav-text"> {{ url.value }}</span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="logout-section">
+      <div class="routingDivision logoutClass">
+        <a
+        (click)="logout()"
+          ><i
+          [pTooltip]="(onResize() ? 'Logout' : null)"
+              tooltipPosition="top"
+            class="fa fa-sign-out iconStyle sidenav-icon"
+            aria-hidden="true"
+          ></i>
+          <span class="sidenav-text"> Logout</span>
+        </a>
+      </div>
+    </div>
   </div>
+ 
 </div>

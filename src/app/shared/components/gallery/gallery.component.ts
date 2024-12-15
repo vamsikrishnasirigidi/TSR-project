@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/api/services/firebase/firebase.service';
 import { serverTimestamp } from 'firebase/firestore';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -14,14 +16,59 @@ export class GalleryComponent {
     'Built & open ONLY to plot owners, outside public is NOT allowed!';
   documents$: Observable<any[]>;
   galleryData: any[] = [];
-  constructor(private firebaseService: FirebaseService) {}
+  images: any;
+  showGalleria: boolean = false;
+  autoPlayImages: boolean = false;
+  activeIndex: number = 0;
+  isAdminLogin:boolean=false;
+  responsiveOptions: { breakpoint: string; numVisible: number }[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 2,
+    },
+  ];
+  constructor(private firebaseService: FirebaseService,private route:ActivatedRoute,private toastr: ToastrService) {}
   ngOnInit() {
+    const currentRoute = this.route.snapshot['_routerState'].url.split('/')[1];
+    this.isAdminLogin=currentRoute==='admin'
     this.getGallery();
+  }
+  imageClicked(data) {
+    this.showGalleria = true;
+    this.images = data.images;
+  }
+  fullScreen() {
+    var elem = document.getElementById('galleria');
+    elem.requestFullscreen();
+  }
+  playImages(){
+    this.autoPlayImages=true
   }
 
   getGallery() {
     this.firebaseService.getAllDocuments('gallery').subscribe((data) => {
       this.galleryData = data;
     });
+  }
+  deleteDocument(doc){
+    console.log(doc);
+    this.firebaseService.deleteDocument('gallery','doc.id').then((res:any) => {
+      console.log(res);
+      if(res.success){
+        this.toastr.success(res.message);
+        this.getGallery();
+      }
+      else{
+        this.toastr.error(res.message);
+      }
+    })
   }
 }
