@@ -3,33 +3,36 @@
     class="p-input-filled"
     [formGroup]="formGroup"
     autocomplete="off"
-    [class]="class"
+    [class]="mainClass"
     autocomplete="off"
   >
     <div class="textBoxMargin">
       <div *ngIf="label" class="col-12 p-0 mb-1 labelNames formFields">
         <label class="label"
           >{{ label }} <span *ngIf="requiredStar" class="requiredStar">*</span>
+          <!-- <span *ngIf="generateSerial" class="ml-5 generate-link" [ngClass]="disableLink? 'disableLink':'generate-link'" (click)="onClickSideLabel()"><a><i class="fa fa-plus mr-1"></i>{{sideLabel}}</a></span> -->
         </label>
       </div>
-      <div class="flex">
-        <span *ngIf="showCountryCodes" class="col-3 p-0 m-0 mr-1">
+      <div class="flex relative">
+        <span *ngIf="showCountryCodes" class="country-code-width p-0 m-0 mr-1">
           <app-dropdown
             [formGroup]="formGroup"
             [name]="countryFormControlName"
             [options]="countryCodes"
-            [filter]="true"
             [labelName]="'code'"
             [errorBlock]="false"
+            [filter]="true"
           >
           </app-dropdown>
         </span>
         <span
           class="p-0 m-0 inputField formFields"
           [class]="icon ? 'p-input-icon-left' : ''"
-          [style]="showCountryCodes ? 'width: ' + '86%' : 'width: ' + '100%'"
+          [style]="showCountryCodes ? 'width: ' + '86%': 'width: ' + '100%'"
+          *ngIf="!phoneNumber && !searchBar"  
         >
           <input
+            #inputText
             [type]="type"
             pInputText
             [placeholder]="placeholder"
@@ -40,13 +43,14 @@
             (keypress)="
               numbersOnly
                 ? numberOnly($event)
-                : spaces === 0
-                ? onKeydown($event)
                 : spaces === 1
                 ? isAlfa($event)
                 : null;
-              initialSpace($event)
+              initialSpace($event);
+              removeText($event);
+              removespaces($event)
             "
+            (keydown)="onKeyDown($event,inputText);"
             (input)="eventFromInputText($event)"
             (keydown.enter)="enterClicked()"
             [maxlength]="maxlength"
@@ -57,14 +61,70 @@
             [autocomplete]="name"
           />
           <i *ngIf="icon" [class]="icon" class="input-icon"></i>
-          <i
+          <!-- <app-dropdown></app-dropdown> -->
+          <!-- <i
             *ngIf="searchBoolean && clearInputField"
             (click)="inputFieldClear()"
             class="pi pi-times clearIcon"
-          ></i>
+          ></i> -->
         </span>
+        <div class="generate-serial-button" *ngIf="generateSerial">
+          <div class="add-button" (click)="onClickSideLabel()"><img   pTooltip="Generate Serial number" tooltipPosition="top" [appendTo]="'body'"
+            *ngIf="!showLoader" src="../../../../../assets/misc/add-circle-icon.svg" alt=""><i *ngIf="showLoader" class="pi pi-spin pi-spinner quantitySpinner"></i>
+          </div>
+        </div>
+        <span
+          *ngIf="phoneNumber"
+          class="p-0 m-0 inputField formFields"
+          [style]="showCountryCodes ? 'width: ' + '86%' : 'width: ' + '100%'"
+        >
+        <input
+        id="tel"
+        [type]="'text'"
+        pInputText
+        maxlength="phoneNumberMaxlength"
+        [placeholder]="placeholder"
+        [formControlName]="name"
+        (input)="FromInputText($event)"
+      />
+          <!-- <p-inputMask
+            [formControlName]="name"
+            mask="999-999-9999"
+            slotChar=" "
+            [placeholder]="placeholder"
+          ></p-inputMask> -->
+        </span>
+        <span
+        class="p-0 m-0 inputField formFields"
+        [class]="icon ? 'p-input-icon-left' : ''"
+        [style]="showCountryCodes ? 'width: ' + '86%' : 'width: ' + '100%'"
+        *ngIf="searchBar"
+      >
+        <input
+          [type]="'text'"
+          pInputText
+          [placeholder]="placeholder"
+          [formControlName]="name"
+          [class]="class"
+          [style]="style"
+          (input)="eventFromInputText($event)"
+          (keydown.enter)="enterClicked()"
+          [maxlength]="maxlength"
+          [minlength]="minlength"
+          [readonly]="readonly"
+          [min]="min"
+          [max]="max"
+          [autocomplete]="name"
+        />
+        <i *ngIf="icon" [class]="icon" class="input-icon"></i>
+        <i
+          *ngIf="this.formGroup.get(name).value && searchCrossIcon"
+          (click)="inputFieldClear()"
+          class="pi pi-times clearIcon"
+        ></i>
+      </span>
       </div>
-      <div [ngClass]="className" class="flex">
+      <div [ngClass]="className" class="flex" *ngIf="showErrorMessage">
         <small class="p-error-invalid">{{ error }}</small>
         <small *ngIf="!error" class="p-error-invalid"><br /></small>
       </div>

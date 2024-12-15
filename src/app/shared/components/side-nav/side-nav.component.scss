@@ -4,9 +4,12 @@
   padding: 0;
   margin: 0;
 }
+.sidenav-component{
+  height: 100vh;
+}
 .logo {
-  width: 90%;
-  height: 50px;
+  // width: 90%;
+  height: 65px;
 }
 
 .logoContainer {
@@ -14,7 +17,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 13px 0px;
+  padding: 0px;
   border-bottom: 1px solid rgba(216, 216, 216, 1);
 }
 .routesContainer {
@@ -61,6 +64,7 @@
   .sidenav-text {
     font-size: 14px !important;
   }
+
 }
 @media screen and (max-width: 775px) {
   .sidenav-text {
@@ -73,4 +77,19 @@
   .routesContainer {
     margin-left: 0px;
   }
+  .logoutClass{
+    text-align: center;
+  }
+}
+.routings{
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  height: calc(100vh - 66px);
+}
+.logout-section{
+padding-bottom: 10px;
+width: 90%;
+    padding-top: 10px;
+    margin: 10px;
 }

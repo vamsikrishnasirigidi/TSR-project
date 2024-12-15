@@ -1,10 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  warehouseManagerRoutingUrls,
-  superAdminRoutingUrls,
-  warehouseSupervisorRoutingUrls,
-} from './side-nav.config';
+import { RoutingUrls } from './side-nav.config';
+import { LocalServiceService } from 'src/app/api/services/localStorage/local-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-side-nav',
@@ -17,34 +15,16 @@ export class SideNavComponent implements OnInit {
   sideBarVisible = true;
   minimizeSidebarStatus = false;
   @Output() minimizeSideBar = new EventEmitter<boolean>();
-  constructor(private router: Router) {}
+  constructor(private router: Router,private localService:LocalServiceService,private toastr: ToastrService) {}
   ngOnInit(): void {
-    this.role = localStorage.getItem('role');
-    if (this.role) {
-      this.sidenavRoles();
-    }
+    this.urls = RoutingUrls;
   }
-  sidenavRoles() {
-    switch (this.role) {
-      case 'superAdmin':
-        this.urls = superAdminRoutingUrls;
-        return;
-      case 'warehouseManager':
-        this.urls = warehouseManagerRoutingUrls;
-        return;
-      case 'warehouseSupervisor':
-        this.urls = warehouseSupervisorRoutingUrls;
-        return;
-      default:
-        this.router.navigate(['/auth/signIn']);
-        this.urls = [];
-        localStorage.clear();
-        return;
-    }
+ logout() {
+    this.router.navigateByUrl('/auth/signIn');
+    this.localService.clear();
+    this.toastr.success('Logged out successfully');
   }
-
-  minimizeSidebar() {
-    this.minimizeSidebarStatus = !this.minimizeSidebarStatus;
-    this.minimizeSideBar.emit(this.minimizeSidebarStatus);
+  onResize(){
+    return document.body.offsetWidth < 1024;
   }
 }

@@ -13,10 +13,10 @@ export class FirebaseService {
   getAllDocuments(collectionName: string): Observable<any[]> {
     return this.firestore.collection(collectionName).snapshotChanges()
       .pipe(
-        map(actions => actions.map(a => {
+        map(actions => actions.map((a:any) => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
-          return data ;
+          return { id, ...data };
         }))
       );
   }
@@ -50,5 +50,26 @@ export class FirebaseService {
   }
   addCollection(collectionName: string, documentName:string,data: any) {
    return this.firestore.collection(collectionName).doc(documentName).set(data);
+  }
+  deleteDocument(collection:string, id: string) {
+    const docRef = this.firestore.collection(collection).doc(id);
+    return docRef.get()
+      .toPromise()
+      .then(doc => {
+        if (doc.exists) {
+          return docRef.delete()
+            .then(() => {
+              return { success: true, message: 'Document deleted successfully' };
+            })
+            .catch(error => {
+              return { success: false, message: 'Error deleting document', error };
+            });
+        } else {
+          return { success: false, message: 'Document does not exist' };
+        }
+      })
+      .catch(error => {
+        return { success: false, message: 'Error checking document', error };
+      });
   }
 }
