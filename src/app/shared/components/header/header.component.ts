@@ -32,11 +32,6 @@ export class HeaderComponent implements OnInit {
   //     data: { title: 'Change Password' },
   //   });
   // }
-  // logOut() {
-  //   this.router.navigateByUrl('/auth/signIn');
-  //   this.localService.clear();
-  //   this.toastr.success('Logged out successfully');
-  // }
   goToInPageSection(element: string) {
     this.pageScrollAction.emit(element);
   }

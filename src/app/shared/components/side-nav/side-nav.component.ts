@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoutingUrls } from './side-nav.config';
+import { LocalServiceService } from 'src/app/api/services/localStorage/local-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-side-nav',
@@ -13,8 +15,16 @@ export class SideNavComponent implements OnInit {
   sideBarVisible = true;
   minimizeSidebarStatus = false;
   @Output() minimizeSideBar = new EventEmitter<boolean>();
-  constructor(private router: Router) {}
+  constructor(private router: Router,private localService:LocalServiceService,private toastr: ToastrService) {}
   ngOnInit(): void {
     this.urls = RoutingUrls;
+  }
+ logout() {
+    this.router.navigateByUrl('/auth/signIn');
+    this.localService.clear();
+    this.toastr.success('Logged out successfully');
+  }
+  onResize(){
+    return document.body.offsetWidth < 1024;
   }
 }
