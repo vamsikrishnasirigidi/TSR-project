@@ -71,33 +71,54 @@ export class SigninComponent {
   inputLengthValidationsErrors(form: FormGroup, type: string): boolean {
     return minLengthValidations(form, type);
   }
-  submitForm() {
+  async submitForm() {
     if (this.loginForm.valid) {
-      this.loadingButton = true;
-      let loginDetails = {
-        email: this.loginForm.value.email,
-        password: this.loginForm.value.password,
-      };
-      this.fireAuth.signInWithEmailAndPassword(loginDetails.email, loginDetails.password)
-      .then((userCredential) => { 
-        console.log(userCredential);
-        const accessToken = userCredential.user.multiFactor['user'].accessToken;
-        this.loadingButton = false;
-        const userDetails= this.getLoginDetails(loginDetails.email);
-        this.localService.setItem('user_details',JSON.stringify(userDetails));
-        this.localService.setItem('accessToken', accessToken);
-        this.router.navigateByUrl('/admin');
-        this.toastr.success('Logged in successfully');
-      })
-      .catch((error) => {
+      try {
+        this.loadingButton = true;
+        const loginDetails = {
+          email: this.loginForm.value.email,
+          password: this.loginForm.value.password,
+        };
+        
+        const userCredential = await this.fireAuth.signInWithEmailAndPassword(
+          loginDetails.email, 
+          loginDetails.password
+        );
+        
+        if (userCredential.user) {
+          const accessToken = userCredential.user.multiFactor['user'].accessToken;
+          
+          // Get user details
+          const userDetailsSubscription = this.firebaseService
+            .getDocument('users', loginDetails.email)
+            .subscribe({
+              next: (res) => {
+                this.localService.setItem('user_details', JSON.stringify(res.data));
+                this.localService.setItem('accessToken', accessToken);
+                this.router.navigateByUrl('/admin');
+                this.toastr.success('Logged in successfully');
+              },
+              error: (error) => {
+                this.toastr.error('Error fetching user details');
+                console.error(error);
+              },
+              complete: () => {
+                this.loadingButton = false;
+              }
+            });
+        }
+      } catch (error) {
         this.toastr.error(error.message);
         this.loadingButton = false;
-      });
+      }
     }
   }
   getLoginDetails(email) {
-    this.firebaseService.getDocument('users',email).subscribe((res) => {
-    return res.data
-    })
+    let userData;
+    this.firebaseService.getDocument('users', email).subscribe((res) => {
+      userData = res.data;
+      return userData; 
+    });
+    return userData; 
   }
 }
