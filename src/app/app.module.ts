@@ -22,7 +22,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     ScreensModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
     ToastrModule.forRoot({
