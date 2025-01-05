@@ -9,5 +9,14 @@ export const environment = {
     messagingSenderId: "63962912478",
     appId: "1:63962912478:web:9a5051201340837cfa144f"
   },
-  CONTACT_NUMBER: '8886361431', // ContactNumber
+  CONTACT_NUMBER: '8886361431', 
+  sendgrid: {
+    apiKey: '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',
+    verified_Email:'sirigidivamsikrishna@gmail.com'
+  },
+  emailJS:{
+  public_key:'o7zOCvy3iM3N4s3b_',
+  service_Id:'service_leu9dr7',
+  template_Id:'template_h78j42g'
+  }
 };

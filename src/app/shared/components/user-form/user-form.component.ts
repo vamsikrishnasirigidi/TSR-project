@@ -5,6 +5,7 @@ import { AppDialogConfig } from '../app-dialog/app-dialog.config';
 import { AppDialogRef } from '../app-dialog/app-dialog.ref';
 import { ToastrService } from 'ngx-toastr';
 import { PatternValidations, inputRequiredValidations, minLengthValidations } from 'src/app/common/utils';
+import { EmailService } from 'src/app/api/services/email/email.service';
 
 @Component({
   selector: 'app-user-form',
@@ -18,16 +19,17 @@ export class UserFormComponent {
   constructor(
     private fb: FormBuilder,
     private toastr: ToastrService,
+    private emailService:EmailService
   ) {
     this.userForm = this.fb.group({
-      name: ['', [Validators.required]],
-      contactNumber: ['', [Validators.required, Validators.minLength(10)]],
+      name: ['vamsi krishna', [Validators.required]],
+      contactNumber: ['8886361431', [Validators.required, Validators.minLength(10)]],
       email: [
-        '',
+        'vamsi@yopmail.com',
         [Validators.pattern(this.emailValidator), Validators.required],
       ],
-      message: [''],
-      address: [''],
+      message: ['Test message'],
+      address: ['address'],
       id: [''],
     });
   }
@@ -42,6 +44,8 @@ export class UserFormComponent {
   }
   submitForm(){
     console.log(this.userForm.value);
-    
+    this.emailService.sendEmailToEmailJS(this.userForm.value).then((res)=>{
+      console.log(res);
+    })
   }
 }

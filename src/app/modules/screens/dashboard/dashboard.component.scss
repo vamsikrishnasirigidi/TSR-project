@@ -7,15 +7,28 @@
   justify-content: center;
 }
 .dashboard-gallery {
-  margin-top: 50px;
+  // margin-top: 50px;
+}
+.firstImageDivision{
+  max-height: 685px;
+  .firstImage{
+    width: 100%;
+  }
 }
 
+
 .dashboard-plots-text {
-  margin-top: 150px;
+  // margin-top: 150px;
 }
 
 .whatsapp-link{
   position: fixed;
   bottom: 20px;
   left: 20px;
+}
+.dashboard-component{
+  background-image: url(../../../../assets/background/olga-thelavart-vS3idIiYxX0-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
