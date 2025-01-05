@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FirebaseService {
-  app = initializeApp(environment.firebaseConfig);
+  app = initializeApp(environment.firebase);
   constructor(private firestore: AngularFirestore) {}
   getAllDocuments(collectionName: string): Observable<any[]> {
     return this.firestore.collection(collectionName).snapshotChanges()
