@@ -1,25 +1,30 @@
 <div class="dashboard-component">
-
-
 <div class="dashboard-header">
   <app-header
     (pageScrollAction)="pageScrollActionHappens($event)"
     [activeTab]="activeTab"
   ></app-header>
 </div>
-<div class="firstImageDivision">
+<div class="firstImageDivision" id="overview">
 <img src="../../../../assets/home-page/real estate.png" class="firstImage" alt="first-image">
 </div>
 <div class="dashboard-plots-text" id="walk-through">
   <app-guide-details></app-guide-details>
 </div>
+<div class="plot-image-division" id="site-layout">
+  <img src="../../../../assets/home-page/Kanimella Final.png" class="plot-image" alt="plot image">
+  </div>
 <div class="dashboard-gallery" id="gallery">
   <app-gallery></app-gallery>
 </div>
+
 <div class="whatsapp-link">
   <app-whatsapp-link></app-whatsapp-link>
 </div>
 <!-- <div>
     <app-user-form></app-user-form>
 </div> -->
+<div class="footer" id="contact">
+  <app-footer (pageScrollAction)="pageScrollActionHappens($event)"></app-footer>
+</div>
 </div>

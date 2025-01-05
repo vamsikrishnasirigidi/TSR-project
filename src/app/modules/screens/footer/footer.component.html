@@ -1,0 +1,37 @@
+<!-- footer.component.html -->
+<footer class="footer">
+    <div class="footer-content">
+      <!-- WP Residence Section -->
+      <div class="footer-section">
+        <h3>TSR Infra Developers</h3>
+        <p>
+            TSR Infra Developers is committed to delivering a high level of expertise, customer service, 
+          and attention to detail to the marketing and sales of luxury real estate, and rental properties.
+        </p>
+      </div>
+  
+      <!-- Contact Section -->
+      <div class="footer-section">
+        <h3>CONTACT</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> {{contactInfo.address}}</p>
+          <p><i class="fas fa-phone"></i> {{contactInfo.phone}}</p>
+          <p><i class="fas fa-envelope"></i> {{contactInfo.email}}</p>
+          <!-- <p><i class="fab fa-skype"></i> {{contactInfo.skype}}</p> -->
+        </div>
+      </div>
+  
+      <!-- Quick Links Section -->
+      <div class="footer-section">
+        <h3>QUICK LINKS</h3>
+        <ul class="quick-links">
+          <li *ngFor="let link of quickLinks">
+            <a (click)="goToInPageSection(link.url)">{{link.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright TSR Infra Developers. All Rights Reserved.</p>
+      </div>
+  </footer>
