@@ -10,6 +10,7 @@ export const environment = {
     appId: "1:63962912478:web:9a5051201340837cfa144f"
   },
   CONTACT_NUMBER: '8886361431',
+  
   emailJS:{
     public_key:'o7zOCvy3iM3N4s3b_',
     service_Id:'service_797v1lm',
