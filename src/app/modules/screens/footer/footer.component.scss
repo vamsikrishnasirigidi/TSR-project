@@ -1,0 +1,118 @@
+/* footer.component.scss */
+.footer {
+    background-color: #2d3748;
+    padding: 50px 0 20px 0px;
+    color: #aeb0b2;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250px, 300px)); 
+    gap: 40px;
+    justify-content: center; 
+    padding: 0 20px 20px 20px;
+  }
+  
+  .footer-section {
+    h3 {
+      color: #ffffff;
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+  
+    p {
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #b0826c;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        background-color: darken(#b0826c, 10%);
+      }
+  
+      i {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  
+  .contact-info {
+    p {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+  
+      i {
+        color: #b0826c;
+        width: 20px;
+      }
+    }
+  }
+  
+  .quick-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  
+    li {
+      margin-bottom: 12px;
+  
+      a {
+        color: #aeb0b2;
+        text-decoration: none;
+        transition: color 0.3s ease;
+  
+        &:hover {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+    }
+  
+    .footer-section {
+      text-align: center;
+  
+      .contact-info p {
+        justify-content: center;
+      }
+  
+      .social-links {
+        justify-content: center;
+      }
+    }
+  }
+  .footer-bottom {
+    padding-top: 15px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+  
+    p {
+      color: #ffffff;
+      margin: 0;
+    }
+  }

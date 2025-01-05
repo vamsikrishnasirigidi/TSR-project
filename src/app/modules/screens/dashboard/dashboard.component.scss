@@ -10,7 +10,7 @@
   // margin-top: 50px;
 }
 .firstImageDivision{
-  max-height: 685px;
+  // max-height: 685px;
   .firstImage{
     width: 100%;
   }
@@ -31,4 +31,9 @@
   background-repeat: no-repeat;
   background-size: cover;
 
+}
+.plot-image-division{
+  .plot-image{
+    width: 100%;
+  }
 }

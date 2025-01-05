@@ -11,6 +11,7 @@ import { UploadLogoComponent } from './settings/upload-logo/upload-logo.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GuideDetailsComponent } from './sub-screens/guide-details/guide-details.component';
 import { EnquiryFormComponent } from './sub-screens/enquiry-form/enquiry-form.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -23,6 +24,7 @@ import { EnquiryFormComponent } from './sub-screens/enquiry-form/enquiry-form.co
     DashboardComponent,
     GuideDetailsComponent,
     EnquiryFormComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
