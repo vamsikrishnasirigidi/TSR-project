@@ -22,14 +22,14 @@ export class UserFormComponent {
     private emailService:EmailService
   ) {
     this.userForm = this.fb.group({
-      name: ['vamsi krishna', [Validators.required]],
-      contactNumber: ['8886361431', [Validators.required, Validators.minLength(10)]],
+      name: ['', [Validators.required]],
+      contactNumber: ['', [Validators.required, Validators.minLength(10)]],
       email: [
-        'vamsi@yopmail.com',
+        '',
         [Validators.pattern(this.emailValidator), Validators.required],
       ],
-      message: ['Test message'],
-      address: ['address'],
+      message: [''],
+      address: [''],
       id: [''],
     });
   }
@@ -43,7 +43,6 @@ export class UserFormComponent {
     return minLengthValidations(form, type);
   }
   submitForm(){
-    console.log(this.userForm.value);
     this.emailService.sendEmailToEmailJS(this.userForm.value).then((res)=>{
       console.log(res);
     })

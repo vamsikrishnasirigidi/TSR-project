@@ -12,11 +12,14 @@ export class DashboardComponent {
   activeTab: string = '';
   modalRef: any;
   constructor(private router: Router,public dialog: AppDialogService,) {}
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.openUserForm();
+    }, 10000);
+  }
   pageScrollActionHappens(event) {
     if (event === 'enquire') {
-      this.modalRef = this.dialog.open(UserFormComponent, {
-        data: { title: 'Send Message' },
-      });
+    this.openUserForm();
     } else {
       this.router.navigate([], { fragment: event });
       document.getElementById(event).scrollIntoView({
@@ -26,5 +29,10 @@ export class DashboardComponent {
       });
       this.activeTab = event;
     }
+  }
+  openUserForm(){
+    this.modalRef = this.dialog.open(UserFormComponent, {
+      data: { title: 'Send Message' },
+    });
   }
 }
