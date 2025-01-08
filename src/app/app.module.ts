@@ -11,8 +11,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { FirebaseService } from './api/services/firebase/firebase.service';
 import {environment} from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
@@ -33,7 +35,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     }),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },FirebaseService
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },FirebaseService,AngularFireAuth
   ],
   bootstrap: [AppComponent],
 })
