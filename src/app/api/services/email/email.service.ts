@@ -49,7 +49,9 @@ export class EmailService {
       phone: formData.contactNumber,
       email: formData.email,
       address: formData.address,
-      message: formData.message
+      message: formData.message,
+      to_email: environment.emails_Receiver,
+      reply_to: environment.emails_Receiver 
     };
    return emailjs.send(
       environment.emailJS.service_Id,
