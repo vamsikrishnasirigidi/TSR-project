@@ -35,6 +35,7 @@ export class GalleryComponent {
       numVisible: 2,
     },
   ];
+  pageLoader: boolean=false;
   constructor(private firebaseService: FirebaseService,private route:ActivatedRoute,private toastr: ToastrService) {}
   ngOnInit() {
     const currentRoute = this.route.snapshot['_routerState'].url.split('/')[1];
@@ -54,14 +55,14 @@ export class GalleryComponent {
   }
 
   getGallery() {
+    this.pageLoader=true
     this.firebaseService.getAllDocuments('gallery').subscribe((data) => {
       this.galleryData = data;
+      this.pageLoader=false
     });
   }
   deleteDocument(doc){
-    console.log(doc);
     this.firebaseService.deleteDocument('gallery','doc.id').then((res:any) => {
-      console.log(res);
       if(res.success){
         this.toastr.success(res.message);
         this.getGallery();

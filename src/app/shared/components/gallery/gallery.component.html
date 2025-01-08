@@ -1,3 +1,4 @@
+<div class="galley-component">
 <div class="gallery-container" [ngClass]="isAdminLogin ? 'p-0' : ''">
   <h1 *ngIf="!isAdminLogin" class="gallery-title">Gallery</h1>
   <div *ngIf="isAdminLogin">
@@ -25,7 +26,7 @@
       <div class="delete-icon"  pTooltip="Delete" tooltipPosition="left" *ngIf="isAdminLogin"> <i class="fa fa-trash" aria-hidden="true" (click)="deleteDocument(doc)"></i></div>
     </div>
   </div>
-  <div *ngIf="galleryData.length === 0">
+  <div *ngIf="galleryData.length === 0 && !pageLoader">
     <h1 class="text-center mt-4">No Content Found</h1>
   </div>
 </div>
@@ -68,4 +69,12 @@
       </div>
     </ng-template>
   </p-galleria>
+
+</div>
+<div *ngIf="pageLoader" class="backdrop">
+  <div  class="pageLoader">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</div>
+
 </div>
