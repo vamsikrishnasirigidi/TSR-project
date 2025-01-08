@@ -5,6 +5,7 @@ import { AppDialogConfig } from '../app-dialog/app-dialog.config';
 import { AppDialogRef } from '../app-dialog/app-dialog.ref';
 import { ToastrService } from 'ngx-toastr';
 import { PatternValidations, inputRequiredValidations, minLengthValidations } from 'src/app/common/utils';
+import { EmailService } from 'src/app/api/services/email/email.service';
 
 @Component({
   selector: 'app-user-form',
@@ -18,6 +19,7 @@ export class UserFormComponent {
   constructor(
     private fb: FormBuilder,
     private toastr: ToastrService,
+    private emailService:EmailService
   ) {
     this.userForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -41,7 +43,8 @@ export class UserFormComponent {
     return minLengthValidations(form, type);
   }
   submitForm(){
-    console.log(this.userForm.value);
-    
+    this.emailService.sendEmailToEmailJS(this.userForm.value).then((res)=>{
+      console.log(res);
+    })
   }
 }
