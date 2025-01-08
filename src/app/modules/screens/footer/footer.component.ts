@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { EmailService } from 'src/app/api/services/email/email.service';
+import { environment } from 'src/environments/environment';
 interface Property {
   image: string;
   title: string;
@@ -35,14 +37,27 @@ export class FooterComponent {
 
   contactInfo = {
     address: '50-40-16/3, 3rd Floor, TPT Colony, Seethammadhara, Visakhapatnam, 530013, A.P',
-    phone: '+91 9000299698',
+    phone: `+91 ${environment.CONTACT_NUMBER}`,
     email: 'tsrinfradeveloper@gmail.com',
   };
+  constructor(private emailService: EmailService) {}
   goToInPageSection(element: string) {
     if(element==='location'){
       window.open(this.gmap_Adress, '_blank');
     }else{
       this.pageScrollAction.emit(element);
     }
+  }
+  callToNumber(){
+  this.emailService.callToNumber(environment.CONTACT_NUMBER);
+  }
+  sendEmail(): void {
+    const subject = 'TSR Infra Developer Client Enquiry';
+    const body = 'I would like to know more about your plots. Please let me know...';
+    this.emailService.composeEmail(
+      environment.emails_Receiver,
+      subject,
+      body
+    );
   }
 }

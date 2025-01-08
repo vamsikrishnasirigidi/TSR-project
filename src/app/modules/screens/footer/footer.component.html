@@ -15,9 +15,8 @@
         <h3>CONTACT</h3>
         <div class="contact-info">
           <p><i class="fas fa-map-marker-alt"></i> <a target="_blank" href="{{gmap_Adress}}">{{contactInfo.address}}</a> </p>
-          <p><i class="fas fa-phone"></i> {{contactInfo.phone}}</p>
-          <p><i class="fas fa-envelope"></i> {{contactInfo.email}}</p>
-          <!-- <p><i class="fab fa-skype"></i> {{contactInfo.skype}}</p> -->
+          <p (click)="callToNumber()"  class="cursor-pointer"><i class="fas fa-phone"></i> {{contactInfo.phone}}</p>
+          <p (click)="sendEmail()" class="cursor-pointer"><i class="fas fa-envelope"></i> {{contactInfo.email}}</p>
         </div>
       </div>
   
