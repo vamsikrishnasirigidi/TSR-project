@@ -62,7 +62,7 @@ export class GalleryComponent {
     });
   }
   deleteDocument(doc){
-    this.firebaseService.deleteDocument('gallery','doc.id').then((res:any) => {
+    this.firebaseService.deleteDocument('gallery',doc.id).then((res:any) => {
       if(res.success){
         this.toastr.success(res.message);
         this.getGallery();
