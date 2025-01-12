@@ -12,6 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { GuideDetailsComponent } from './sub-screens/guide-details/guide-details.component';
 import { EnquiryFormComponent } from './sub-screens/enquiry-form/enquiry-form.component';
 import { FooterComponent } from './footer/footer.component';
+import { VideoPageComponent } from './video-page/video-page.component';
+import { MainPageLayoutComponent } from './main-page-layout/main-page-layout.component';
 
 
 
@@ -25,6 +27,8 @@ import { FooterComponent } from './footer/footer.component';
     GuideDetailsComponent,
     EnquiryFormComponent,
     FooterComponent,
+    VideoPageComponent,
+    MainPageLayoutComponent,
   ],
   imports: [
     CommonModule,

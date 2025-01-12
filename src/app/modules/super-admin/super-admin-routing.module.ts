@@ -8,6 +8,7 @@ import { HomePageComponent } from '../screens/home-page/home-page.component';
 import { DetailsFormComponent } from 'src/app/shared/components/details-form/details-form.component';
 import { AdminDashboardComponent } from 'src/app/shared/components/admin-dashboard/admin-dashboard.component';
 import { GalleryComponent } from 'src/app/shared/components/gallery/gallery.component';
+import { EditGalleryComponent } from 'src/app/shared/components/edit-gallery/edit-gallery.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,16 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'upload-details', pathMatch: 'full' },
       { path: 'upload-details', component: DetailsFormComponent },
-      { path: 'gallery', component: GalleryComponent },
+      { path: 'gallery', children: [
+        {
+          path: '',
+          component: GalleryComponent,
+        },
+        {
+          path: 'edit',
+          component: EditGalleryComponent,
+        },
+      ]},
     ],
   },
 ];

@@ -1,80 +1,118 @@
-<div class="galley-component">
-<div class="gallery-container" [ngClass]="isAdminLogin ? 'p-0' : ''">
-  <h1 *ngIf="!isAdminLogin" class="gallery-title">Gallery</h1>
-  <div *ngIf="isAdminLogin">
-    <p class="component-heading mb-5">Gallery</p>
-  </div>
-  <p class="gallery-header" *ngIf="!isAdminLogin">{{ headerText }}</p>
+<!-- Header section remains the same -->
+<div class="gallery-component">
+  <div class="gallery-container" [ngClass]="isAdminLogin ? 'admin-view' : ''">
+    <div class="gallery-header-section">
+      <h1 *ngIf="!isAdminLogin" class="gallery-title">Discover Our Properties</h1>
+      <div *ngIf="isAdminLogin">
+        <p class="component-heading">Property Gallery Management</p>
+      </div>
+      <p class="gallery-description" *ngIf="!isAdminLogin">{{ headerText }}</p>
+    </div>
 
-  <div class="gallery-grid" *ngIf="galleryData.length > 0">
-    <div class="gallery-item cursor-pointer" *ngFor="let doc of galleryData">
-      <div class="image-container">
-        <img
-          [src]="doc.images[0]"
-          [alt]="doc.title"
-          class="gallery-image"
-          (click)="imageClicked(doc)"
-        />
-        <div class="image-overlay">
-          <div class="image-text">{{ doc.title }} @ {{ doc.location }}</div>
-          <div class="developer-text">
-            TSR Infra Developers
+    <!-- Property Grid with Updated Card Design -->
+    <div class="property-grid" *ngIf="galleryData.length > 0">
+      <div class="property-card" *ngFor="let doc of galleryData">
+        <div class="property-image-container">
+          <img
+            [src]="doc.images[0]"
+            [alt]="doc.title"
+            class="property-image"
+            (click)="imageClicked(doc)"
+          />
+          <!-- Property Info Now Always Visible -->
+          <div class="property-info-bar">
+            <div class="property-main-info">
+              <h3 class="property-title">{{ doc.title }}</h3>
+              <div class="property-location">
+                <i class="fa fa-map-marker"></i>
+                {{ doc.location }}
+              </div>
+            </div>
+            <button class="browse-gallery-btn" (click)="imageClicked(doc)">
+              <i class="fa fa-images"></i>
+              Browse Gallery
+            </button>
+          </div>
+          
+          <!-- Admin Controls -->
+          <div 
+            class="admin-controls" 
+            *ngIf="isAdminLogin"
+            [@fadeInOut]
+          >
+            <button 
+              class="delete-btn" 
+              pTooltip="Delete Property" 
+              tooltipPosition="left"
+              (click)="deleteDocument(doc)"
+            >
+              <i class="fa fa-trash"></i>
+            </button>
           </div>
         </div>
-       
       </div>
-      <div class="delete-icon"  pTooltip="Delete" tooltipPosition="left" *ngIf="isAdminLogin"> <i class="fa fa-trash" aria-hidden="true" (click)="deleteDocument(doc)"></i></div>
+    </div>
+
+    <!-- Empty state remains the same -->
+    <div class="empty-state" *ngIf="galleryData.length === 0 && !pageLoader">
+      <i class="fa fa-building-o empty-icon"></i>
+      <h2>No Properties Found</h2>
+      <p>Check back soon for new listings</p>
     </div>
   </div>
-  <div *ngIf="galleryData.length === 0 && !pageLoader">
-    <h1 class="text-center mt-4">No Content Found</h1>
+
+  <!-- Updated Galleria with Fixed Dimensions -->
+  <div class="gallery-modal">
+    <p-galleria
+      id="galleria"
+      [value]="images"
+      [(visible)]="showGalleria"
+      [(activeIndex)]="activeIndex"
+      [responsiveOptions]="responsiveOptions"
+      [containerStyle]="{ 'max-width': '1200px' }"
+      [numVisible]="5"
+      [circular]="true"
+      [fullScreen]="true"
+      [showItemNavigators]="true"
+      [showThumbnails]="true"
+      [baseZIndex]="100000"
+      [autoPlay]="autoPlayImages"
+    >
+      <ng-template pTemplate="item" let-item>
+        <div class="galleria-item-wrapper">
+          <div class="galleria-item-container">
+            <img [src]="item" class="galleria-image" />
+            <div class="galleria-controls">
+              <button 
+                class="control-btn" 
+                pTooltip="Full Screen" 
+                tooltipPosition="bottom"
+                (click)="fullScreen()"
+              >
+                <i class="fa fa-arrows-alt"></i>
+              </button>
+              <button 
+                class="control-btn" 
+                pTooltip="Auto Play" 
+                tooltipPosition="bottom"
+                (click)="playImages()"
+              >
+                <i class="fa" [ngClass]="autoPlayImages ? 'fa-pause' : 'fa-play'"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="thumbnail" let-item>
+        <div class="thumbnail-container">
+          <img [src]="item" />
+        </div>
+      </ng-template>
+    </p-galleria>
   </div>
-</div>
 
-<div class="galleryContainer">
-  <p-galleria
-    id="galleria"
-    [value]="images"
-    [(visible)]="showGalleria"
-    [(activeIndex)]="activeIndex"
-    [responsiveOptions]="responsiveOptions"
-    [containerStyle]="{ 'max-width': '850px' }"
-    [numVisible]="5"
-    [circular]="true"
-    [fullScreen]="true"
-    [showItemNavigators]="true"
-    [showThumbnails]="true"
-    [baseZIndex]="100000"
-    [autoPlay]="autoPlayImages"
-    [circular]="true"
-  >
-    <ng-template pTemplate="item" let-item>
-      <img [src]="item" class="galleria-image" />
-      <i
-        pTooltip="Full Screen"
-        tooltipPosition="bottom"
-        (click)="fullScreen()"
-        class="fa fa-arrows-alt fullScreenIcon"
-      ></i>
-      <i
-        pTooltip="Auto Play"
-        tooltipPosition="bottom"
-        (click)="playImages()"
-        class="fa fa-play autoPlayIcon"
-      ></i>
-    </ng-template>
-    <ng-template pTemplate="thumbnail" let-item>
-      <div class="grid grid-nogutter justify-content-center">
-        <img [src]="item" style="display: block; width: 100px" />
-      </div>
-    </ng-template>
-  </p-galleria>
-
-</div>
-<div *ngIf="pageLoader" class="backdrop">
-  <div  class="pageLoader">
+  <!-- Loading state remains the same -->
+  <div class="loader-overlay" *ngIf="pageLoader">
     <app-loading-spinner></app-loading-spinner>
   </div>
-</div>
-
 </div>
