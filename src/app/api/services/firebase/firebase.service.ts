@@ -72,4 +72,14 @@ export class FirebaseService {
         return { success: false, message: 'Error checking document', error };
       });
   }
+  updateDocument(collection:string, docId: string, data: any) {
+    const docRef = this.firestore.collection(collection).doc(docId);
+    return docRef.update(data)
+      .then(() => {
+        return { success: true, message: 'Document updated successfully' };
+    })
+    .catch(error => {
+      return { success: false, message: 'Error updating document', error };
+    });
+  }
 }

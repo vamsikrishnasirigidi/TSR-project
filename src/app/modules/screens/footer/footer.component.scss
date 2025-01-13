@@ -3,6 +3,12 @@
     background-color: #2d3748;
     padding: 50px 0 20px 0px;
     color: #aeb0b2;
+    a{
+      color: #aeb0b2;
+      &:hover {
+        color: #ffffff;
+      }
+    }
   }
   
   .footer-content {
