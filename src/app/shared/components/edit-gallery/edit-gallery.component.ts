@@ -28,7 +28,7 @@ export class EditGalleryComponent {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private propertyService: GalleryService,
-    private firebaseService: FirebaseService,private toastr: ToastrService,private LocalService:LocalServiceService,private Router:Router
+    private firebaseService: FirebaseService,private toastr: ToastrService,private LocalService:LocalServiceService,private Router:Router,private galleryService:GalleryService
     
   ) {
     this.propertyForm = this.fb.group({
@@ -42,6 +42,7 @@ export class EditGalleryComponent {
   ngOnInit() {
     // Load property data
     this.getGalleryDoc();
+    this.propertyForm.patchValue(this.property);
   }
 
   toggleEdit() {
@@ -62,10 +63,12 @@ export class EditGalleryComponent {
         ...this.property,
         ...this.propertyForm.value
       };
-      this.propertyService.updateProperty(updatedProperty).subscribe(() => {
-        this.isEditing = false;
-        this.property = updatedProperty;
-      });
+      console.log(updatedProperty,"updatedProperty");
+      this.updateGalleryDocument(true,'Property updated successfully')
+      // this.propertyService.updateProperty(updatedProperty).subscribe(() => {
+      //   this.isEditing = false;
+      //   this.property = updatedProperty;
+      // });
     }
   }
 
@@ -76,8 +79,18 @@ export class EditGalleryComponent {
   onImageSelected(event: any) {
     const files = event.target.files;
     if (files && this.property) {
-      console.log(files,"files");
-      
+      const filesArray = Array.from(files);
+      this.galleryService.uploadMultipleImages(filesArray).toPromise()
+      .then((response) => response.map((res) =>{
+        this.property.images = [...this.property.images, res.secure_url];
+        this.updateGalleryDocument(false,'Image uploaded successfully')
+      }
+      ))
+      .catch((error) => {
+        this.toastr.error('Error in uploadImagesToStorage',);
+        console.error('Error in uploadImagesToStorage:', error);
+        throw error;
+      });
       // Handle image upload to Cloudinary/storage
       // this.propertyService.uploadImages(files).subscribe(urls => {
       //   this.property!.images = [...this.property!.images, ...urls];
@@ -90,9 +103,7 @@ export class EditGalleryComponent {
     if (this.property && confirm('Are you sure you want to delete this image?')) {
       const imageUrl = this.property.images[index];
       this.property.images = this.property.images.filter((_, i) => i !== index);
-      this.propertyService.updateProperty(this.property).subscribe();
-      // Optionally delete from storage
-      // this.propertyService.deleteImage(imageUrl).subscribe();
+      this.updateGalleryDocument(false,'Image deleted successfully')
     }
   }
 
@@ -100,7 +111,7 @@ export class EditGalleryComponent {
     if (this.property) {
       const [selectedImage] = this.property.images.splice(index, 1);
       this.property.images.unshift(selectedImage);
-      this.propertyService.updateProperty(this.property).subscribe();
+      this.updateGalleryDocument(false,"Image set as primary")
     }
   }
 
@@ -123,5 +134,22 @@ export class EditGalleryComponent {
         this.selectedImageIndex < this.property.images.length - 1) {
       this.selectedImageIndex++;
     }
+  }
+
+  updateGalleryDocument(update?:boolean,message?:string){
+    const updatedProperty={
+      ...this.property,
+      ...this.propertyForm.value
+    }
+    this.firebaseService.updateDocument('gallery',this.property.id, updatedProperty).then((res)=>{
+      if(res.success){
+        if(update){
+          this.isEditing = false;
+          this.property =updatedProperty
+        }
+       this.toastr.success(message || 'Property updated successfully');
+        this.LocalService.encriptAndStoreData('gallery_doc', this.property);
+      }
+    })
   }
 }

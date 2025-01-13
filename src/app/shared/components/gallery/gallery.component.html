@@ -30,7 +30,7 @@
             </div>
             <button class="browse-gallery-btn" (click)="imageClicked(doc)">
               <i class="fa fa-images"></i>
-              Browse Gallery
+              {{ isAdminLogin ? 'Edit Gallery' : 'Browse Gallery' }}
             </button>
           </div>
           

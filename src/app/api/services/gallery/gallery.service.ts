@@ -12,7 +12,9 @@ export class GalleryService {
   private apiUrl = `https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`;
 
   constructor(private http: HttpClient,private db: AngularFirestore) {}
-  uploadMultipleImages(files: File[]): Observable<any[]> {
+  uploadMultipleImages(files: any[]): Observable<any[]> {
+    console.log(files);
+    
     const uploadPromises = files.map(file => {
       const formData = new FormData();
       formData.append('file', file);
