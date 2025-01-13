@@ -19,7 +19,8 @@ export class UserFormComponent {
   constructor(
     private fb: FormBuilder,
     private toastr: ToastrService,
-    private emailService:EmailService
+    private emailService:EmailService,
+    private dialog: AppDialogRef,
   ) {
     this.userForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -43,8 +44,11 @@ export class UserFormComponent {
     return minLengthValidations(form, type);
   }
   submitForm(){
+    this.buttonLoading = true;
     this.emailService.sendEmailToEmailJS(this.userForm.value).then((res)=>{
-      console.log(res);
+      this.toastr.success('We will get back to you soon!');
+      this.dialog.close();
+      this.buttonLoading = false;
     })
   }
 }

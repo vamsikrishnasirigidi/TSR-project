@@ -1,149 +1,382 @@
 @import "../../../../colors.scss";
 
+// Core Variables
+$card-border-radius: 12px;
+$transition-duration: 0.3s;
+$primary-spacing: 2rem;
+$secondary-spacing: 1rem;
+
+// Root Component
+.gallery-component {
+  position: relative;
+  min-height: 100vh;
+}
+
+// Container Layout
 .gallery-container {
-  padding: 20px;
-  max-width: 1200px;
+  padding: 3rem 2rem;
+  max-width: 1400px;
   margin: 0 auto;
-  min-height: 450px;
+
+  &.admin-view {
+    padding-top: 1.5rem;
+  }
+}
+
+// Header Styles
+.gallery-header-section {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 .gallery-title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-top: 0px;
+  margin-bottom: 1rem;
+  
+  @media (max-width: 768px) {
+    font-size: 2.25rem;
+  }
 }
 
-.gallery-header {
-  text-align: center;
+.gallery-description {
   font-size: 1.2rem;
-  margin-bottom: 30px;
+  color: #6c757d;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.gallery-grid {
+// Property Grid Layout
+.property-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
 }
 
-.gallery-item {
+// Property Card Styles
+.property-card {
   position: relative;
-  max-width: 375px;
+  border-radius: $card-border-radius;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform $transition-duration;
   overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-5px);
+    
+    .property-image {
+      transform: scale(1.05);
+    }
+  }
 }
 
-.image-container {
+.property-image-container {
   position: relative;
-  width: 375px;
-  height: 350px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: $card-border-radius;
+
+  @media (max-width: 576px) {
+    height: 300px;
+  }
 }
 
-.gallery-image {
+.property-image {
   width: 100%;
   height: 100%;
-  border-radius: 5px;
   object-fit: cover;
+  transition: transform $transition-duration;
 }
-.gallery-item:hover .developer-text {
-  visibility: visible;
-  opacity: 1;
-}
-.gallery-item:hover .delete-icon {
-  visibility: visible;
-  opacity: 1;
-}
-.gallery-item:hover .gallery-image {
-  transform: scale(1.1);
-}
-.image-overlay {
+
+// Property Information Bar
+.property-info-bar {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  padding: 15px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+  padding:1rem 1.5rem;
   color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+  }
 }
 
-.image-text {
-  font-size: 18px;
-  font-weight: bold;
+.property-main-info {
+  flex: 1;
 }
 
-.developer-text {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0.3s, opacity 0.3s ease-in-out;
+.property-title {
   font-size: 1.2rem;
-  margin-top: 5px;
-  color: $primaryColor;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  color: white;
+  line-height: 1.2;
+
+  @media (max-width: 576px) {
+    font-size: 1.25rem;
+  }
 }
-.delete-icon {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0.3s, opacity 0.3s ease-in-out;
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  font-size: 18px;
+
+.property-location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  
+  i {
+    color: $secondaryColor;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
+}
+
+// Browse Gallery Button
+.browse-gallery-btn {
+  background: $primaryColor;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 500;
   cursor: pointer;
-  color: $inputRequiredColor;
-}
-.galleryContainer {
-  position: relative;
-  .galleria-image {
-    width: 850px;
-    height: 640px;
-    display: block;
-    border-radius: 3px 3px 0px 0px;
-  }
-  .fullScreenIcon {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    color: white;
-  }
-  .autoPlayIcon {
-    position: absolute;
-    top: 10px;
-    left: 40px;
-    font-size: 18px;
-    cursor: pointer;
-    color: white;
-  }
-  ::ng-deep {
-    .p-galleria-mask {
-      --maskbg: #555252de;
-    }
-    .p-galleria .p-galleria-thumbnail-container {
-      background: #ffffff91;
-      border-radius: 0px 0px 3px 3px;
-      padding: 0.8rem 0.25rem;
-    }
-    .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev,
-    .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {
-      color: black;
-    }
-    .p-link:focus {
-      box-shadow: none !important;
-    }
-  }
-}
-.galley-component{
-  position: relative;
-  .pageLoader{
-    position: absolute;
-    top: 50%;
-    left: 43%;
-  }
-  .backdrop {
-    position: absolute;
-    top: -3px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    z-index: 98;
+  transition: background-color $transition-duration;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  
+  i {
+    font-size: 1.1rem;
   }
   
+  &:hover {
+    background: darken($primaryColor, 10%);
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+// Admin Controls
+.admin-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+
+.delete-btn {
+  background: rgba(220, 53, 69, 0.9);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color $transition-duration;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background: #dc3545;
+  }
+
+  i {
+    font-size: 1.1rem;
+  }
+}
+
+// Galleria Modal Styles
+.gallery-modal {
+  ::ng-deep {
+    .p-galleria-mask {
+      background: rgba(33, 37, 41, 0.95);
+    }
+    
+    .p-galleria {
+      .galleria-item-wrapper {
+        width: 100%;
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+      }
+
+      .galleria-item-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        
+        .galleria-image {
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          display: block;
+        }
+      }
+
+      .galleria-controls {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        display: flex;
+        gap: 0.5rem;
+        z-index: 1;
+      }
+
+      .control-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color $transition-duration;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+
+        i {
+          font-size: 1.1rem;
+        }
+      }
+
+      // Thumbnail Navigation
+      .p-galleria-thumbnail-container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem 0;
+      }
+
+      .thumbnail-container {
+        width: 120px;
+        height: 80px;
+        padding: 0.25rem;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: opacity $transition-duration;
+          
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+
+      // Thumbnail Navigation Buttons
+      .p-galleria-thumbnail-prev,
+      .p-galleria-thumbnail-next {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+// Empty State
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6c757d;
+  
+  .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #8c98a4;
+  }
+}
+
+// Loading State
+.loader-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+// Additional Utility Classes
+.component-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+// Focus States and Accessibility
+button:focus,
+[role="button"]:focus {
+  outline: 2px solid $primaryColor;
+  outline-offset: 2px;
+}
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn $transition-duration ease-in-out;
 }

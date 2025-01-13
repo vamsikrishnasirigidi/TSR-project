@@ -13,7 +13,14 @@ export class EmailService {
    
   }
   ngOnInit(): void { emailjs.init(environment.emailJS.public_key);}
-
+  isMobileDevice(): boolean {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+      .test(navigator.userAgent);
+  }
+  formatPhoneNumber(number: string): string {
+    const cleaned = number.replace(/\D/g, '');
+    return cleaned.length === 10 ? `+91${cleaned}` : cleaned;
+  }
   // sendEmail(formData: any) {
   //   const emailData = {
   //     personalizations: [{
@@ -49,7 +56,9 @@ export class EmailService {
       phone: formData.contactNumber,
       email: formData.email,
       address: formData.address,
-      message: formData.message
+      message: formData.message,
+      to_email: environment.emails_Receiver,
+      reply_to: environment.emails_Receiver 
     };
    return emailjs.send(
       environment.emailJS.service_Id,
@@ -57,5 +66,19 @@ export class EmailService {
       templateParams,
       environment.emailJS.public_key
     )
+  }
+  callToNumber(number: string) {
+    const formattedNumber = this.formatPhoneNumber(number);
+    window.location.href = `tel:${formattedNumber}`;
+  }
+  composeEmail(emailAddress: string, subject: string = '', body: string = ''): void {
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+    const mailtoUrl = `mailto:${emailAddress}?subject=${encodedSubject}&body=${encodedBody}`;
+    if (this.isMobileDevice()) {
+      window.location.href = mailtoUrl;
+    } else {
+      window.open(mailtoUrl, '_blank');
+    }
   }
 }

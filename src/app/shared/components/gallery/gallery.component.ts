@@ -4,12 +4,25 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/api/services/firebase/firebase.service';
 import { serverTimestamp } from 'firebase/firestore';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LocalServiceService } from 'src/app/api/services/localStorage/local-service.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class GalleryComponent {
   headerText: string =
@@ -36,15 +49,21 @@ export class GalleryComponent {
     },
   ];
   pageLoader: boolean=false;
-  constructor(private firebaseService: FirebaseService,private route:ActivatedRoute,private toastr: ToastrService) {}
+  constructor(private firebaseService: FirebaseService,private route:ActivatedRoute,private toastr: ToastrService,private LocalService:LocalServiceService,private Router:Router) {}
   ngOnInit() {
+    this.LocalService.removeItem('gallery_doc');
     const currentRoute = this.route.snapshot['_routerState'].url.split('/')[1];
     this.isAdminLogin=currentRoute==='admin'
     this.getGallery();
   }
   imageClicked(data) {
-    this.showGalleria = true;
-    this.images = data.images;
+    if(!this.isAdminLogin){
+      this.showGalleria = true;
+      this.images = data.images;
+    }else{
+    this.LocalService.encriptAndStoreData('gallery_doc', data);
+    this.Router.navigate(['/admin/gallery/edit'])
+    }
   }
   fullScreen() {
     var elem = document.getElementById('galleria');
@@ -62,7 +81,7 @@ export class GalleryComponent {
     });
   }
   deleteDocument(doc){
-    this.firebaseService.deleteDocument('gallery','doc.id').then((res:any) => {
+    this.firebaseService.deleteDocument('gallery',doc.id).then((res:any) => {
       if(res.success){
         this.toastr.success(res.message);
         this.getGallery();

@@ -8,13 +8,4 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class AppComponent {
   title = 'tsr-project';
-  constructor(private auth: AngularFireAuth) {}
-
-  ngOnInit() {
-    // Debug Firebase initialization
-    this.auth.authState.subscribe(
-      user => console.log('Firebase Auth initialized:', !!user),
-      error => console.error('Firebase Auth error:', error)
-    );
-  }
 }
