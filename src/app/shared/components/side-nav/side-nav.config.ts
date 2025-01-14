@@ -4,10 +4,20 @@ export const RoutingUrls: {
   icon: string;
 }[] = [
   {
-    url: '/admin/upload-details',
-    value: 'Upload Details',
-    icon: 'fa fa-cloud-upload',
+    url: '/admin/main-layout',
+    value: 'Main Layout',
+    icon: 'fa fa-book',
   },
+  {
+    url: '/admin/site-layout',
+    value: 'Site Layout',
+    icon: 'fa fa-area-chart',
+  },
+  // {
+  //   url: '/admin/upload-details',
+  //   value: 'Upload Details',
+  //   icon: 'fa fa-cloud-upload',
+  // },
   {
     url: '/admin/gallery',
     value: 'Gallery',

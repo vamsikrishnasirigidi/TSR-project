@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LocalServiceService } from 'src/app/api/services/localStorage/local-service.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { DetailsFormComponent } from '../details-form/details-form.component';
+import { AppDialogService } from '../app-dialog/app-dialog.service';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -16,13 +18,11 @@ import { trigger, transition, style, animate } from '@angular/animations';
     trigger('fadeInOut', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('300ms ease-in', style({ opacity: 1 }))
+        animate('300ms ease-in', style({ opacity: 1 })),
       ]),
-      transition(':leave', [
-        animate('300ms ease-out', style({ opacity: 0 }))
-      ])
-    ])
-  ]
+      transition(':leave', [animate('300ms ease-out', style({ opacity: 0 }))]),
+    ]),
+  ],
 })
 export class GalleryComponent {
   headerText: string =
@@ -33,7 +33,7 @@ export class GalleryComponent {
   showGalleria: boolean = false;
   autoPlayImages: boolean = false;
   activeIndex: number = 0;
-  isAdminLogin:boolean=false;
+  isAdminLogin: boolean = false;
   responsiveOptions: { breakpoint: string; numVisible: number }[] = [
     {
       breakpoint: '1024px',
@@ -48,47 +48,64 @@ export class GalleryComponent {
       numVisible: 2,
     },
   ];
-  pageLoader: boolean=false;
-  constructor(private firebaseService: FirebaseService,private route:ActivatedRoute,private toastr: ToastrService,private LocalService:LocalServiceService,private Router:Router) {}
+  pageLoader: boolean = false;
+  modalRef: any;
+  constructor(
+    private firebaseService: FirebaseService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private LocalService: LocalServiceService,
+    private Router: Router,
+    public dialog: AppDialogService
+  ) {}
   ngOnInit() {
     this.LocalService.removeItem('gallery_doc');
     const currentRoute = this.route.snapshot['_routerState'].url.split('/')[1];
-    this.isAdminLogin=currentRoute==='admin'
+    this.isAdminLogin = currentRoute === 'admin';
     this.getGallery();
   }
   imageClicked(data) {
-    if(!this.isAdminLogin){
+    if (!this.isAdminLogin) {
       this.showGalleria = true;
       this.images = data.images;
-    }else{
-    this.LocalService.encriptAndStoreData('gallery_doc', data);
-    this.Router.navigate(['/admin/gallery/edit'])
+    } else {
+      this.LocalService.encriptAndStoreData('gallery_doc', data);
+      this.Router.navigate(['/admin/gallery/edit']);
     }
   }
   fullScreen() {
     var elem = document.getElementById('galleria');
     elem.requestFullscreen();
   }
-  playImages(){
-    this.autoPlayImages=true
+  playImages() {
+    this.autoPlayImages = true;
   }
 
   getGallery() {
-    this.pageLoader=true
+    this.pageLoader = true;
     this.firebaseService.getAllDocuments('gallery').subscribe((data) => {
       this.galleryData = data;
-      this.pageLoader=false
+      this.pageLoader = false;
     });
   }
-  deleteDocument(doc){
-    this.firebaseService.deleteDocument('gallery',doc.id).then((res:any) => {
-      if(res.success){
+  deleteDocument(doc) {
+    this.firebaseService.deleteDocument('gallery', doc.id).then((res: any) => {
+      if (res.success) {
         this.toastr.success(res.message);
         this.getGallery();
-      }
-      else{
+      } else {
         this.toastr.error(res.message);
       }
-    })
+    });
+  }
+  addDetails() {
+    this.modalRef = this.dialog.open(DetailsFormComponent, {
+      data: { title: 'Add Details' },
+    });
+    this.modalRef.afterClosed.subscribe((result) => {
+      if (result) {
+        this.getGallery();
+      }
+    });
   }
 }

@@ -9,13 +9,17 @@ import { DetailsFormComponent } from 'src/app/shared/components/details-form/det
 import { AdminDashboardComponent } from 'src/app/shared/components/admin-dashboard/admin-dashboard.component';
 import { GalleryComponent } from 'src/app/shared/components/gallery/gallery.component';
 import { EditGalleryComponent } from 'src/app/shared/components/edit-gallery/edit-gallery.component';
+import { MainPageLayoutComponent } from '../screens/main-page-layout/main-page-layout.component';
+import { SiteLayoutComponent } from '../screens/site-layout/site-layout.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminDashboardComponent,
     children: [
-      { path: '', redirectTo: 'upload-details', pathMatch: 'full' },
+      { path: '', redirectTo: 'main-layout', pathMatch: 'full' },
+      { path: 'main-layout', component: MainPageLayoutComponent },
+      { path: 'site-layout', component: SiteLayoutComponent },
       { path: 'upload-details', component: DetailsFormComponent },
       { path: 'gallery', children: [
         {

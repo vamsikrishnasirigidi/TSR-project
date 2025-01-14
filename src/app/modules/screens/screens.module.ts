@@ -14,6 +14,7 @@ import { EnquiryFormComponent } from './sub-screens/enquiry-form/enquiry-form.co
 import { FooterComponent } from './footer/footer.component';
 import { VideoPageComponent } from './video-page/video-page.component';
 import { MainPageLayoutComponent } from './main-page-layout/main-page-layout.component';
+import { SiteLayoutComponent } from './site-layout/site-layout.component';
 
 
 
@@ -29,6 +30,7 @@ import { MainPageLayoutComponent } from './main-page-layout/main-page-layout.com
     FooterComponent,
     VideoPageComponent,
     MainPageLayoutComponent,
+    SiteLayoutComponent,
   ],
   imports: [
     CommonModule,
