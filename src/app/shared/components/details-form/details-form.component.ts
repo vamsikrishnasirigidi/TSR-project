@@ -6,6 +6,7 @@ import { inputRequiredValidations, minLengthValidations } from 'src/app/common/u
 import { GalleryService } from 'src/app/api/services/gallery/gallery.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FirebaseService } from 'src/app/api/services/firebase/firebase.service';
+import { AppDialogRef } from '../app-dialog/app-dialog.ref';
 @Component({
   selector: 'app-details-form',
   templateUrl: './details-form.component.html',
@@ -21,6 +22,7 @@ export class DetailsFormComponent {
     private toastr: ToastrService,
     private galleryService:GalleryService,
     private firestoreService:FirebaseService,
+    private dialog:AppDialogRef
   ) {
     this.detailsForm = this.fb.group({
       title: ['', Validators.required],
@@ -72,9 +74,7 @@ export class DetailsFormComponent {
     this.imagesBlobArray.splice(index, 1);
   }
   cancelForm(){
-    this.detailsForm.reset();
-    this.previewImages = [];
-    this.imagesBlobArray = [];
+    this.dialog.close();
   }
   async submitForm(){
     this.buttonLoading = true;
@@ -104,7 +104,7 @@ export class DetailsFormComponent {
     console.log(payload,"payload");
     this.firestoreService.addCollection('gallery', docId, payload).then(() => {
       this.buttonLoading = false;
-      this.cancelForm();
+      this.dialog.close(true);
       this.toastr.success('Document added successfully');
     })
   }

@@ -14,6 +14,7 @@
         <div class="navigationLink" [ngClass]="{active: activeTab === 'site-layout'}" (click)="goToInPageSection('site-layout')">Site Layout</div>
         <div class="navigationLink" [ngClass]="{active: activeTab === 'gallery'}" (click)="goToInPageSection('gallery')">Gallery</div>
         <div class="navigationLink" [ngClass]="{active: activeTab === 'location'}" (click)="goToInPageSection('location')">Location</div>
+        <div class="navigationLink underline"(click)="goToAdminLogin()" *ngIf="isAdmin">Admin Login</div>
       </div>
   
       <div class="button-container">

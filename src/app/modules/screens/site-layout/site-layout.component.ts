@@ -15,11 +15,11 @@ interface userData {
   contactNumber: number;
 }
 @Component({
-  selector: 'app-main-page-layout',
-  templateUrl: './main-page-layout.component.html',
-  styleUrls: ['./main-page-layout.component.scss'],
+  selector: 'app-site-layout',
+  templateUrl: './site-layout.component.html',
+  styleUrls: ['./site-layout.component.scss']
 })
-export class MainPageLayoutComponent {
+export class SiteLayoutComponent {
   mainImageData: ImageData = {
     url: '',
     uploadedAt: '',
@@ -35,9 +35,9 @@ export class MainPageLayoutComponent {
     email: '',
     contactNumber: 0,
   };
-  ImagesCollectionName: string = 'homeLayoutImages';
+  ImagesCollectionName: string = 'siteLayoutImages';
   layoutCollectionName: string = 'homeLayout';
-  layoutDocumentId:string='homeImage'
+  layoutDocumentId:string='siteLayout'
   constructor(
     private firebaseService: FirebaseService,
     private toastr: ToastrService,

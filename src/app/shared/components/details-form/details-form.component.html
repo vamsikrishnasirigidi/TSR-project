@@ -1,9 +1,9 @@
 <div class="plot-details-container">
   <div class="plot-details-card">
     <!-- Header Section -->
-    <div class="card-header">
+    <!-- <div class="card-header">
       <h2 class="header-title">Upload Plot Details</h2>
-    </div>
+    </div> -->
 
     <!-- Form Section -->
     <div class="form-content">
@@ -61,7 +61,7 @@
       <div class="upload-section">
         <app-upload-button
           (imageUploaded)="uploadImage($event)"
-          [labelName]="'Upload Images'"
+          [labelName]="'Upload Image'"
           name="images"
           [multiple]="true"
           [formGroup]="detailsForm"
