@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
-import * as _ from 'lodash';
-import { ToastrService } from 'ngx-toastr';
+import {  Router } from '@angular/router';
 import { LocalServiceService } from 'src/app/api/services/localStorage/local-service.service';
-import { SettingsService } from 'src/app/api/services/settings/settings.service';
 import {
   settingsUserObject,
 } from 'src/app/common/models/interfaces';
@@ -19,20 +16,22 @@ export class HeaderComponent implements OnInit {
   name = localStorage.getItem('name');
   userDetails: settingsUserObject;
   modalRef: any;
+  isAdmin:boolean=false;
   @Input() activeTab:string=''
   constructor(
-    public dialog: AppDialogService
+    public dialog: AppDialogService,
+    private router: Router,
+    private local: LocalServiceService,
   ) {
  
   }
   ngOnInit(): void {
+    this.isAdmin=Boolean(this.local.getItem('accessToken'))
   }
-  // changePassword() {
-  //   this.modalRef = this.dialog.open(ChangePasswordComponent, {
-  //     data: { title: 'Change Password' },
-  //   });
-  // }
   goToInPageSection(element: string) {
     this.pageScrollAction.emit(element);
+  }
+  goToAdminLogin(){
+    this.router.navigateByUrl('/auth/signIn');
   }
 }

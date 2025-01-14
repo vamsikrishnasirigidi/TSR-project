@@ -1,0 +1,55 @@
+<div class="gallery-container">
+    <!-- Main Image Section -->
+    <p class="component-heading">Site Layout Management</p>
+    <div class="main-image-container" [class.empty]="!mainImageData.url">
+      <img
+        *ngIf="mainImageData.url"
+        [src]="mainImageData.url"
+        alt="Main Image"
+        class="main-image"
+      />
+      <div *ngIf="!mainImageData.url" class="placeholder">No Image Selected</div>
+    </div>
+  
+    <!-- Upload Section -->
+    <div class="upload-section">
+      <label class="upload-btn" [class.disabled]="isUploading">
+        {{ isUploading ? "Uploading..." : "Add Image" }}
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          [disabled]="isUploading"
+          hidden
+        />
+      </label>
+      <div
+        *ngIf="uploadProgress > 0 && uploadProgress < 100"
+        class="progress-bar"
+      >
+        <div class="progress" [style.width.%]="uploadProgress"></div>
+      </div>
+    </div>
+  
+    <!-- Gallery Images Section -->
+    <div class="gallery-grid">
+      <div *ngFor="let image of galleryImages" class="gallery-item">
+        <img [src]="image.url" alt="Gallery Image" />
+        <div class="image-overlay" *ngIf="image.url !== mainImageData.url">
+          <button class="action-btn set-main" (click)="setAsMainImage(image)">
+            Set as Main
+          </button>
+          <button class="action-btn delete" (click)="deleteImage(image)">
+            Delete
+          </button>
+        </div>
+        <div class="main-image-indicator" *ngIf="image.url === mainImageData.url">
+          <span>Main Image</span>
+        </div>
+      </div>
+    </div>
+    <div class="loader-overlay" *ngIf="pageLoader">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+  </div>
+  

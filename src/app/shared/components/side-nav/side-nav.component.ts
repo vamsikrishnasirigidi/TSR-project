@@ -27,4 +27,7 @@ export class SideNavComponent implements OnInit {
   onResize(){
     return document.body.offsetWidth < 1024;
   }
+  gotoDashboard() {
+    this.router.navigateByUrl('/');
+  }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, from } from 'rxjs';
+import { Observable, catchError, from, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +13,26 @@ export class GalleryService {
 
   constructor(private http: HttpClient,private db: AngularFirestore) {}
   uploadMultipleImages(files: any[]): Observable<any[]> {
-    console.log(files);
-    
     const uploadPromises = files.map(file => {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('upload_preset', this.uploadPreset);
-      
       return this.http.post(this.apiUrl, formData).toPromise();
     });
-
     return from(Promise.all(uploadPromises));
+  }
+
+  uploadSingleImage(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', this.uploadPreset);
+    return this.http.post(this.apiUrl, formData).pipe(
+      map((response: any) => response.secure_url),
+      catchError(error => {
+        console.error('Error uploading image:', error);
+        return throwError(() => error);
+      })
+    );
   }
   getProperty(id: string): Observable<any> {
     return this.db.doc<any>(`properties/${id}`).valueChanges();

@@ -26,6 +26,19 @@
     </div>
     <div class="logout-section">
       <div class="routingDivision logoutClass">
+        <div class="dashboard-routing"> 
+          <a
+          (click)="gotoDashboard()"
+            ><i
+            [pTooltip]="(onResize() ? 'Home' : null)"
+                tooltipPosition="top"
+              class="fa fa-home  iconStyle sidenav-icon"
+              aria-hidden="true"
+            ></i>
+            <span class="sidenav-text"> Dashboard</span>
+          </a>
+        </div>
+        
         <a
         (click)="logout()"
           ><i
