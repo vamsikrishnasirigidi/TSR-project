@@ -8,7 +8,14 @@
       </div>
       <p class="gallery-description" *ngIf="!isAdminLogin">{{ headerText }}</p>
     </div>
-
+    <div class="col-12 pb-4 pt-0 flex justify-content-end" *ngIf="isAdminLogin">
+      <app-button
+        [mainClass]="'button-primary'"
+        [label]="'Add Details'"
+        [showIcon]="false"
+        (submitForm)="addDetails()"
+      ></app-button>
+    </div>
     <!-- Property Grid with Updated Card Design -->
     <div class="property-grid" *ngIf="galleryData.length > 0">
       <div class="property-card" *ngFor="let doc of galleryData">
