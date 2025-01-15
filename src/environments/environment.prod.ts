@@ -12,8 +12,8 @@ export const environment = {
   CONTACT_NUMBER: '9000299698',
   emails_Receiver:'tsrinfradeveloper@gmail.com',
   emailJS:{
-    public_key:'o7zOCvy3iM3N4s3b_',
-    service_Id:'service_797v1lm',
-    template_Id:'template_h78j42g'
-    }
+  public_key:'o7zOCvy3iM3N4s3b_',
+  service_Id:'service_leu9dr7',
+  template_Id:'template_h78j42g'
+  }
 };
