@@ -1,9 +1,9 @@
 <div class="gallery-component">
     <div class="gallery-container" [ngClass]="isAdminLogin ? 'admin-view' : ''">
       <div class="gallery-header-section">
-        <h1 *ngIf="!isAdminLogin" class="gallery-title">Our Video Gallery</h1>
+        <h1 *ngIf="!isAdminLogin" class="gallery-title">Client Testimonials</h1>
         <div *ngIf="isAdminLogin">
-          <p class="component-heading">Video Gallery Management</p>
+          <p class="component-heading">Testimonials Management</p>
         </div>
         <p class="gallery-description" *ngIf="!isAdminLogin">{{ headerText }}</p>
       </div>
