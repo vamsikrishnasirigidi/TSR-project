@@ -1,7 +1,9 @@
+@import '../../../../colors.scss';
 .property-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    padding-top: 0px;
   }
   
   .header-section {
@@ -358,4 +360,21 @@
         width: 100%;
       }
     }
+}
+.gallery-heading{
+  font-size: 20px;
+    padding: 0px;
+    margin:5px 0px 0px 0px;
+}
+.back {
+  color: $primaryColor;
+  display: flex;
+  gap: 7px;
+  cursor: pointer;
+  text-decoration: none;
+  width: fit-content;
+}
+.fa-chevron-left {
+  padding-top: 5px;
+  font-size: 24px;
 }
