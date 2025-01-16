@@ -1,1 +1,67 @@
-<p>video-page works!</p>
+<div class="gallery-component">
+    <div class="gallery-container" [ngClass]="isAdminLogin ? 'admin-view' : ''">
+      <div class="gallery-header-section">
+        <h1 *ngIf="!isAdminLogin" class="gallery-title">Our Video Gallery</h1>
+        <div *ngIf="isAdminLogin">
+          <p class="component-heading">Video Gallery Management</p>
+        </div>
+        <p class="gallery-description" *ngIf="!isAdminLogin">{{ headerText }}</p>
+      </div>
+      
+      <div class="col-12 pb-4 pt-0 flex justify-content-end" *ngIf="isAdminLogin">
+        <app-button
+          [mainClass]="'button-primary'"
+          [label]="'Add Video'"
+          [showIcon]="false"
+          (submitForm)="addVideo()"
+        ></app-button>
+      </div>
+
+      <!-- Video Grid -->
+      <div class="property-grid" *ngIf="videos.length > 0">
+        <div class="property-card" *ngFor="let video of videos">
+          <div class="property-image-container">
+            <iframe
+              [src]="getEmbedUrl(video.url)"
+              frameborder="0"
+              allowfullscreen
+              class="property-image"
+            ></iframe>
+            
+            <!-- <div class="property-info-bar">
+              <div class="property-main-info">
+                <h3 class="property-title">{{ video.title }}</h3>
+              </div>
+            </div> -->
+
+            <!-- Admin Controls -->
+            <div 
+              class="admin-controls" 
+              *ngIf="isAdminLogin"
+              [@fadeInOut]
+            >
+              <button 
+                class="delete-btn" 
+                pTooltip="Delete Video" 
+                tooltipPosition="left"
+                (click)="deleteVideo(video)"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state" *ngIf="videos.length === 0 && !pageLoader">
+        <i class="fa fa-video-camera empty-icon"></i>
+        <h2>No Videos Found</h2>
+        <p>Add some videos to get started</p>
+      </div>
+    </div>
+    <!-- Loading state -->
+    <div class="loader-overlay" *ngIf="pageLoader">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+  </div>

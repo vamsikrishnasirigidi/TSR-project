@@ -3,17 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { FirebaseService } from 'src/app/api/services/firebase/firebase.service';
 import { GalleryService } from 'src/app/api/services/gallery/gallery.service';
 import { LocalServiceService } from 'src/app/api/services/localStorage/local-service.service';
-interface ImageData {
-  url: string;
-  uploadedAt: string;
-  uploadedBy: string;
-}
-interface userData {
-  lastName: string;
-  firstName: string;
-  email: string;
-  contactNumber: number;
-}
+import { ImageData, userData } from 'src/app/common/models/interfaces';
+
 @Component({
   selector: 'app-main-page-layout',
   templateUrl: './main-page-layout.component.html',

@@ -54,15 +54,15 @@ export class metaData {
   success: boolean;
 }
 
-export class userData {
-  contactNumber: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  roleTypeId: { id: number; role: string };
-  id: number;
-  userName: string;
-}
+// export class userData {
+//   contactNumber: string;
+//   email: string;
+//   firstName: string;
+//   lastName: string;
+//   // roleTypeId: { id: number; role: string };
+//   id: number;
+//   userName: string;
+// }
 
 export class userDataModel {
   data: userData;
@@ -181,4 +181,16 @@ export class settingsUpdateUserResponse {
   statusCode: number;
   status: string;
   data: settingsUserUpdateObject;
+}
+
+export interface ImageData {
+  url: string;
+  uploadedAt: string;
+  uploadedBy: string;
+}
+export interface userData {
+  lastName: string;
+  firstName: string;
+  email: string;
+  contactNumber: number;
 }

@@ -41,7 +41,6 @@ export class FirebaseService {
         createdAt: new Date()
       };
       const docRef = await this.firestore.collection(collectionName).add(documentData);
-      console.log('Document added with ID: ', docRef.id);
       return docRef.id;
     } catch (error) {
       console.error('Error adding document: ', error);

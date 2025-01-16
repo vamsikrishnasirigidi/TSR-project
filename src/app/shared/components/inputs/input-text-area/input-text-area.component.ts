@@ -24,6 +24,7 @@ export class InputTextAreaComponent {
   @Input() max: number;
   @Input() inlineStyle = '';
   @Input() spaces: number;
+  @Input() requiredStar: boolean;
 
   @Input() autoResize = false;
 

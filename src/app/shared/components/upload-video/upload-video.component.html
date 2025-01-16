@@ -1,0 +1,123 @@
+<div class="plot-details-container">
+    <div class="plot-details-card">
+      <!-- Form Section -->
+      <div class="form-content">
+        <!-- Input Fields Grid -->
+        <div class="form-grid">
+          <div class="form-field">
+            <app-input-text
+              [label]="'Title'"
+              name="title"
+              [placeholder]="'Enter Title'"
+              [formGroup]="detailsForm"
+              [requiredStar]="true"
+              [maxlength]="50"
+              [error]="inputRequiredValidationsErrors(detailsForm, 'title') ? 'title is required' : checkTitleDuplicate(detailsForm.get('title').value)? 'title already exists' : ''"
+            ></app-input-text>
+          </div>
+  
+          <div class="form-field">
+            <app-input-text
+              [label]="'Description'"
+              name="description"
+              [placeholder]="'Enter Description'"
+              [maxlength]="200"
+              [requiredStar]="false"
+              [formGroup]="detailsForm"
+              [error]="inputRequiredValidationsErrors(detailsForm, 'description') ? 'description is required' : ''"
+            ></app-input-text>
+          </div>
+  
+          <div class="form-field">
+            <app-input-text
+              [label]="'Location'"
+              name="location"
+              [requiredStar]="true"
+              [maxlength]="150"
+              [placeholder]="'Enter Location'"
+              [formGroup]="detailsForm"
+              [error]="inputRequiredValidationsErrors(detailsForm, 'location') ? 'location is required' : ''"
+            ></app-input-text>
+          </div>
+  
+          <div class="form-field">
+            <app-input-text
+              [label]="'Address'"
+              name="address"
+              [requiredStar]="false"
+              [placeholder]="'Enter Address'"
+              [formGroup]="detailsForm"
+              [error]="inputRequiredValidationsErrors(detailsForm, 'address') ? 'address is required' : ''"
+            ></app-input-text>
+          </div>
+        
+        </div>
+        <div class="form-field">
+            <app-input-text
+              [label]="'URL'"
+              name="url"
+              [requiredStar]="true"
+              [placeholder]="'Paste your URL here'"
+              [formGroup]="detailsForm"
+              [searchBar]="true"
+              [searchCrossIcon]="false"
+              [error]="inputRequiredValidationsErrors(detailsForm, 'url') ? 'url is required' : checkUrl(detailsForm.value.url) ? 'please paste youtube or drive url' : ''"
+            ></app-input-text>
+          </div>
+          <!-- <div class="form-field">
+            <app-input-text-area
+            [autoResize]="true"
+            [requiredStar]="true"
+            [formGroup]="detailsForm"
+            [label]="'URL'"
+            [name]="'url'"
+            [placeholder]="'Paste your URL here'"
+            [cols]="200"
+            [rows]="2"
+            [error]="inputRequiredValidationsErrors(detailsForm, 'url') ? 'url is required' : checkUrl(detailsForm.value.url) ? 'please paste youtube or drive url' : ''"
+          ></app-input-text-area>
+          </div> -->
+        <!-- Image Upload Section -->
+        <!-- <div class="upload-section">
+          <app-upload-button
+            (imageUploaded)="uploadImage($event)"
+            [labelName]="'Upload Image'"
+            name="images"
+            [multiple]="true"
+            [formGroup]="detailsForm"
+          ></app-upload-button>
+        </div> -->
+  
+        <!-- Image Preview Grid -->
+        <!-- <div class="image-preview-grid" *ngIf="previewImages.length > 0">
+          <div class="preview-item" *ngFor="let image of previewImages; let i = index">
+            <div class="preview-image-container">
+              <img [src]="image" alt="Preview image">
+              <button class="delete-button" (click)="removeLogo(i)" aria-label="Remove image">
+                <i class="pi pi-times"></i>
+              </button>
+            </div>
+          </div>
+        </div> -->
+  
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <app-button
+            [mainClass]="'button-cancel'"
+            [label]="'Clear'"
+            [showIcon]="false"
+            (submitForm)="cancelForm()"
+          ></app-button>
+          
+          <app-button
+            [mainClass]="'button-primary'"
+            [label]="'Add'"
+            [showIcon]="false"
+            [loading]="buttonLoading"
+            (submitForm)="submitForm()"
+            [disabled]="!detailsForm.valid || detailsForm.pristine || checkUrl(detailsForm.value.url) || checkTitleDuplicate(detailsForm.get('title').value)"
+          ></app-button>
+        </div>
+      </div>
+    </div>
+  </div>

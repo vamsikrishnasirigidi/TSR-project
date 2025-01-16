@@ -11,6 +11,7 @@ import { GalleryComponent } from 'src/app/shared/components/gallery/gallery.comp
 import { EditGalleryComponent } from 'src/app/shared/components/edit-gallery/edit-gallery.component';
 import { MainPageLayoutComponent } from '../screens/main-page-layout/main-page-layout.component';
 import { SiteLayoutComponent } from '../screens/site-layout/site-layout.component';
+import { VideoPageComponent } from '../screens/video-page/video-page.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'main-layout', pathMatch: 'full' },
       { path: 'main-layout', component: MainPageLayoutComponent },
       { path: 'site-layout', component: SiteLayoutComponent },
-      { path: 'upload-details', component: DetailsFormComponent },
+      { path: 'videos', component: VideoPageComponent },
       { path: 'gallery', children: [
         {
           path: '',
