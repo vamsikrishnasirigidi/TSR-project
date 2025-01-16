@@ -21,8 +21,6 @@ export class EditGalleryComponent {
 
   getGalleryDoc(){
    this.property = this.LocalService.getDecryptedData('gallery_doc')
-   console.log(this.property,"data");
-   
   }
   constructor(
     private fb: FormBuilder,

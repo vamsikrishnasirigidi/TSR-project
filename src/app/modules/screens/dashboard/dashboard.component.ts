@@ -23,32 +23,35 @@ export class DashboardComponent {
     uploadedBy: '',
   };
   defaultFirstImage = '../../../../assets/home-page/real estate.png';
-  defaultPlotImage = "../../../../assets/home-page/Kanimella Final.png";
-  constructor(private router: Router,public dialog: AppDialogService,private firebaseService:FirebaseService) {}
+  defaultPlotImage = '../../../../assets/home-page/Kanimella Final.png';
+  constructor(
+    private router: Router,
+    public dialog: AppDialogService,
+    private firebaseService: FirebaseService
+  ) {}
   ngOnInit(): void {
     this.getHomePageData();
     setTimeout(() => {
       this.openUserForm();
     }, 10000);
   }
-  getHomePageData(){
-this.firebaseService.getAllDocuments('homeLayout').subscribe((data) => {
-  console.log(data);
-  if (data.length > 0) {
-    data.map((item) => {
-      if (item.id === 'homeImage') {
-        this.mainImageData = item;
-      } else if (item.id === 'siteLayout') {
-        this.siteImageData = item;
+  getHomePageData() {
+    this.firebaseService.getAllDocuments('homeLayout').subscribe((data) => {
+      if (data.length > 0) {
+        data.map((item) => {
+          if (item.id === 'homeImage') {
+            this.mainImageData = item;
+          } else if (item.id === 'siteLayout') {
+            this.siteImageData = item;
+          }
+        });
       }
-    })
-  }
-  // this.activeTab = data[0].homeLayout
-})
+      // this.activeTab = data[0].homeLayout
+    });
   }
   pageScrollActionHappens(event) {
     if (event === 'enquire') {
-    this.openUserForm();
+      this.openUserForm();
     } else {
       this.router.navigate([], { fragment: event });
       document.getElementById(event).scrollIntoView({
@@ -59,7 +62,7 @@ this.firebaseService.getAllDocuments('homeLayout').subscribe((data) => {
       this.activeTab = event;
     }
   }
-  openUserForm(){
+  openUserForm() {
     this.modalRef = this.dialog.open(UserFormComponent, {
       data: { title: 'Send Message' },
     });
