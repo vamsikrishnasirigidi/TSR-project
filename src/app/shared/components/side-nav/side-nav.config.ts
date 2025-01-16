@@ -23,6 +23,11 @@ export const RoutingUrls: {
     value: 'Gallery',
     icon: 'fa fa-folder-open',
   },
+  {
+    url: '/admin/videos',
+    value: 'Videos',
+    icon: 'fa fa-video-camera',
+  },
   // {
   //   url: '/admin/settings',
   //   value: 'Settings',

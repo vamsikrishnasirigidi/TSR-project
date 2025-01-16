@@ -6,7 +6,9 @@
 >
   <div class="grid textBoxMargin">
     <div class="col-12 labelNames formFields" *ngIf="label">
-      <label>{{ label }} &nbsp;</label>
+      <label class="label"
+      >{{ label }} <span *ngIf="requiredStar" class="requiredStar">*</span>
+    </label>
     </div>
     <div class="col-12 inputField formFields pl-0 pb-0 pr-0 pt-1">
       <textarea

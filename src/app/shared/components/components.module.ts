@@ -33,6 +33,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { WhatsappLinkComponent } from './whatsapp-link/whatsapp-link.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { EditGalleryComponent } from './edit-gallery/edit-gallery.component';
+import { UploadVideoComponent } from './upload-video/upload-video.component';
 @NgModule({
   declarations: [
     LoadingSpinnerComponent,
@@ -63,6 +64,7 @@ import { EditGalleryComponent } from './edit-gallery/edit-gallery.component';
     WhatsappLinkComponent,
     UserFormComponent,
     EditGalleryComponent,
+    UploadVideoComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, PrimeUIModule],
   exports: [
