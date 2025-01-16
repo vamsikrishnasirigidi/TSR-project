@@ -33,7 +33,7 @@ export class VideoPageComponent {
   isAdminLogin = false;
   pageLoader = false;
   headerText =
-    'Explore our collection of video content showcasing our properties and services.';
+    'Discover what our satisfied customers say about their journey with TSR Infra Developers';
   newVideo: Partial<VideoItem> = {};
   modalRef: any;
   collectionName: string = 'videos';
