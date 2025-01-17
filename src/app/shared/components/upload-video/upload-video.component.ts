@@ -49,6 +49,7 @@ export class UploadVideoComponent {
   }
   ngOnInit() {
     this.videosData = _.get(this.config, 'data.videosData', []);
+    this.getUserDetails();
   }
   getUserDetails() {
     this.LocalService.getItem('user_details')
@@ -134,9 +135,9 @@ export class UploadVideoComponent {
       title: data.title,
       description: data.description,
       location: data.location,
-      address: data.address,
+      // address: data.address,
       url: data.url,
-      createdBy:'',
+      createdBy:`${this.userDetails.firstName} ${this.userDetails.lastName}`,
       createdAt: new Date(),
     };
     console.log(payload,"video payload");
