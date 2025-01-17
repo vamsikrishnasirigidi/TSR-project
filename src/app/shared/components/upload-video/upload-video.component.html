@@ -15,32 +15,18 @@
               [error]="inputRequiredValidationsErrors(detailsForm, 'title') ? 'title is required' : checkTitleDuplicate(detailsForm.get('title').value)? 'title already exists' : ''"
             ></app-input-text>
           </div>
-  
-          <div class="form-field">
-            <app-input-text
-              [label]="'Description'"
-              name="description"
-              [placeholder]="'Enter Description'"
-              [maxlength]="200"
-              [requiredStar]="false"
-              [formGroup]="detailsForm"
-              [error]="inputRequiredValidationsErrors(detailsForm, 'description') ? 'description is required' : ''"
-            ></app-input-text>
-          </div>
-  
           <div class="form-field">
             <app-input-text
               [label]="'Location'"
               name="location"
               [requiredStar]="true"
-              [maxlength]="150"
+              [maxlength]="100"
               [placeholder]="'Enter Location'"
               [formGroup]="detailsForm"
               [error]="inputRequiredValidationsErrors(detailsForm, 'location') ? 'location is required' : ''"
             ></app-input-text>
           </div>
-  
-          <div class="form-field">
+          <!-- <div class="form-field">
             <app-input-text
               [label]="'Address'"
               name="address"
@@ -49,8 +35,19 @@
               [formGroup]="detailsForm"
               [error]="inputRequiredValidationsErrors(detailsForm, 'address') ? 'address is required' : ''"
             ></app-input-text>
-          </div>
+          </div> -->
         
+        </div>
+        <div class="form-field">
+          <app-input-text
+            [label]="'Description'"
+            name="description"
+            [placeholder]="'Enter Description'"
+            [maxlength]="200"
+            [requiredStar]="false"
+            [formGroup]="detailsForm"
+            [error]="inputRequiredValidationsErrors(detailsForm, 'description') ? 'description is required' : ''"
+          ></app-input-text>
         </div>
         <div class="form-field">
             <app-input-text
