@@ -28,12 +28,15 @@
               class="property-image"
             ></iframe>
             
-            <!-- <div class="property-info-bar">
+            <div class="property-info-bar">
               <div class="property-main-info">
-                <h3 class="property-title">{{ video.title }}</h3>
+                <h3 class="property-title">{{ video.title | titlecase }}</h3>
+                <div class="property-location">
+                  <i class="fa fa-map-marker"></i>
+                  {{ video.location }}
+                </div>
               </div>
-            </div> -->
-
+            </div>
             <!-- Admin Controls -->
             <div 
               class="admin-controls" 
