@@ -55,9 +55,15 @@ $secondary-spacing: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
   padding: 0 1rem;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
 
   @media (max-width: 576px) {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
@@ -76,6 +82,17 @@ $secondary-spacing: 1rem;
     .property-image {
       transform: scale(1.05);
     }
+
+    .description {
+      opacity: 1;
+      max-height: 80px; // Show on hover
+      padding: 1rem;
+      
+      @media (max-width: 768px) {
+        opacity: 1;
+        transform: none;
+      }
+    }
   }
 }
 
@@ -83,9 +100,9 @@ $secondary-spacing: 1rem;
   position: relative;
   height: 400px;
   overflow: hidden;
-  border-radius: $card-border-radius;
+  border-radius: $card-border-radius $card-border-radius 0 0; // Modified to flat bottom
 
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     height: 300px;
   }
 }
@@ -112,12 +129,17 @@ $secondary-spacing: 1rem;
   gap: 1rem;
 
   @media (max-width: 576px) {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 1rem;
+    padding: 0.75rem;
+    
+    .property-title {
+      font-size: 1.1rem;
+    }
+    
+    .property-location {
+      font-size: 0.9rem;
+    }
   }
 }
-
 .property-main-info {
   flex: 1;
 }
@@ -382,9 +404,29 @@ button:focus,
 .fade-in {
   animation: fadeIn $transition-duration ease-in-out;
 }
-.description{
-  color: $secondaryColor;
+// .description{
+//   color: $secondaryColor;
+//   text-overflow: ellipsis;
+//   overflow: hidden;
+//   padding: 9px;
+// }
+.description {
+  position: relative;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0; // Start with no padding
   text-overflow: ellipsis;
   overflow: hidden;
-  padding: 9px;
+  transition: all $transition-duration ease;
+  opacity: 0;
+  max-height: 0; // Start with no height
+  
+  @media (max-width: 768px) {
+    opacity: 1;
+    max-height: 80px;
+    padding: 0.75rem;
+    background: #2c3e50;
+    font-size: 0.9rem;
+    overflow-y: auto;
+  }
 }
