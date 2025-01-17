@@ -65,7 +65,7 @@ $secondary-spacing: 1rem;
 .property-card {
   position: relative;
   border-radius: $card-border-radius;
-  background: white;
+  background: linear-gradient(to top, rgb(0 0 0 / 70%), rgb(0 0 0 / 0%));
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform $transition-duration;
   overflow: hidden;
@@ -381,4 +381,10 @@ button:focus,
 
 .fade-in {
   animation: fadeIn $transition-duration ease-in-out;
+}
+.description{
+  color: $secondaryColor;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 9px;
 }

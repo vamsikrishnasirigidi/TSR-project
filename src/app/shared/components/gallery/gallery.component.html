@@ -29,10 +29,10 @@
           <!-- Property Info Now Always Visible -->
           <div class="property-info-bar">
             <div class="property-main-info">
-              <h3 class="property-title">{{ doc.title }}</h3>
+              <h3 class="property-title">{{ doc.title | titlecase}}</h3>
               <div class="property-location">
                 <i class="fa fa-map-marker"></i>
-                {{ doc.location }}
+                {{ doc.location | titlecase}}
               </div>
             </div>
             <button class="browse-gallery-btn" (click)="imageClicked(doc)">

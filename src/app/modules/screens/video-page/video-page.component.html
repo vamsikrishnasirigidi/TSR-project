@@ -27,13 +27,13 @@
               allowfullscreen
               class="property-image"
             ></iframe>
-            
+      
             <div class="property-info-bar">
               <div class="property-main-info">
                 <h3 class="property-title">{{ video.title | titlecase }}</h3>
                 <div class="property-location">
                   <i class="fa fa-map-marker"></i>
-                  {{ video.location }}
+                  {{ video.location | titlecase}}
                 </div>
               </div>
             </div>
@@ -53,6 +53,9 @@
               </button>
             </div>
           </div>
+          <div class="description">
+            {{video.description ? video.description : 'No description available' | titlecase}}
+           </div>
         </div>
       </div>
 

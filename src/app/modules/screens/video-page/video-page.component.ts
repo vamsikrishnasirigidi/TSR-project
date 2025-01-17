@@ -10,7 +10,8 @@ interface VideoItem {
   id: number;
   url: string;
   title: string;
-  location?: string;
+  location: string;
+  description: string;
 }
 @Component({
   selector: 'app-video-page',
@@ -55,6 +56,8 @@ export class VideoPageComponent {
     this.firebaseService
       .getAllDocuments(this.collectionName)
       .subscribe((data) => {
+        console.log(data);
+        
         this.videos = data;
         this.pageLoader = false;
       });
