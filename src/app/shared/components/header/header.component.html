@@ -1,5 +1,6 @@
 <div class="header-component">
-  <div class="header-container ">
+  <div class="header-container">
+    <!-- Original Desktop Layout -->
     <div class="logo-container">
       <img
         src="../../../../assets/tsr-logo/tsrlogonew.png"
@@ -8,20 +9,26 @@
       />
     </div>
     <div class="flex justify-content-center align-content-center">
-      <div class="navigation-links">
+      <!-- Mobile Hamburger (Only visible on mobile) -->
+      <div class="mobile-menu-icon" (click)="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="navigation-links" [class.mobile-nav-open]="isMobileMenuOpen">
         <div class="navigationLink" [ngClass]="{active: activeTab === 'overview'}" (click)="goToInPageSection('overview')">Overview</div>
         <div class="navigationLink" [ngClass]="{active: activeTab === 'walk-through'}" (click)="goToInPageSection('walk-through')">Walkthrough</div>
         <div class="navigationLink" [ngClass]="{active: activeTab === 'site-layout'}" (click)="goToInPageSection('site-layout')">Site Layout</div>
         <div class="navigationLink" [ngClass]="{active: activeTab === 'gallery'}" (click)="goToInPageSection('gallery')">Gallery</div>
         <div class="navigationLink" [ngClass]="{active: activeTab === 'videos'}" (click)="goToInPageSection('videos')">Testimonials</div>
         <div class="navigationLink" [ngClass]="{active: activeTab === 'location'}" (click)="goToInPageSection('location')">Location</div>
-        <div class="navigationLink underline"(click)="goToAdminLogin()" *ngIf="isAdmin">Admin Login</div>
+        <div class="navigationLink underline" (click)="goToAdminLogin()" *ngIf="isAdmin">Admin Login</div>
       </div>
-  
+
       <div class="button-container">
         <button class="buttonClass cursor-pointer" (click)="goToInPageSection('enquire')">Enquire Now</button>
       </div>
     </div>
-
   </div>
 </div>
