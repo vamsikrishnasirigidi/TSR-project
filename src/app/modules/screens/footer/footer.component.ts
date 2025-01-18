@@ -32,6 +32,7 @@ export class FooterComponent {
     { name: 'Walkthrough', url: 'walk-through' },
     { name: 'Site Layout', url: 'site layout' },
     { name: 'Gallery', url: 'gallery' },
+    { name: 'Testimonials', url: 'testimonials' },
     { name: 'Location', url: 'location' }
   ];
 
