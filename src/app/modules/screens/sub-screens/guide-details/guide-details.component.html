@@ -6,12 +6,15 @@
 
   <div class="steps-container">
     <div class="step" *ngFor="let step of steps">
-      <div class="step-icon">
+      <div class="step-content">
+        <div class="step-icon">
+          <i class="{{ step.icon }}" aria-hidden="true"></i>
+        </div>
+        <div class="step-text">
+          <h3 class="step-title">{{ step.title }}</h3>
+          <p class="step-description">{{ step.description }}</p>
+        </div>
       </div>
-      <h3 class="step-title">
-        <i class="{{ step.icon }}" aria-hidden="true"></i> {{ step.title }}
-      </h3>
-      <p class="step-description">{{ step.description }}</p>
     </div>
   </div>
 </div>
