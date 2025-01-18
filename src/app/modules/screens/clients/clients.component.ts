@@ -51,7 +51,7 @@ export class ClientsComponent {
           {
             type: 'delete',
             text: 'Delete',
-            icon: 'fa-solid fa-trash',
+            icon: 'fa-solid fa-trash delete-icon-table',
             toolTip: 'Delete',
           },
         ],
