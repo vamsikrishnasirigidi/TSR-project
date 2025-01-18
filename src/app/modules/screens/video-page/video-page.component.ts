@@ -6,6 +6,7 @@ import { AppDialogService } from 'src/app/shared/components/app-dialog/app-dialo
 import { FirebaseService } from 'src/app/api/services/firebase/firebase.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteDialogComponent } from 'src/app/shared/components/delete-dialog/delete-dialog.component';
 interface VideoItem {
   id: number;
   url: string;
@@ -90,16 +91,31 @@ export class VideoPageComponent {
   }
 
   deleteVideo(doc) {
-    if (confirm('Are you sure you want to delete this video?')) {
-      this.firebaseService.deleteDocument('videos', doc.id).then((res: any) => {
-        if (res.success) {
-          this.toastr.success(res.message);
-          this.videos = this.videos.filter((video) => video.id !== doc.id);
-        } else {
-          this.toastr.error(res.message);
-        }
-      });
-    }
+    this.modalRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        title: 'Delete Video',
+        service: this.firebaseService,
+        userId: 'videos',
+        id: doc.id,
+        methodToCall: 'deleteDocument',
+        message: 'Are you sure, you want to delete this video ?',
+      },
+    });
+    this.modalRef.afterClosed.subscribe((result) => {
+      if (result) {
+        this.videos = this.videos.filter((video) => video.id !== doc.id);
+      }
+    });
+    // if (confirm('Are you sure you want to delete this video?')) {
+    //   this.firebaseService.deleteDocument('videos', doc.id).then((res: any) => {
+    //     if (res.success) {
+    //       this.toastr.success(res.message);
+    //       this.videos = this.videos.filter((video) => video.id !== doc.id);
+    //     } else {
+    //       this.toastr.error(res.message);
+    //     }
+    //   });
+    // }
   }
 
   addVideo() {

@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 
+interface Step {
+  icon: string;
+  title: string;
+  description: string;
+}
+
 @Component({
   selector: 'app-guide-details',
   templateUrl: './guide-details.component.html',
@@ -9,9 +15,9 @@ export class GuideDetailsComponent {
   mainTitle = 'Premium Residential Plots in Prime Locations of Visakhapatnam';
   subTitle = 'GATED COMMUNITY PLOTS WITH WORLD-CLASS AMENITIES';
 
-  steps: any[] = [
+  steps: Step[] = [
     {
-      icon: ' fa fa-map-marker',
+      icon: 'fa fa-map-marker',
       title: 'Choose Your Location',
       description:
         'Select your dream plot in our prime locations across Visakhapatnam. Our experts are available to help you choose the perfect plot that matches your requirements and budget.',

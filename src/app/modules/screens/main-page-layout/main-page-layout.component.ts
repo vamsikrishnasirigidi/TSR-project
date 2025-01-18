@@ -4,6 +4,8 @@ import { FirebaseService } from 'src/app/api/services/firebase/firebase.service'
 import { GalleryService } from 'src/app/api/services/gallery/gallery.service';
 import { LocalServiceService } from 'src/app/api/services/localStorage/local-service.service';
 import { ImageData, userData } from 'src/app/common/models/interfaces';
+import { AppDialogService } from 'src/app/shared/components/app-dialog/app-dialog.service';
+import { DeleteDialogComponent } from 'src/app/shared/components/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-main-page-layout',
@@ -29,11 +31,13 @@ export class MainPageLayoutComponent {
   ImagesCollectionName: string = 'homeLayoutImages';
   layoutCollectionName: string = 'homeLayout';
   layoutDocumentId:string='homeImage'
+  modalRef: any;
   constructor(
     private firebaseService: FirebaseService,
     private toastr: ToastrService,
     private LocalService: LocalServiceService,
-    private galleryService: GalleryService
+    private galleryService: GalleryService,
+    public dialog: AppDialogService
   ) {}
 
   ngOnInit() {
@@ -66,19 +70,34 @@ export class MainPageLayoutComponent {
   }
 
   deleteImage(imageData): void {
-    if (
-      imageData.url !== this.mainImageData.url &&
-      confirm('Are you sure you want to delete this image?')
-    ) {
-      this.firebaseService
-        .deleteDocument(this.ImagesCollectionName, imageData.id)
-        .then((res: any) => {
-          this.galleryImages = this.galleryImages.filter(
-            (img) => img.url !== imageData.url
-          );
-          this.toastr.success('Image deleted successfully');
-        });
-    }
+    // if (
+    //   imageData.url !== this.mainImageData.url &&
+    //   confirm('Are you sure you want to delete this image?')
+    // ) {
+    //   this.firebaseService
+    //     .deleteDocument(this.ImagesCollectionName, imageData.id)
+    //     .then((res: any) => {
+    //       this.galleryImages = this.galleryImages.filter(
+    //         (img) => img.url !== imageData.url
+    //       );
+    //       this.toastr.success('Image deleted successfully');
+    //     });
+    // }
+    this.modalRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        title: 'Delete Image',
+        service: this.firebaseService,
+        userId: this.ImagesCollectionName,
+        id: imageData.id,
+        methodToCall: 'deleteDocument',
+        message: 'Are you sure, you want to delete this image ?',
+      },
+    });
+    this.modalRef.afterClosed.subscribe((result) => {
+      if (result) {
+        this.galleryImages = this.galleryImages.filter((img) => img.url !== imageData.url);
+      }
+    });
   }
 
   async onFileSelected(event: any): Promise<void> {
