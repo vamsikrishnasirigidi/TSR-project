@@ -10,6 +10,7 @@ import { LocalServiceService } from 'src/app/api/services/localStorage/local-ser
 import { trigger, transition, style, animate } from '@angular/animations';
 import { DetailsFormComponent } from '../details-form/details-form.component';
 import { AppDialogService } from '../app-dialog/app-dialog.service';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -89,14 +90,30 @@ export class GalleryComponent {
     });
   }
   deleteDocument(doc) {
-    this.firebaseService.deleteDocument('gallery', doc.id).then((res: any) => {
-      if (res.success) {
-        this.toastr.success(res.message);
+    
+    this.modalRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        title: 'Delete Property',
+        service: this.firebaseService,
+        userId: 'gallery',
+        id: doc.id,
+        methodToCall: 'deleteDocument',
+        message: 'Are you sure, you want to delete this Property ?',
+      },
+    });
+    this.modalRef.afterClosed.subscribe((result) => {
+      if (result) {
         this.getGallery();
-      } else {
-        this.toastr.error(res.message);
       }
     });
+    // this.firebaseService.deleteDocument('gallery', doc.id).then((res: any) => {
+    //   if (res.success) {
+    //     this.toastr.success(res.message);
+    //     this.getGallery();
+    //   } else {
+    //     this.toastr.error(res.message);
+    //   }
+    // });
   }
   addDetails() {
     this.modalRef = this.dialog.open(DetailsFormComponent, {
