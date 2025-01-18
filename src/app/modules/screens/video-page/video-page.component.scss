@@ -10,7 +10,7 @@ $secondary-spacing: 1rem;
 .gallery-component {
   position: relative;
   min-height: 620px;
-  max-height: 100vh;
+  // max-height: 100vh;
 }
 
 // Container Layout
@@ -55,6 +55,7 @@ $secondary-spacing: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
   padding: 0 1rem;
+  align-items: start; 
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
@@ -75,6 +76,8 @@ $secondary-spacing: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform $transition-duration;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   
   &:hover {
     transform: translateY(-5px);
@@ -85,12 +88,12 @@ $secondary-spacing: 1rem;
 
     .description {
       opacity: 1;
-      max-height: 80px; // Show on hover
+      max-height: 80px;
       padding: 1rem;
+      margin-top: 0;
       
       @media (max-width: 768px) {
         opacity: 1;
-        transform: none;
       }
     }
   }
@@ -100,7 +103,7 @@ $secondary-spacing: 1rem;
   position: relative;
   height: 400px;
   overflow: hidden;
-  border-radius: $card-border-radius $card-border-radius 0 0; // Modified to flat bottom
+  border-radius: $card-border-radius $card-border-radius 0 0;
 
   @media (max-width: 768px) {
     height: 300px;
@@ -411,15 +414,15 @@ button:focus,
 //   padding: 9px;
 // }
 .description {
-  position: relative;
   background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 0; // Start with no padding
+  padding: 0;
   text-overflow: ellipsis;
   overflow: hidden;
   transition: all $transition-duration ease;
   opacity: 0;
-  max-height: 0; // Start with no height
+  max-height: 0;
+  margin-top: -1px;
   
   @media (max-width: 768px) {
     opacity: 1;

@@ -13,11 +13,11 @@ export const RoutingUrls: {
     value: 'Site Layout',
     icon: 'fa fa-area-chart',
   },
-  // {
-  //   url: '/admin/upload-details',
-  //   value: 'Upload Details',
-  //   icon: 'fa fa-cloud-upload',
-  // },
+  {
+    url: '/admin/clients',
+    value: 'Clients',
+    icon: 'fa fa-users',
+  },
   {
     url: '/admin/gallery',
     value: 'Gallery',

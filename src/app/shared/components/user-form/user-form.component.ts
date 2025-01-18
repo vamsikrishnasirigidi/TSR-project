@@ -6,6 +6,7 @@ import { AppDialogRef } from '../app-dialog/app-dialog.ref';
 import { ToastrService } from 'ngx-toastr';
 import { PatternValidations, inputRequiredValidations, minLengthValidations } from 'src/app/common/utils';
 import { EmailService } from 'src/app/api/services/email/email.service';
+import { FirebaseService } from 'src/app/api/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-user-form',
@@ -21,6 +22,7 @@ export class UserFormComponent {
     private toastr: ToastrService,
     private emailService:EmailService,
     private dialog: AppDialogRef,
+    private firebaseService:FirebaseService
   ) {
     this.userForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -47,6 +49,7 @@ export class UserFormComponent {
     this.buttonLoading = true;
     this.emailService.sendEmailToEmailJS(this.userForm.value).then((res)=>{
       this.toastr.success('We will get back to you soon!');
+      this.firebaseService.addDocument('clients',this.userForm.value);
       this.dialog.close();
       this.buttonLoading = false;
     })

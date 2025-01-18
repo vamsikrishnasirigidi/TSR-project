@@ -6,7 +6,7 @@
     {{ message }}
   </div>
   <div>
-    <p class="m-0 p-0 text-center">
+    <p class="m-0 p-0 text-center" *ngIf='showSubmessage'>
       Once deleted. you’ll not be able to recover it
     </p>
   </div>
@@ -24,9 +24,10 @@
     &nbsp;&nbsp;
     <app-button
       [mainClass]="'button-primary'"
-      [label]="'Yes, delete'"
+      [label]="submitButtonText"
       [showIcon]="false"
       (submitForm)="onConfirm()"
+      [loading]="loading"
     ></app-button>
   </div>
 </div>
